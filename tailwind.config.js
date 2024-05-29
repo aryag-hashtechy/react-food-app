@@ -7,6 +7,11 @@ module.exports = {
     extend: {
       colors: {
         'primary':'#FA4A0C'
+      },
+      screens: {
+        sm: '375px',
+        md: '768px',
+        lg: '1024px'
       }
     },
   },
