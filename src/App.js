@@ -1,13 +1,12 @@
-import BaseInput from "./component/base/BaseInput";
+import Routers from "./Routers";
+import Header from "./component/layout/Header";
 
 function App() {
   return (
-    <div>
-      <h1 className="h1">
-        Hello world!
-      </h1>
-      <BaseInput />
-    </div>
+    <>
+      <Header />
+      <Routers />
+    </>
   );
 }
 

@@ -6,8 +6,7 @@ const BaseInput = ({ name, id, inputVariant, isRequired, inputType, placeholder,
     if (name) {
       console.log(e.target.value)
       let obj = {}
-      obj[name] = e.target.value;
-      return
+      return obj[name] = e.target.value;
     }
   }
   return (

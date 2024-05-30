@@ -1,0 +1,11 @@
+.header-main{
+    @apply flex justify-between mx-10 h-[156px] items-center
+}
+
+.header-items{
+    @apply flex gap-16 font-medium
+}
+
+.header-logo{
+    @apply h-[101px] w-[206px]
+}

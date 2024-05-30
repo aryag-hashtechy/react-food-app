@@ -1,0 +1,15 @@
+.hero-main{
+    @apply relative
+}
+
+.hero-img{
+    @apply w-screen
+}
+
+.hero-text{
+    @apply absolute top-1/2 text-white left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold text-center
+}
+
+.btn-layout{
+    @apply flex gap-16 ml-24 mt-10
+}
