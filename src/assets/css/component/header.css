@@ -1,0 +1,9 @@
+.header-main {
+  @apply flex items-center justify-between  px-[70px] h-[156px];
+}
+.header-image {
+  @apply w-[206px] h-[101.76px] ml-[20px];
+}
+.header-list {
+  @apply flex items-center gap-[77px];
+}

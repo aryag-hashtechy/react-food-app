@@ -1,12 +1,10 @@
 import BaseInput from "./component/base/BaseInput";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div>
-      <h1 className="h1">
-        Hello world!
-      </h1>
-      <BaseInput />
+      <Home />
     </div>
   );
 }
