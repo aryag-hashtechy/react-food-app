@@ -1,3 +1,4 @@
+import BaseInput from "./component/base/BaseInput";
 
 function App() {
   return (
@@ -5,6 +6,7 @@ function App() {
       <h1 className="h1">
         Hello world!
       </h1>
+      <BaseInput />
     </div>
   );
 }

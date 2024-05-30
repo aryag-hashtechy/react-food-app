@@ -12,13 +12,13 @@ const BaseInput = ({ name, id, inputVariant, isRequired, inputType, placeholder,
   }
   return (
     <>
-      {labelText ? <label className={labelVariant ? labelVariant : "text-[#919191] block pb-0.5"} htmlFor={id}>{labelText}</label> : <></>}
+      {labelText ? <label className={labelVariant ? labelVariant : "label-primary"} htmlFor={id}>{labelText}</label> : <></>}
       <input type={inputType? inputType : "text"}
         name={name}
         id={id}
         required={isRequired}
         placeholder={placeholder? placeholder : "Enter your text"}
-        className={inputVariant ? inputVariant : "border-b-2 outline-none border-black pb-1.5 placeholder-black"}
+        className={inputVariant ? inputVariant : "input-primary"}
         onChange={handleChange}
         disabled={isDisable}
       />
