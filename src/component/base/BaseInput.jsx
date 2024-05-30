@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BaseInput = ({ name , id , inputVariant , isRequired , inputType , placeholder , labelText , labelVariant , isDisable = false}) => {
+const BaseInput = ({ name , id , inputVariant , isRequired , inputType , value , placeholder , labelText , labelVariant , isDisable = false}) => {
   
     const handleChange = (e) => {
         if (name) {
@@ -16,6 +16,7 @@ const BaseInput = ({ name , id , inputVariant , isRequired , inputType , placeho
       <input type={ inputType } 
        name={name}
        id={id}
+       value={value}
        required={ isRequired }
        placeholder={placeholder}
        className={inputVariant}

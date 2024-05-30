@@ -58,3 +58,11 @@ p {
 img{
     @apply max-w-full leading-[5.625rem];
 }
+
+.btn-primary{
+    @apply bg-primary text-white px-4 font-medium rounded-[30px] w-[236px] text-xl h-[68px]
+}
+
+.btn-secondary{
+    @apply bg-transparent text-white px-4 font-medium rounded-[30px] w-[236px] text-xl h-[68px] border-2 border-white
+}
