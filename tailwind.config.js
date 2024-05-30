@@ -12,6 +12,10 @@ module.exports = {
         sm: '375px',
         md: '768px',
         lg: '1024px'
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'mont': ['Montserrat', 'sans-serif'],
       }
     },
   },

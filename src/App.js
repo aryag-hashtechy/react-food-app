@@ -1,13 +1,10 @@
-import BaseInput from "./component/base/BaseInput";
+import Routers from "./Routers";
 
 function App() {
   return (
-    <div>
-      <h1 className="h1">
-        Hello world!
-      </h1>
-      <BaseInput />
-    </div>
+    <>
+      <Routers />
+    </>
   );
 }
 
