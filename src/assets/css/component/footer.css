@@ -1,0 +1,15 @@
+.footer-image {
+  @apply w-[206px] h-[101.76px] ml-[20px];
+}
+.twiter-icon {
+  @apply text-primary w-[33.31px] h-[27.06];
+}
+.facebook-icon {
+  @apply text-primary w-[40.99px] h-[40.99px];
+}
+.instagram-icon {
+  @apply text-primary w-[39px] h-[39px];
+}
+.footer-main {
+  @apply flex items-center justify-around h-[140px];
+}

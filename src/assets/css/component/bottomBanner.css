@@ -1,0 +1,9 @@
+.banner-main {
+  @apply relative;
+}
+.banner-text {
+  @apply absolute transform -translate-x-1/2 -translate-y-1/2 text-center font-bold top-1/2 left-1/2 text-white;
+}
+.banner-btn {
+  @apply flex ml-20 mt-8 gap-16;
+}

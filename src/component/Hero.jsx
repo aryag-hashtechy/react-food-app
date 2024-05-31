@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../assets/images/Rectangle 48.png";
+import image from "../assets/images/Rectangle 48.png";
 import BaseButton from "./base/BaseButton";
 
 const Hero = () => {

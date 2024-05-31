@@ -1,5 +1,5 @@
 import react from "react";
-import logo from "../../assets/images/Bella Olonje logo 111 1.svg";
+import logo from "../assets/images/Bella Olonje logo 111 1.svg";
 
 const Header = () => {
   return (

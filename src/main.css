@@ -13,3 +13,9 @@
 /* Component CSS */
 @import "./assets/css/component/header.css";
 @import "./assets/css/component/hero.css";
+
+/* Banner CSS */
+@import "./assets/css/component/bottomBanner.css";
+
+/* Footer CSS */
+@import "./assets/css/component/footer.css";

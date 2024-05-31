@@ -9,6 +9,10 @@ const BaseButton = ({ onClick, buttonText, variant }) => {
         return "btn-secondary";
       case "btn-secondaryOrange":
         return "btn-secondary border-primary text-primary";
+      case "btn-primary-square":
+        return "btn-primary rounded-[10px]";
+      case "btn-secondary-square":
+        return "btn-secondary rounded-[10px]";
       default:
         return "btn-primary";
     }
