@@ -5,5 +5,5 @@
   @apply absolute transform -translate-x-1/2 -translate-y-1/2 text-center font-bold top-1/2 left-1/2 text-white;
 }
 .hero-button {
-  @apply flex ml-24 gap-16;
+  @apply flex ml-32 mt-8 gap-16;
 }

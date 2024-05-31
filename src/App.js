@@ -1,10 +1,9 @@
-import BaseInput from "./component/base/BaseInput";
-import Home from "./pages/Home";
+import Routers from "./Routers";
 
 function App() {
   return (
     <div>
-      <Home />
+      <Routers />
     </div>
   );
 }

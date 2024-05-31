@@ -6,6 +6,7 @@ const Header = () => {
     <>
       <header className="header-main">
         <img src={logo} className="header-image" />
+
         <ul className="header-list">
           <li>Home</li>
           <li>Product</li>
