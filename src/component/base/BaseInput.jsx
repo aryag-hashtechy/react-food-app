@@ -21,16 +21,15 @@ const BaseInput = ({
   };
   return (
     <>
-      {labelText ? (
+      {labelText && (
         <label
           className={labelVariant ? labelVariant : "labelPrimary"}
           htmlFor={id}
         >
           {labelText}
         </label>
-      ) : (
-        <></>
       )}
+
       <input
         type={inputType ? inputType : "text"}
         name={name}
