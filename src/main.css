@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base CSS */
+@import "./assets/css/base/base.css";
+@import "./assets/css/base/baseButton.css";
+@import "./assets/css/base/baseInput.css";
+
 /* Layout CSS */
-@import './assets/css/layout/layout.css';
-@import './assets/css/base/base.css';
+@import "./assets/css/layout/layout.css";
 
 /* Components CSS */
-@import './assets/css/component/header.css';
-@import './assets/css/component/hero.css';
+@import "./assets/css/component/header.css";
+@import "./assets/css/component/hero.css";

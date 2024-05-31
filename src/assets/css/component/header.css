@@ -1,19 +1,19 @@
-.head-main{
-    @apply flex items-center justify-between px-[70px] h-[156px] w-full
+.headMain {
+  @apply flex items-center justify-between px-[70px] h-[156px] w-full;
 }
 
-.head-img{
-    @apply h-[102px] w-[206px]
+.headImg {
+  @apply h-[102px] w-[206px];
 }
 
-.head-items{
-    @apply flex items-center gap-[94px] font-bold
+.headItems {
+  @apply flex items-center gap-[94px] font-bold;
 }
 
-.head-items > li {
-    @apply cursor-pointer
+.headItems > li {
+  @apply cursor-pointer;
 }
 
-.active{
-    @apply text-primary
+.active {
+  @apply text-primary;
 }
