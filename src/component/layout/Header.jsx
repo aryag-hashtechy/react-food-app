@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import Logo from "../../assets/images/logo.svg"
+import Logo from "../../assets/icons/logo.svg"
 
 const Header = () => {
   return (
@@ -14,6 +14,7 @@ const Header = () => {
             <li className='headerLinks'><Link to="#">Faq</Link></li>
             <li className='headerLinks'><Link to="#">Contact</Link></li>
         </ul>
+
       </header>
     </>
   )

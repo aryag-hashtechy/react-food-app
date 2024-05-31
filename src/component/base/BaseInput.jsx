@@ -12,8 +12,9 @@ const BaseInput = ({ name, id, inputVariant, isRequired, inputType, placeholder,
   return (
     <>
       {labelText && <label className={labelVariant ? labelVariant : "labelPrimary"} htmlFor={id}>{labelText}</label>}
-      <input type={inputType? inputType : "text"}
-
+      
+      <input 
+        type={inputType? inputType : "text"}
         name={name}
         id={id}
         required={isRequired}
