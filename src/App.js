@@ -1,11 +1,10 @@
+import Routers from "./Routers";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline demo">
-        Hello world!
-      </h1>
-    </div>
+    <>
+      <Routers />
+    </>
   );
 }
 

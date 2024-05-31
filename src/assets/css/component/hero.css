@@ -1,0 +1,11 @@
+.heroMain {
+  @apply relative;
+}
+
+.heroText {
+  @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold text-center font-mont;
+}
+
+.btnCenter {
+  @apply flex gap-16 ml-24 mt-8;
+}
