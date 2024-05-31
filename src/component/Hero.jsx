@@ -12,7 +12,7 @@ const Hero = () => {
           <h3 className='h3'>Download the bella onoje's food app now on</h3>
           <div className='btnLayout'>
           <BaseButton type={"button"}/>
-          <BaseButton variant={'btnSecondaryOrange'} buttonText={"App Store"}/>
+          <BaseButton variant={'btnSecondary'} buttonText={"App Store"}/>
           </div>
       </div>
     </section>
