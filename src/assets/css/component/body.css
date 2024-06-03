@@ -1,0 +1,31 @@
+.bodyHeading{
+    @apply text-[44px] text-center font-poppins pb-10 
+}
+
+.sectionBody{
+    @apply flex justify-center items-center w-[1440px] h-[806px]
+}
+
+.sectionSmall{
+    @apply text-primary font-bold text-[24px] mb-6
+}
+
+.sectionImage{
+    @apply h-[525px] w-[302px]
+} 
+
+.sectionMedium{
+    @apply text-[24px] mb-6 text-[#737373] font-medium
+}
+
+.sectionLarge{
+    @apply text-[40px] font-bold  mb-4
+}
+
+.sectionText{
+    @apply  font-mono w-1/2
+}
+
+.imageLayout{
+    @apply w-1/2 flex justify-center
+}

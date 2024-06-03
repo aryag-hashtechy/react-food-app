@@ -19,3 +19,5 @@
 
 /* Footer CSS */
 @import "./assets/css/component/footer.css";
+
+@import './assets/css/component/body.css';

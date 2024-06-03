@@ -33,3 +33,14 @@
   max-width: 884px;
   @apply border-b-2 border-gray-500 mb-16 mx-auto;
 }
+
+
+
+.heroImg{
+  @apply w-screen;
+}
+
+
+
+.btnLayout{
+  @apply flex gap-16 ml-24 mt-10;}

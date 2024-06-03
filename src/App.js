@@ -1,10 +1,12 @@
 import Routers from "./Routers";
+import Header from "./component/layout/Header";
 
 function App() {
   return (
-    <div>
+    <>
+      
       <Routers />
-    </div>
+    </>
   );
 }
 

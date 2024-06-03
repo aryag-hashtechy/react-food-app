@@ -62,3 +62,7 @@ p {
 img {
   @apply w-full;
 }
+
+/* img{
+  @apply max-w-full;
+} */
