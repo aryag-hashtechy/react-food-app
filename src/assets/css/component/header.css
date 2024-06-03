@@ -7,3 +7,23 @@
 .header-list {
   @apply flex items-center gap-[77px];
 }
+
+.headMain {
+  @apply flex items-center justify-between px-[70px] h-[156px] w-full;
+}
+
+.headImg {
+  @apply h-[102px] w-[206px];
+}
+
+.headItems {
+  @apply flex items-center gap-[94px] font-bold;
+}
+
+.headItems > li {
+  @apply cursor-pointer;
+}
+
+.active {
+  @apply text-primary;
+}

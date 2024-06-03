@@ -23,7 +23,7 @@ const BaseInput = ({
     <>
       {labelText && (
         <label
-          className={labelVariant ? labelVariant : "label-primary"}
+          className={labelVariant ? labelVariant : "labelPrimary"}
           htmlFor={id}
         >
           {labelText}
@@ -35,7 +35,7 @@ const BaseInput = ({
         id={id}
         required={isRequired}
         placeholder={placeholder ? placeholder : "Enter your text"}
-        className={inputVariant ? inputVariant : "input-primary"}
+        className={inputVariant ? inputVariant : "inputPrimary"}
         onChange={handleChange}
         disabled={isDisable}
       />

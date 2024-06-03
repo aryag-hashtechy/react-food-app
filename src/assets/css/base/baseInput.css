@@ -3,5 +3,13 @@
 }
 
 .input-primary {
+
+  @apply pb-1.5 border-b-2 border-black sm:w-[103px] placeholder-black font-medium text-xl outline-none md:w-52;
+  }
+    .labelPrimary {
+  @apply block text-[#919191] font-medium;
+}
+
+.inputPrimary {
   @apply pb-1.5 border-b-2 border-black sm:w-[103px] placeholder-black font-medium text-xl outline-none md:w-52;
 }
