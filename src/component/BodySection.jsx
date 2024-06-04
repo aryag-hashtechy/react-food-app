@@ -24,7 +24,7 @@ const BodySection = () => {
 
     <section className='large-container'>
      <div className='section-body'>
-        <div className='section-text ml-20'>
+        <div className='section-text ml-28'>
             <h4 className='section-small'>Explore varities</h4>
             <h2 className='section-large'>Shop for your favourites meal as e dey hot.</h2>
             <h4 className='section-medium'>When you done check out and get it delivered with ease.</h4>
