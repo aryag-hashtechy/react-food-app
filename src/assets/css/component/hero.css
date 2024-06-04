@@ -1,25 +1,25 @@
-.heroMain {
+.hero-main {
   @apply relative;
 }
 
-.heroText {
+.hero-text {
   @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold text-center font-mont;
 }
 
-.btnCenter {
+.btn-center {
   @apply flex gap-16 ml-24 mt-8;
 }
 
-.heroBody {
+.hero-body {
   @apply flex justify-center;
 }
 
-.heroImage {
+.hero-image {
   max-width: 548px;
   @apply mb-12 relative -mt-40;
 }
 
-.heroBorder {
+.hero-border {
   max-width: 884px;
   @apply border-b-2 border-gray-500 mb-16 mx-auto;
 }

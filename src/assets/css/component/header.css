@@ -1,16 +1,16 @@
-.headMain {
+.head-main {
   @apply flex items-center justify-between px-[70px] h-[156px] w-full;
 }
 
-.headImg {
+.head-img {
   @apply h-[102px] w-[206px];
 }
 
-.headItems {
+.head-items {
   @apply flex items-center gap-[94px] font-bold;
 }
 
-.headItems > li {
+.head-items > li {
   @apply cursor-pointer;
 }
 

@@ -9,10 +9,10 @@ const Hero = () => {
     <>
       <Header />
 
-      <div className="heroMain">
+      <div className="hero-main">
         <img src={HeroImg} alt="Hero Section Image" />
 
-        <div className="heroText">
+        <div className="hero-text">
           <h2 className="h2">Food App</h2>
 
           <h1 className="h1 font-poppins">
@@ -21,19 +21,19 @@ const Hero = () => {
 
           <h3 className="h3">Download the bella onoje's food app now on</h3>
 
-          <div className="btnCenter">
+          <div className="btn-center">
             <BaseButton />
-            <BaseButton buttonText={"App Store"} variant={"btnSecondary"} />
+            <BaseButton buttonText={"App Store"} variant={"btn-secondary"} />
           </div>
         </div>
       </div>
 
       <div>
-        <div className="heroBody">
-          <img src={Phone} alt="Phone Images" className="heroImage" />
+        <div className="hero-body">
+          <img src={Phone} alt="Phone Images" className="hero-image" />
         </div>
 
-        <div className="heroBorder" />
+        <div className="hero-border" />
       </div>
     </>
   );

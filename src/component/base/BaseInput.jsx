@@ -23,7 +23,7 @@ const BaseInput = ({
     <>
       {labelText ? (
         <label
-          className={labelVariant ? labelVariant : "labelPrimary"}
+          className={labelVariant ? labelVariant : "label-primary"}
           htmlFor={id}
         >
           {labelText}
