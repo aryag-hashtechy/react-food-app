@@ -1,9 +1,13 @@
+.main-section{
+    @apply pb-40
+}
+
 .body-heading{
     @apply text-[44px] text-center font-poppins pb-10 
 }
 
 .section-body{
-    @apply flex justify-center items-center w-[1440px] h-[806px]
+    @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10
 }
 
 .section-small{
@@ -23,9 +27,9 @@
 }
 
 .section-text{
-    @apply  font-mono w-1/2
+    @apply  font-mono w-1/2 text-center md:text-left
 }
 
 .image-layout{
-    @apply w-1/2 flex justify-center
+    @apply w-1/2 flex justify-center pb-8 md:pb-0
 }

@@ -5,11 +5,10 @@ import bodyImg3 from "../assets/images/image 17.png"
 
 const BodySection = () => {
   return (
-    <>
+    <section className='main-section'>
     <h3 className='body-heading'>How the app works</h3>
-    <section className='large-container'>
-     <div className='section-body'>
 
+     <div className='section-body small-container md:large-container'>
         <div className='image-layout'>
         <img src={bodyImg1} alt="img-1" className='section-img'/>
         </div>
@@ -20,11 +19,9 @@ const BodySection = () => {
             <h4 className='section-medium'>An account is created with your email and a desired password</h4>
         </div>
     </div>   
-    </section>
 
-    <section className='large-container'>
-     <div className='section-body'>
-        <div className='section-text ml-28'>
+     <div className='section-body sm:small-container md:large-container'>
+        <div className='section-text lg:ml-32'>
             <h4 className='section-small'>Explore varities</h4>
             <h2 className='section-large'>Shop for your favourites meal as e dey hot.</h2>
             <h4 className='section-medium'>When you done check out and get it delivered with ease.</h4>
@@ -34,10 +31,8 @@ const BodySection = () => {
         <img src={bodyImg2} alt="img-2" className="section-img"/>
         </div>
     </div>   
-    </section>
 
-    <section className='large-container'>
-     <div className='section-body'>
+     <div className='section-body sm:small-container lg:large-container'>
         <div className='image-layout'>
         <img src={bodyImg3} alt="img-3" className="section-img"/>
         </div>
@@ -49,7 +44,6 @@ const BodySection = () => {
         </div>
     </div>   
     </section>
-    </>
   )
 }
 
