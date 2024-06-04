@@ -1,11 +1,11 @@
-.smallContainer{
+.small-container{
     @apply sm:px-6
 }
 
-.mediumContainer{
+.medium-container{
     @apply md:px-9
 }
 
-.largeContainer{
+.large-container{
     @apply lg:px-12
 }
