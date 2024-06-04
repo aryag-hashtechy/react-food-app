@@ -1,9 +1,17 @@
 .banner-main {
-  @apply relative;
+  @apply relative bg-[#252B42] md:bg-transparent h-[654px] md:h-auto;
 }
+
+.banner-image {
+  @apply hidden md:block;
+}
+
 .banner-text {
   @apply absolute transform -translate-x-1/2 -translate-y-1/2 text-center font-bold top-1/2 left-1/2 text-white;
 }
-.banner-btn {
-  @apply flex ml-20 mt-8 gap-16;
+.banner-btn-window {
+  @apply hidden md:flex  ml-20 mt-8 gap-16;
+}
+.banner-btn-mobile {
+  @apply flex md:hidden ml-20 mt-8 gap-16;
 }

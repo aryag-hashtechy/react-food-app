@@ -1,5 +1,5 @@
 .footer-image {
-  @apply w-[206px] h-[101.76px] ml-[20px];
+  @apply hidden md:block w-[206px] h-[101.76px] ml-[20px];
 }
 .twiter-icon {
   @apply text-primary w-[33.31px] h-[27.06];
@@ -11,5 +11,5 @@
   @apply text-primary w-[39px] h-[39px];
 }
 .footer-main {
-  @apply flex items-center justify-around h-[140px];
+  @apply flex flex-col md:flex-row items-center justify-around h-[140px];
 }
