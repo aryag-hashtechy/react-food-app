@@ -23,6 +23,7 @@ const Hero = () => {
 
           <div className="btn-center">
             <BaseButton />
+
             <BaseButton buttonText={"App Store"} variant={"btn-secondary"} />
           </div>
         </div>
