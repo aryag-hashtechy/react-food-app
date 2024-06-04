@@ -13,21 +13,23 @@ const BaseInput = ({
 }) => {
   const handleChange = (e) => {
     if (name) {
-      console.log(e.target.value);
       let obj = {};
+
       obj[name] = e.target.value;
       return;
     }
   };
   return (
     <>
-      {labelText && (
+      {labelText ? (
         <label
           className={labelVariant ? labelVariant : "label-primary"}
           htmlFor={id}
         >
           {labelText}
         </label>
+      ) : (
+        <></>
       )}
       <input
         type={inputType ? inputType : "text"}
@@ -35,7 +37,7 @@ const BaseInput = ({
         id={id}
         required={isRequired}
         placeholder={placeholder ? placeholder : "Enter your text"}
-        className={inputVariant ? inputVariant : "input-primary"}
+        className={inputVariant ? inputVariant : "inputPrimary"}
         onChange={handleChange}
         disabled={isDisable}
       />

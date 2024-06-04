@@ -1,9 +1,25 @@
 .hero-main {
   @apply relative;
 }
+
 .hero-text {
-  @apply absolute transform -translate-x-1/2 -translate-y-1/2 text-center font-bold top-1/2 left-1/2 text-white;
+  @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold text-center font-mont;
 }
-.hero-button {
-  @apply flex ml-32 mt-8 gap-16;
+
+.btn-center {
+  @apply flex gap-16 ml-24 mt-8;
+}
+
+.hero-body {
+  @apply flex justify-center;
+}
+
+.hero-image {
+  max-width: 548px;
+  @apply mb-12 relative -mt-40;
+}
+
+.hero-border {
+  max-width: 884px;
+  @apply border-b-2 border-gray-500 mb-16 mx-auto;
 }
