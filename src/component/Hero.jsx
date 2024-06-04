@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Header";
 import HeroImg from "../assets/images/Hero.png";
 import BaseButton from "./base/BaseButton";
 import Phone from "../assets/images/phones.png";
@@ -7,8 +6,6 @@ import Phone from "../assets/images/phones.png";
 const Hero = () => {
   return (
     <>
-      <Header />
-
       <div className="hero-main">
         <img src={HeroImg} alt="Hero Section Image" />
 

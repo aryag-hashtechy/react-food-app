@@ -14,7 +14,7 @@ const Header = () => {
         <img src={logo} className="header-image" />
 
         <ul className="header-list">
-          <li>Home</li>
+          <li className="active">Home</li>
           <li>Product</li>
           <li>Faq</li>
           <li>Contact</li>

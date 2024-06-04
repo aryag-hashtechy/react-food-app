@@ -7,7 +7,11 @@
 }
 
 .header-list {
-  @apply items-center gap-[77px]  md:flex md:flex-row hidden;
+  @apply items-center gap-[77px]  md:flex md:flex-row hidden font-bold;
+}
+
+.header-list > li {
+  @apply cursor-pointer;
 }
 
 .header-icon {
