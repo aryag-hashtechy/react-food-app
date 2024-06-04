@@ -1,35 +1,36 @@
-.main-section{
-    @apply pb-40
+.main-section {
+  @apply pb-10 md:pb-40;
 }
 
-.body-heading{
-    @apply text-[44px] text-center font-poppins pb-10 
+.body-heading {
+  @apply text-[44px] text-center font-poppins pb-10;
 }
 
-.section-body{
-    @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10
+.section-body {
+  @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10;
 }
 
-.section-small{
-    @apply text-primary font-bold text-[24px] mb-6
+.section-small {
+  @apply text-primary font-bold text-[24px] mb-6;
 }
 
-.section-img{
-    @apply h-[525px] w-[302px]
-} 
-
-.section-medium{
-    @apply text-[24px] mb-6 text-[#737373] font-medium
+.section-img {
+  @apply h-[525px] w-[290px];
+  min-width: 270px;
 }
 
-.section-large{
-    @apply text-[40px] font-bold  mb-4
+.section-medium {
+  @apply text-[24px] mb-6 text-[#737373] font-medium;
 }
 
-.section-text{
-    @apply  font-mono w-1/2 text-center md:text-left
+.section-large {
+  @apply text-[40px] font-bold  mb-4;
 }
 
-.image-layout{
-    @apply w-1/2 flex justify-center pb-8 md:pb-0
+.section-text {
+  @apply font-mono sm:w-full md:w-1/2 text-center md:text-left;
+}
+
+.image-layout {
+  @apply w-1/2 flex justify-center pb-8 md:pb-0;
 }

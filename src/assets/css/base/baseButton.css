@@ -2,6 +2,18 @@
   @apply bg-primary text-white px-4 font-medium rounded-[30px] w-[236px] text-xl h-[68px];
 }
 
+.btn-primary-square {
+  @apply bg-primary text-white px-4 font-medium rounded-[10px] w-[150px] md:w-[236px] text-xl h-[68px];
+}
+
 .btn-secondary {
   @apply bg-transparent text-white px-4 font-medium rounded-[30px] w-[236px] text-xl h-[68px] border-2 border-white;
+}
+
+.btn-secondary-orange {
+  @apply bg-transparent px-4 font-medium rounded-[30px] w-[236px] text-xl h-[68px] border-2 border-primary text-primary md:text-white md:border-white;
+}
+
+.btn-secondary-square {
+  @apply bg-transparent text-white px-4 font-medium rounded-[10px] w-[185px] md:w-[236px] text-xl h-[68px] border-2 border-white;
 }

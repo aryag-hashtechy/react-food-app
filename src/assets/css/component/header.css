@@ -1,9 +1,9 @@
 .header-main {
-  @apply flex items-center justify-between  px-[70px] h-[156px];
+  @apply flex items-center justify-between px-[20px] md:px-[70px] h-[112px] md:h-[156px] shadow;
 }
 
 .header-image {
-  @apply w-[206px] h-[101.76px] ml-[20px];
+  @apply w-[104px] h-[52px] md:w-[206px] md:h-[101.76px] ml-[20px];
 }
 
 .header-list {

@@ -6,8 +6,8 @@ import Phone from "../assets/images/phones.png";
 const Hero = () => {
   return (
     <>
-      <div className="hero-main">
-        <img src={HeroImg} alt="Hero Section Image" />
+      <div className="hero-main ">
+        <img className="hero-bg-image" src={HeroImg} alt="Hero Section Image" />
 
         <div className="hero-text">
           <h2 className="h2">Food App</h2>
@@ -16,12 +16,15 @@ const Hero = () => {
             Why stay hungry when you can order from Bella Onojie
           </h1>
 
-          <h3 className="h3">Download the bella onoje's food app now on</h3>
+          <h3 className="h2">Download the bella onoje's food app now on</h3>
 
           <div className="btn-center">
             <BaseButton />
 
-            <BaseButton buttonText={"App Store"} variant={"btn-secondary"} />
+            <BaseButton
+              buttonText={"App Store"}
+              variant={"btn-secondary-orange"}
+            />
           </div>
         </div>
       </div>

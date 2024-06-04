@@ -7,12 +7,12 @@ const BaseButton = ({ onClick, buttonText, variant }) => {
         return "btn-primary";
       case "btn-secondary":
         return "btn-secondary";
-      case "btn-secondaryOrange":
-        return "btn-secondary border-primary text-primary";
+      case "btn-secondary-orange":
+        return "btn-secondary-orange";
       case "btn-primary-square":
-        return "btn-primary rounded-[10px]";
+        return "btn-primary-square";
       case "btn-secondary-square":
-        return "btn-secondary rounded-[10px]";
+        return "btn-secondary-square";
       default:
         return "btn-primary";
     }
