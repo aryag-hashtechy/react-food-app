@@ -13,6 +13,7 @@
 /* Components CSS */
 @import "./assets/css/component/header.css";
 @import "./assets/css/component/hero.css";
+@import './assets/css/component/body.css';
 
 /* Banner CSS */
 @import "./assets/css/component/bottomBanner.css";
