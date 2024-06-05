@@ -23,5 +23,9 @@
 }
 
 .banner-btn-mobile {
-  @apply flex md:hidden ml-6 mt-8 gap-6;
+  @apply inline-block mx-auto  md:hidden  mt-8;
+}
+
+.banner-btn-mobile > :first-child {
+  @apply mr-8;
 }
