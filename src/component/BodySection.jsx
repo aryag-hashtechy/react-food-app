@@ -5,10 +5,10 @@ import bodyImg3 from "../assets/images/image 17.png";
 
 const BodySection = () => {
   return (
-    <section className="main-section">
+    <section className="main-section main-container">
       <h3 className="body-heading">How the app works</h3>
 
-      <div className="section-body small-container md:large-container">
+      <div className="section-body">
         <div className="image-layout">
           <img src={bodyImg1} alt="img-1" className="section-img" />
         </div>
@@ -24,7 +24,7 @@ const BodySection = () => {
         </div>
       </div>
 
-      <div className="section-body small-container md:large-container">
+      <div className="section-body">
         <div className="section-text md:ml-10 lg:ml-32">
           <h4 className="section-small">Explore varities</h4>
           <h2 className="section-large">
@@ -40,7 +40,7 @@ const BodySection = () => {
         </div>
       </div>
 
-      <div className="section-body small-container lg:large-container">
+      <div className="section-body">
         <div className="image-layout">
           <img src={bodyImg3} alt="img-3" className="section-img" />
         </div>
