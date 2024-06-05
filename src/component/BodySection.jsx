@@ -6,7 +6,8 @@ import bodyImg3 from "../assets/images/image 17.png";
 const BodySection = () => {
   return (
     <section className="main-section main-container">
-      <h3 className="body-heading">How the app works</h3>
+      <h3 className="section-heading">How the app works</h3>
+      <div className="section-border" />
 
       <div className="section-body">
         <div className="image-layout">
