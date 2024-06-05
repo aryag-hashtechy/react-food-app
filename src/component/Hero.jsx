@@ -5,7 +5,7 @@ import Phone from "../assets/images/phones.png";
 const Hero = () => {
   return (
     <>
-      <div className="hero-main ">
+      <div className="hero-main main-container">
         <div className="hero-text">
           <h2 className="h2">Food App</h2>
 

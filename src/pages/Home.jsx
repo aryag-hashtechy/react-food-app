@@ -1,7 +1,7 @@
-import React from 'react'
-import Hero from '../component/Hero'
-import BodySection from '../component/BodySection'
-import Header from "../component/Header"
+import React from "react";
+import Hero from "../component/Hero";
+import BodySection from "../component/BodySection";
+import Header from "../component/Header";
 import BottomBanner from "../component/BottomBanner";
 import Footer from "../component/Footer";
 

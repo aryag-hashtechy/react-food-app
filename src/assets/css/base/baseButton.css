@@ -3,7 +3,7 @@
 }
 
 .btn-primary-square {
-  @apply bg-primary text-white  font-medium rounded-[10px] px-[32px] md:px-[40px]  text-xl py-[20px];
+  @apply bg-primary text-white  font-medium rounded-[10px] px-[32px] md:px-[40px] text-xl py-[20px];
 }
 
 .btn-secondary {
