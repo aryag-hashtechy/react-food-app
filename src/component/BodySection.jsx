@@ -25,7 +25,7 @@ const BodySection = () => {
       </div>
 
       <div className="section-body small-container md:large-container">
-        <div className="section-text lg:ml-32">
+        <div className="section-text md:ml-10 lg:ml-32">
           <h4 className="section-small">Explore varities</h4>
           <h2 className="section-large">
             Shop for your favourites meal as e dey hot.

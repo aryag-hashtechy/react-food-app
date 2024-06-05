@@ -3,11 +3,11 @@
 }
 
 .body-heading {
-  @apply text-[44px] text-center font-poppins pb-10;
+  @apply text-[44px] text-center pb-10 font-poppins font-semibold;
 }
 
 .section-body {
-  @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10;
+  @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10 font-mont;
 }
 
 .section-small {
@@ -28,7 +28,7 @@
 }
 
 .section-text {
-  @apply font-mono sm:w-full md:w-1/2 text-center md:text-left;
+  @apply sm:w-full md:w-1/2 text-center md:text-left;
 }
 
 .image-layout {
