@@ -3,15 +3,15 @@
 }
 
 .banner-text {
-  @apply text-center font-bold  text-white pt-28;
+  @apply text-center font-bold  text-white;
 }
 
 .banner-text > :first-child {
-  @apply text-[48px];
+  @apply text-[40px];
 }
 
 .h3:nth-child(2) {
-  @apply text-[24px] text-[#BDBDBD];
+  @apply text-[24px] text-[#BDBDBD] md:text-white font-medium mb-16;
 }
 
 .banner-btn-window {
@@ -19,7 +19,7 @@
 }
 
 .banner-btn-window > :first-child {
-  @apply md:mr-20;
+  @apply md:mr-6;
 }
 
 .banner-btn-mobile {
