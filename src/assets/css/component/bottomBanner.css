@@ -1,17 +1,25 @@
 .banner-main {
-  @apply relative bg-[#252B42] md:bg-transparent h-[654px] md:h-auto;
-}
-
-.banner-image {
-  @apply hidden md:block;
+  @apply bg-[#252B42] md:bg-no-repeat md:bg-cover md:py-40 md:bg-center md:bg-[url('../../images/BottomBanner.png')]  h-[654px] md:h-auto;
 }
 
 .banner-text {
-  @apply absolute transform -translate-x-1/2 -translate-y-1/2 text-center font-bold top-1/2 left-1/2 text-white;
+  @apply text-center font-bold  text-white pt-40;
+}
+
+.banner-text > :first-child {
+  @apply text-[48px];
+}
+
+.h3:nth-child(2) {
+  @apply text-[24px] text-[#BDBDBD];
 }
 
 .banner-btn-window {
-  @apply hidden md:flex  ml-20 mt-8 gap-16;
+  @apply hidden md:inline-block;
+}
+
+.banner-btn-window > :first-child {
+  @apply md:mr-20;
 }
 
 .banner-btn-mobile {
