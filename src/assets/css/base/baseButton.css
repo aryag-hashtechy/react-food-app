@@ -15,5 +15,5 @@
 }
 
 .btn-secondary-square {
-  @apply bg-transparent text-white px-4 font-bold rounded-[10px] px-[20px] md:px-[40px]  text-xl py-[20px] border-2 border-white hover:bg-white hover:text-primary;
+  @apply bg-transparent text-white px-4 font-medium rounded-[10px] px-[28px] md:px-[52px]  text-xl py-[20px] border-2 border-white hover:bg-white hover:text-primary;
 }
