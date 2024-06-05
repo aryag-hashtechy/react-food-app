@@ -3,7 +3,7 @@
 }
 
 .banner-text {
-  @apply text-center font-bold  text-white pt-40;
+  @apply text-center font-bold  text-white pt-28;
 }
 
 .banner-text > :first-child {
