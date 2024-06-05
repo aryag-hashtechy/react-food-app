@@ -1,21 +1,21 @@
 .main-section {
-  @apply pb-10 md:pb-40;
+  @apply mb-10 md:mb-40;
 }
 
-.main-section .section-body:nth-child(odd){
-  @apply flex-col-reverse md:flex-row
+.main-section .section-body:nth-child(odd) {
+  @apply flex-col-reverse md:flex-row;
 }
 
 .section-heading {
   @apply md:text-[44px] text-center pb-10 font-poppins font-semibold text-[24px];
 }
 
-.section-border{
-  @apply border-b-2 mb-14 w-full md:hidden
+.section-border {
+  @apply border-b-2 mb-8 md:hidden;
 }
 
 .section-body {
-  @apply flex flex-col md:flex-row justify-center items-center py-4 md:py-10 font-mont;
+  @apply flex flex-col md:flex-row justify-center items-center my-4 md:my-10 font-mont;
 }
 
 .section-small {
@@ -23,7 +23,7 @@
 }
 
 .section-img {
-  @apply h-[525px] w-[290px];
+  @apply h-[525px] w-[290px] rounded-[45px] shadow-2xl;
   min-width: 270px;
 }
 

@@ -6,6 +6,18 @@
   @apply text-black md:text-white font-bold text-center font-mont mx-auto md:max-w-[1000px];
 }
 
+.hero-text > h1 {
+  @apply leading-[42.5px] md:leading-[80px];
+}
+
+.hero-text > :first-child {
+  @apply text-[16px] md:text-2xl;
+}
+
+.hero-text h3:nth-child(3) {
+  @apply text-[#737373] md:text-white font-normal;
+}
+
 .hero-body {
   @apply flex justify-center;
 }
@@ -25,13 +37,13 @@
 }
 
 .btn-center > :first-child {
-  @apply mb-6 md:mr-20 md:mb-0;
+  @apply mb-6 md:mr-20 md:mb-0 shadow-2xl;
 }
 
 .btn-center > button {
   @apply block md:inline-block mx-auto md:mx-0;
 }
 
-.h2:nth-child(3) {
+.hero-text > :first-child {
   @apply text-[#737373] md:text-white;
 }

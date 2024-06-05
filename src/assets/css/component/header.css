@@ -15,9 +15,17 @@
 }
 
 .header-icon {
-  @apply block md:hidden cursor-pointer;
+  @apply block md:hidden cursor-pointer text-[#737373];
 }
 
 .active {
   @apply text-primary;
+}
+
+.hamburger-menu {
+  @apply bg-white w-full md:hidden pb-4 shadow;
+}
+
+.hamburger-menu > li {
+  @apply pl-3;
 }

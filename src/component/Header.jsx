@@ -24,11 +24,11 @@ const Header = () => {
       </header>
       {isOpen && (
         <div>
-          <ul className="bg-white w-full pl-4 pr-2 md:hidden  pr-16 pb-4">
-            <li className="border-b-2 border-black">Home</li>
-            <li className="border-b-2 border-black ">Product</li>
-            <li className="border-b-2 border-black">Faq</li>
-            <li className="border-b-2 border-black">Contact</li>
+          <ul className="hamburger-menu">
+            <li>Home</li>
+            <li>Product</li>
+            <li>Faq</li>
+            <li>Contact</li>
           </ul>
         </div>
       )}

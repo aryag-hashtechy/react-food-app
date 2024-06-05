@@ -1,19 +1,19 @@
 .btn-primary {
-  @apply bg-primary text-white  font-medium rounded-[30px] px-[60px] text-xl py-[16px];
+  @apply bg-primary text-white  font-bold rounded-[30px] px-[60px] text-xl py-[16px] hover:bg-white hover:text-primary;
 }
 
 .btn-primary-square {
-  @apply bg-primary text-white  font-medium rounded-[10px] px-[20px] md:px-[40px]  text-xl py-[20px];
+  @apply bg-primary text-white  font-bold rounded-[10px] px-[20px] md:px-[40px] text-xl py-[20px] hover:bg-white hover:text-primary;
 }
 
 .btn-secondary {
-  @apply bg-transparent text-white  font-medium rounded-[30px] px-[20px] text-xl py-[16px] border-2 border-white;
+  @apply bg-transparent text-white  font-bold rounded-[30px] px-[20px] text-xl py-[16px] border-2 border-white hover:bg-white hover:text-primary;
 }
 
 .btn-secondary-orange {
-  @apply bg-transparent  font-medium rounded-[30px] px-[60px] text-xl py-[16px] border-2 border-primary text-primary md:text-white md:border-white;
+  @apply bg-transparent  font-bold rounded-[30px] px-[60px] text-xl py-[16px] border-2 border-primary text-primary md:text-white md:border-white hover:bg-white hover:text-primary;
 }
 
 .btn-secondary-square {
-  @apply bg-transparent text-white px-4 font-medium rounded-[10px] px-[20px] md:px-[40px]  text-xl py-[20px] border-2 border-white;
+  @apply bg-transparent text-white px-4 font-bold rounded-[10px] px-[20px] md:px-[40px]  text-xl py-[20px] border-2 border-white hover:bg-white hover:text-primary;
 }
