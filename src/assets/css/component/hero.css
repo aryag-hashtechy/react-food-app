@@ -1,25 +1,49 @@
-.heroMain {
-  @apply relative;
+.hero-main {
+  @apply bg-none md:bg-no-repeat md:bg-cover md:bg-center md:bg-[url('../../images/Hero.png')] pt-20 pb-40;
 }
 
-.heroText {
-  @apply absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-semibold text-center font-mont;
+.hero-text {
+  @apply text-black md:text-white font-bold text-center font-mont mx-auto md:max-w-[1000px];
 }
 
-.btnCenter {
-  @apply flex gap-16 ml-24 mt-8;
+.hero-text > h1 {
+  @apply leading-[42.5px] md:leading-[80px];
 }
 
-.heroBody {
+.hero-text > :first-child {
+  @apply text-[16px] md:text-2xl;
+}
+
+.hero-text h3:nth-child(3) {
+  @apply text-[#737373] md:text-white font-normal;
+}
+
+.hero-body {
   @apply flex justify-center;
 }
 
-.heroImage {
+.hero-image {
   max-width: 548px;
-  @apply mb-12 relative -mt-40;
+  @apply mb-12 md:relative md:-mt-40;
 }
 
-.heroBorder {
+.hero-border {
   max-width: 884px;
-  @apply border-b-2 border-gray-500 mb-16 mx-auto;
+  @apply md:border-b-2 border-[#E4E4E4] md:mb-16 mx-auto;
+}
+
+.btn-center {
+  @apply block md:inline-block;
+}
+
+.btn-center > :first-child {
+  @apply mb-6 md:mr-20 md:mb-0 shadow-2xl;
+}
+
+.btn-center > button {
+  @apply block md:inline-block mx-auto md:mx-0;
+}
+
+.hero-text > :first-child {
+  @apply text-[#737373] md:text-white;
 }

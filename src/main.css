@@ -7,9 +7,9 @@
 @import "./assets/css/base/baseButton.css";
 @import "./assets/css/base/baseInput.css";
 
-/* Layout CSS */
-@import "./assets/css/layout/layout.css";
-
 /* Components CSS */
 @import "./assets/css/component/header.css";
 @import "./assets/css/component/hero.css";
+@import "./assets/css/component/body.css";
+@import "./assets/css/component/bottomBanner.css";
+@import "./assets/css/component/footer.css";

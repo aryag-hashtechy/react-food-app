@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const BaseInput = ({
   name,
@@ -9,21 +9,19 @@ const BaseInput = ({
   placeholder,
   labelText,
   labelVariant,
-  isDisable = false,
+  isDisable = false
 }) => {
   const handleChange = (e) => {
     if (name) {
-      let obj = {};
-
-      obj[name] = e.target.value;
-      return;
+      let obj = {}
+      return (obj[name] = e.target.value)
     }
-  };
+  }
   return (
     <>
       {labelText && (
         <label
-          className={labelVariant ? labelVariant : "labelPrimary"}
+          className={labelVariant ? labelVariant : 'label-primary'}
           htmlFor={id}
         >
           {labelText}
@@ -31,17 +29,17 @@ const BaseInput = ({
       )}
 
       <input
-        type={inputType ? inputType : "text"}
+        type={inputType ? inputType : 'text'}
         name={name}
         id={id}
         required={isRequired}
-        placeholder={placeholder ? placeholder : "Enter your text"}
-        className={inputVariant ? inputVariant : "inputPrimary"}
+        placeholder={placeholder ? placeholder : 'Enter your text'}
+        className={inputVariant ? inputVariant : 'input-primary'}
         onChange={handleChange}
         disabled={isDisable}
       />
     </>
-  );
-};
+  )
+}
 
-export default BaseInput;
+export default BaseInput
