@@ -1,5 +1,5 @@
-import react, { useState } from "react";
-import logo from "../assets/images/Bella Olonje logo 111 1.svg";
+import React, { useState } from "react";
+import logo from "../assets/icons/logo.svg";
 import { FiMenu } from "react-icons/fi";
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <>
       <header className="header-main">
-        <img src={logo} className="header-image" />
+        <img src={logo} alt="logo" className="header-image" />
 
         <ul className="header-list">
           <li className="active">Home</li>
