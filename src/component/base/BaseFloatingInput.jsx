@@ -9,8 +9,8 @@ const BaseFloatingInput = ({
   placeholder,
   labelText,
   labelVariant,
-  isDisable = false,
-  isFlotting = false,
+  isDisabled = false,
+  isFloating = false,
 }) => {
   const handleChange = (e) => {
     if (name) {
@@ -28,6 +28,7 @@ const BaseFloatingInput = ({
           required
           autocomplete="off"
         />
+
         <label className="label-name">
           <span className="content-name">{labelText}</span>
         </label>

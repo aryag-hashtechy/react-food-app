@@ -6,9 +6,11 @@ import BaseFloatingInput from "../../component/base/BaseFloatingInput";
 
 const Login = () => {
   const [login, setLogin] = useState(true);
+
   const handleLoginClick = () => {
     setLogin(true);
   };
+
   const handleSignUpClick = () => {
     setLogin(false);
   };
@@ -24,11 +26,13 @@ const Login = () => {
               <p className="login-text" onClick={handleLoginClick}>
                 Login
               </p>
+
               <p className="signup-text" onClick={handleSignUpClick}>
                 Sign-up
               </p>
             </div>
           </div>
+
           <div className="mt-8">
             <BaseFloatingInput
               name="email"
@@ -36,6 +40,7 @@ const Login = () => {
               inputType="email"
               labelText="Email Address "
             />
+
             <BaseFloatingInput
               name="password"
               id="password"
@@ -43,9 +48,11 @@ const Login = () => {
               labelText="Password"
             />
           </div>
+
           <div>
             <p className="forgot-password">Forgot Password?</p>
           </div>
+
           <div className="btn-main">
             <BaseButton buttonText="Login" variant="btn-primary-mobile" />
           </div>
@@ -54,14 +61,17 @@ const Login = () => {
         <section className="signup-main">
           <div className="signup-card">
             <img src={image} className="signup-card-logo" />
+
             <div className="signup-card-content ">
               <p className="signup-login-text" onClick={handleLoginClick}>
                 Login
               </p>
+
               <p className="signup-signup-text" onClick={handleSignUpClick}>
                 Sign-up
               </p>
             </div>
+
             <div>
               <BaseInput
                 labelText="Profile pic"
@@ -69,24 +79,28 @@ const Login = () => {
                 inputType="file"
                 inputVariant="w-[80%] ml-8 mt-6 mb-4"
               />
+
               <BaseFloatingInput
                 name="email"
                 id="email"
                 inputType="text"
                 labelText="Email Address"
               />
+
               <BaseFloatingInput
                 name="full name"
                 id="full name"
                 inputType="text"
                 labelText="Full Name"
               />
+
               <BaseFloatingInput
                 name="password"
                 id="password"
                 inputType="password"
                 labelText=" Password"
               />
+
               <BaseFloatingInput
                 name="re-password"
                 id="re-password"
@@ -94,9 +108,11 @@ const Login = () => {
                 labelText="Re-enter Password"
               />
             </div>
+
             <div>
               <p className="forgot-password">Forgot Password?</p>
             </div>
+
             <div className="btn-main">
               <BaseButton buttonText="Signup" variant="btn-primary-mobile" />
             </div>
