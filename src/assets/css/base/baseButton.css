@@ -2,6 +2,10 @@
   @apply bg-primary text-white  font-bold rounded-[30px] px-[60px] text-xl py-[16px] hover:bg-white hover:text-primary;
 }
 
+.btn-primary-mobile {
+  @apply bg-primary text-white  font-bold rounded-[30px] mb-12 px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
+}
+
 .btn-primary-square {
   @apply bg-primary text-white  font-bold rounded-[10px] px-[20px] md:px-[40px] text-xl py-[20px] hover:bg-white hover:text-primary;
 }

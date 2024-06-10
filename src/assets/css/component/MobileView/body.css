@@ -1,0 +1,11 @@
+.body-main {
+  @apply mt-4 pl-12 w-[190px];
+}
+
+.body-title {
+  @apply font-bold text-[24px];
+}
+
+.see-more {
+  @apply text-primary mt-12 text-right mr-8;
+}

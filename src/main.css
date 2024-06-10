@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 /* Layout CSS */
-@import './assets/css/base/base.css';
+@import "./assets/css/base/base.css";
 
 /* Base CSS */
 @import "./assets/css/base/base.css";
 @import "./assets/css/base/baseButton.css";
 @import "./assets/css/base/baseInput.css";
+@import "./assets/css/base/BaseFloatingInput.css";
 
 /*Page CSS */
 @import "./assets/css/page/myProfile.css";
@@ -23,4 +24,17 @@
 @import "./assets/css/component/profileMenu.css";
 
 /* auth CSS */
-@import "./assets/css/auth/splashSreen.css"
+@import "./assets/css/auth/splashSreen.css";
+
+/* Page CSS */
+@import "./assets/css/page/auth/login.css";
+@import "./assets/css/page/auth/signup.css";
+
+/* MobileView CSS */
+
+@import "./assets/css/component/MobileView/body.css";
+@import "./assets/css/component/MobileView/card.css";
+@import "./assets/css/component/MobileView/footer.css";
+@import "./assets/css/component/MobileView/header.css";
+@import "./assets/css/component/MobileView/searchbar.css";
+@import "./assets/css/component/MobileView/title.css";

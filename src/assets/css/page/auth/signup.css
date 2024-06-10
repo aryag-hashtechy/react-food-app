@@ -1,0 +1,31 @@
+.signup-main {
+  @apply bg-[#F2F2F2];
+}
+
+.signup-card {
+  @apply rounded-b-[30px] bg-white h-[250px] shadow-md;
+}
+
+.signup-card-logo {
+  @apply mx-auto w-[150px] h-[162.38px] mb-12 mt-12;
+}
+
+.signup-card-content {
+  @apply font-medium  pl-16 pr-12 gap-24  flex;
+}
+
+.signup-login-text {
+  @apply text-xl;
+}
+
+.signup-signup-text {
+  @apply w-[96px] text-center border-b-4 text-xl pb-3 border-primary;
+}
+
+.forgot-password {
+  @apply text-primary mt-8 pl-8 mb-20 font-medium;
+}
+
+.btn-main {
+  @apply text-center;
+}
