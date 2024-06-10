@@ -13,6 +13,8 @@ const BaseButton = ({ onClick, buttonText, variant }) => {
         return "btn-primary-square";
       case "btn-secondary-square":
         return "btn-secondary-square";
+      case "btn-primary-mobile":
+        return "btn-primary-mobile";
       default:
         return "btn-primary";
     }

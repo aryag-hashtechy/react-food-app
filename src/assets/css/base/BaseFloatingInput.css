@@ -1,0 +1,29 @@
+.float {
+  @apply w-[80%] h-[60px] relative overflow-hidden mb-[25px] mx-auto;
+}
+
+.float input {
+  @apply w-full h-full border-none outline-none pt-[25px] bg-transparent;
+}
+
+.float label {
+  @apply absolute w-full h-full bottom-0 left-0 border-b-2 border-black pointer-events-none;
+}
+
+.float label::after {
+  @apply absolute w-full h-full -bottom-[1px] left-0 transform -translate-x-full transition-transform duration-300 ease-in-out;
+}
+
+.content-name {
+  @apply absolute bottom-[5px] left-0 transition-transform duration-300 ease-in-out text-[#919191] font-medium;
+}
+
+.float input:focus + .label-name .content-name,
+.float input:valid + .label-name .content-name {
+  @apply transform -translate-y-[150%] text-[15px];
+}
+
+.float input:focus + .label-name::after,
+.float input:valid + .label-name::after {
+  @apply transform translate-x-0;
+}
