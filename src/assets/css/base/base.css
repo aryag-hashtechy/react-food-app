@@ -66,3 +66,7 @@ img {
 .main-container {
   @apply px-4 md:px-9 lg:px-12;
 }
+
+.mobile-container{
+  @apply py-[60px] px-[36px] bg-[#F5F5F8]
+}

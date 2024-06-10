@@ -1,0 +1,24 @@
+.profile__layout{
+    @apply flex border-white rounded-xl bg-white p-4 mb-7;
+}
+
+.profile__img{
+    max-height: 100px;
+    @apply h-fit w-[91px];
+}
+
+.profile__content{
+    @apply pl-4;
+}
+
+.profile__content > :first-child{
+    @apply mt-2 font-semibold text-[18px];
+}
+
+.profile__content > p:not(:first-child) {
+    @apply text-[15px] text-[#7f7f7f] font-normal leading-[17px] mb-[6px]; 
+}
+
+.profile__content > p:not(:nth-of-type(4) , :nth-of-type(1)){
+    @apply pb-[6px] border-b border-[#878787]; 
+}

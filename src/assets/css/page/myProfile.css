@@ -1,0 +1,27 @@
+.profile__back--icon{
+    @apply w-[6px] h-[12px] mb-[30px];
+}
+
+.header{
+    @apply text-[34px] font-semibold mb-8; 
+}
+
+.text-container{
+    @apply flex justify-between mb-1
+}
+
+.text-container > p:first-child{
+    @apply text-[18px] font-semibold
+}
+
+.text-container > p:last-child{
+    @apply text-[15px] font-normal text-[#FA4A0C]
+}
+
+.options--container{
+    @apply mb-[59px]
+}
+
+.options--container > :last-child{
+    @apply mb-0
+}
