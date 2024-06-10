@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* Layout CSS */
-
 @import "./assets/css/base/base.css";
 
 /* Base CSS */
@@ -12,12 +11,17 @@
 @import "./assets/css/base/baseInput.css";
 @import "./assets/css/base/BaseFloatingInput.css";
 
+/*Page CSS */
+@import "./assets/css/page/myProfile.css";
+
 /* Components CSS */
 @import "./assets/css/component/header.css";
 @import "./assets/css/component/hero.css";
 @import "./assets/css/component/body.css";
 @import "./assets/css/component/bottomBanner.css";
 @import "./assets/css/component/footer.css";
+@import "./assets/css/component/userProfile.css";
+@import "./assets/css/component/profileMenu.css";
 
 /* auth CSS */
 @import "./assets/css/auth/splashSreen.css";

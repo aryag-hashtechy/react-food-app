@@ -21,3 +21,7 @@
 .btn-secondary-square {
   @apply bg-transparent text-white px-4 font-medium rounded-[10px] px-[28px] md:px-[52px]  text-xl py-[20px] border-2 border-white hover:bg-white hover:text-primary;
 }
+
+.btn-primary-mobile {
+  @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
+}
