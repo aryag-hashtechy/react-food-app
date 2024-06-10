@@ -3,7 +3,7 @@
 }
 
 .btn-primary-mobile {
-  @apply bg-primary text-white  font-bold rounded-[30px] mb-12 px-[100px] text-xl py-[16px] hover:bg-white hover:text-primary;
+  @apply bg-primary text-white  font-bold rounded-[30px] mb-12 px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
 }
 
 .btn-primary-square {

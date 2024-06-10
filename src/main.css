@@ -25,3 +25,12 @@
 /* Page CSS */
 @import "./assets/css/page/auth/login.css";
 @import "./assets/css/page/auth/signup.css";
+
+/* MobileView CSS */
+
+@import "./assets/css/component/MobileView/body.css";
+@import "./assets/css/component/MobileView/card.css";
+@import "./assets/css/component/MobileView/footer.css";
+@import "./assets/css/component/MobileView/header.css";
+@import "./assets/css/component/MobileView/searchbar.css";
+@import "./assets/css/component/MobileView/title.css";

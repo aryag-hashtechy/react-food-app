@@ -1,0 +1,7 @@
+.title-main {
+  @apply flex gap-12 pl-8 mt-8 text-[#9A9A9D] font-semibold;
+}
+
+.sub-titles {
+  @apply text-primary border-b-2 border-primary px-3 pb-2;
+}
