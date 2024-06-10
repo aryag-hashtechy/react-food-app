@@ -16,9 +16,11 @@ const BodySection = () => {
 
         <div className="section-text">
           <h4 className="section-small">Create an account</h4>
+
           <h2 className="section-large">
             Create/login to an existing account to get started
           </h2>
+
           <h4 className="section-medium">
             An account is created with your email and a desired password
           </h4>
@@ -28,9 +30,11 @@ const BodySection = () => {
       <div className="section-body">
         <div className="section-text md:ml-10 lg:ml-32">
           <h4 className="section-small">Explore varities</h4>
+
           <h2 className="section-large">
             Shop for your favourites meal as e dey hot.
           </h2>
+
           <h4 className="section-medium">
             When you done check out and get it delivered with ease.
           </h4>
@@ -48,9 +52,11 @@ const BodySection = () => {
 
         <div className="section-text">
           <h4 className="section-small">Create an account</h4>
+
           <h2 className="section-large">
             Create/login to an existing account to get started
           </h2>
+          
           <h4 className="section-medium">
             An account is created with your email and a desired password
           </h4>

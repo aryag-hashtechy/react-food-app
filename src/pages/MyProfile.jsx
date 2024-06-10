@@ -22,10 +22,10 @@ const MyProfile = () => {
       <UserProfile />
 
       <div className='profile options--container'>
-      <ProfileMenu text={"Orders"} navigateTo={"#"}/>
-      <ProfileMenu text={"Pending reviews"} nevigateTo={"#"}/>
-      <ProfileMenu text={"Faq"} nevigateTo={"#"}/>
-      <ProfileMenu text={"Help"}/>
+        <ProfileMenu text={"Orders"} navigateTo={"#"}/>
+        <ProfileMenu text={"Pending reviews"} nevigateTo={"#"}/>
+        <ProfileMenu text={"Faq"} nevigateTo={"#"}/>
+        <ProfileMenu text={"Help"}/>
       </div>
 
       <BaseButton buttonText={"Update"} variant={"btn-primary-mobile"}/>
