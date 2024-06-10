@@ -14,9 +14,13 @@ const Title = () => {
           <SwiperSlide className="text-primary border-b-2 border-primary  pb-2">
             Foods
           </SwiperSlide>
+
           <SwiperSlide>Drinks</SwiperSlide>
+
           <SwiperSlide>Snacks</SwiperSlide>
+
           <SwiperSlide>Sauces</SwiperSlide>
+
           <SwiperSlide>Milk</SwiperSlide>
         </Swiper>
       </div>

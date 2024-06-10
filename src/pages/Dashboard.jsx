@@ -8,7 +8,9 @@ const Dashboard = () => {
     <>
       <div className="bg-[#F2F2F2]">
         <Header />
+
         <Body />
+
         <Footer />
       </div>
     </>

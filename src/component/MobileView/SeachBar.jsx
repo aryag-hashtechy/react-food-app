@@ -7,6 +7,7 @@ const SearchBar = () => {
     <>
       <div className="search-main">
         <img src={image2} className="search-image" />
+
         <BaseInput
           inputType={"search"}
           placeholder={"search"}

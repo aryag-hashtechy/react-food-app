@@ -19,9 +19,11 @@ const Body = () => {
 
       <SearchBar />
       <Title />
+
       <div>
         <p className="see-more">See more</p>
       </div>
+
       <Swiper
         spaceBetween={-130}
         slidesPerView={1}
@@ -31,12 +33,15 @@ const Body = () => {
         <SwiperSlide>
           <Card />
         </SwiperSlide>
+
         <SwiperSlide>
           <Card />
         </SwiperSlide>
+
         <SwiperSlide>
           <Card />
         </SwiperSlide>
+
         <SwiperSlide>
           <Card />
         </SwiperSlide>

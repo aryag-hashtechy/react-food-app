@@ -16,6 +16,7 @@ const Header = () => {
               navigate("/my-profile");
             }}
           />
+
           <img src={image1} className="header-image1" />
         </div>
       </section>

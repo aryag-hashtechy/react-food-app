@@ -9,8 +9,11 @@ const Footer = () => {
     <>
       <div className="Mobile-footer">
         <img src={image} className="footer-home " />
+
         <img src={image1} className="footer-image1" />
+
         <img src={image2} className="footer-image2" />
+
         <img src={image3} className="footer-image3" />
       </div>
     </>

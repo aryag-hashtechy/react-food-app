@@ -13,6 +13,7 @@ const Card = () => {
             Veggie <br />
             tomato mix
           </p>
+
           <p className="card-price">Rs.1,900</p>
         </div>
       </div>
