@@ -9,14 +9,3 @@
 .see-more {
   @apply text-primary mt-12 text-right mr-8;
 }
-
-#Search::-webkit-search-cancel-button {
-  position: relative;
-  right: 20px;
-
-  -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
-  background: green;
-}
