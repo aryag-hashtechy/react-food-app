@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <>
       <header className="header-main">
-        <img src={logo} alt="logo" className="header-image" />
+        <img src={logo} alt="logo" className="image-header" />
 
         <ul className="header-list">
           <li className="active">Home</li>
