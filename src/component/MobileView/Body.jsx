@@ -10,8 +10,8 @@ import "swiper/css";
 const Body = () => {
   return (
     <>
-      <div className="body-main">
-        <h1 className="body-title ">
+      <div className="body__main">
+        <h1 className="body__title ">
           Delicious <br />
           food for you
         </h1>
@@ -21,31 +21,33 @@ const Body = () => {
       <Title />
 
       <div>
-        <p className="see-more">See more</p>
+        <p className="body__text">See more</p>
       </div>
 
-      <Swiper
-        spaceBetween={-130}
-        slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+      <div className="slider__main">
+        <Swiper
+          spaceBetween={-100}
+          slidesPerView={1}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            <Card />
+          </SwiperSlide>
 
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+          <SwiperSlide>
+            <Card />
+          </SwiperSlide>
 
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
+          <SwiperSlide>
+            <Card />
+          </SwiperSlide>
 
-        <SwiperSlide>
-          <Card />
-        </SwiperSlide>
-      </Swiper>
+          <SwiperSlide>
+            <Card />
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </>
   );
 };

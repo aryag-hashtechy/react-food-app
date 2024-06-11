@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/icons/logo.svg";
-import { FiMenu } from "react-icons/fi";
+import vector from "../assets/icons/header-vector.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,21 +10,21 @@ const Header = () => {
   };
   return (
     <>
-      <header className="header-main">
-        <img src={logo} alt="logo" className="header-image" />
+      <header className="header__main">
+        <img src={logo} alt="logo" className="header__image" />
 
-        <ul className="header-list">
-          <li className="active">Home</li>
+        <ul className="header__list">
+          <li className="header--active">Home</li>
           <li>Product</li>
           <li>Faq</li>
           <li>Contact</li>
         </ul>
 
-        <FiMenu className="header-icon" onClick={toggleMenu} />
+        <img src={vector} className="header__icon" onClick={toggleMenu} />
       </header>
       {isOpen && (
         <div>
-          <ul className="hamburger-menu">
+          <ul className="hamburger__menu">
             <li>Home</li>
             <li>Product</li>
             <li>Faq</li>

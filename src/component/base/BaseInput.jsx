@@ -9,12 +9,12 @@ const BaseInput = ({
   placeholder,
   labelText,
   labelVariant,
-  isDisabled = false,
-  isFloating = false,
+  isDisable = false,
 }) => {
   const handleChange = (e) => {
     if (name) {
       let obj = {};
+
       return (obj[name] = e.target.value);
     }
   };
@@ -22,7 +22,7 @@ const BaseInput = ({
     <>
       {labelText && (
         <label
-          className={labelVariant ? labelVariant : "label-primary"}
+          className={labelVariant ? labelVariant : "label--primary"}
           htmlFor={id}
         >
           {labelText}
@@ -35,9 +35,9 @@ const BaseInput = ({
         id={id}
         required={isRequired}
         placeholder={placeholder ? placeholder : "Enter your text"}
-        className={inputVariant ? inputVariant : "input-primary"}
+        className={inputVariant ? inputVariant : "input--primary"}
         onChange={handleChange}
-        disabled={isDisabled}
+        disabled={isDisable}
       />
     </>
   );

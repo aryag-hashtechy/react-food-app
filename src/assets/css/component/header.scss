@@ -1,0 +1,35 @@
+.header {
+  &__main {
+    @apply flex items-center justify-between px-[20px] md:px-[70px] h-[112px] md:h-[156px] shadow;
+  }
+
+  &__image {
+    @apply w-[104px] h-[52px] md:w-[206px] md:h-[101.76px] ml-[20px];
+  }
+
+  &__list {
+    @apply items-center gap-[77px]  md:flex md:flex-row hidden font-bold;
+  }
+
+  &__list > li {
+    @apply cursor-pointer;
+  }
+
+  &__icon {
+    @apply block md:hidden cursor-pointer text-[#737373] w-[20px];
+  }
+
+  &--active {
+    @apply text-primary;
+  }
+}
+
+.hamburger {
+  &__menu {
+    @apply bg-white w-full md:hidden pb-4 shadow;
+  }
+
+  &__menu > li {
+    @apply pl-3;
+  }
+}

@@ -1,0 +1,25 @@
+.signup {
+  &__main {
+    @apply bg-[#F2F2F2];
+  }
+
+  &__card {
+    @apply rounded-b-[30px] bg-white h-[250px] shadow-md;
+  }
+
+  &__card__logo {
+    @apply mx-auto w-[150px] h-[162.38px] mb-12 mt-12;
+  }
+
+  &__card__content {
+    @apply font-medium  pl-16 pr-12 gap-24 flex;
+  }
+
+  &__login__text {
+    @apply text-xl;
+  }
+
+  &__text {
+    @apply w-[96px] text-center border-b-4 text-xl pb-3 border-primary;
+  }
+}

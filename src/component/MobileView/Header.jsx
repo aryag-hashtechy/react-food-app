@@ -8,16 +8,16 @@ const Header = () => {
   return (
     <>
       <section>
-        <div className="main-header">
+        <div className="mobile__header__main">
           <img
             src={image}
-            className="header-image"
+            className="mobile__header__hamburger"
             onClick={() => {
               navigate("/my-profile");
             }}
           />
 
-          <img src={image1} className="header-image1" />
+          <img src={image1} className="mobile__header__cart" />
         </div>
       </section>
     </>

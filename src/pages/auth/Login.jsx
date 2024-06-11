@@ -18,12 +18,12 @@ const Login = () => {
   return (
     <>
       {login ? (
-        <section className="login-main">
-          <div className="login-image">
+        <section className="login__main">
+          <div className="login__image">
             <img src={image} className="image" />
 
-            <div className="login-page ">
-              <p className="login-text" onClick={handleLoginClick}>
+            <div className="login__page ">
+              <p className="login__text" onClick={handleLoginClick}>
                 Login
               </p>
 
@@ -33,49 +33,55 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="mt-8">
-            <BaseFloatingInput
-              name="email"
-              id="email"
-              inputType="email"
-              labelText="Email Address "
-            />
+          <div className="mobile__container">
+            <div>
+              <BaseFloatingInput
+                name="email"
+                id="email"
+                inputType="email"
+                labelText="Email Address "
+              />
 
-            <BaseFloatingInput
-              name="password"
-              id="password"
-              inputType="password"
-              labelText="Password"
-            />
-          </div>
-
-          <div>
-            <p className="forgot-password">Forgot Password?</p>
-          </div>
-
-          <div className="btn-main">
-            <BaseButton buttonText="Login" variant="btn-primary-mobile" />
-          </div>
-        </section>
-      ) : (
-        <section className="signup-main">
-          <div className="signup-card">
-            <img src={image} className="signup-card-logo" />
-
-            <div className="signup-card-content ">
-              <p className="signup-login-text" onClick={handleLoginClick}>
-                Login
-              </p>
-
-              <p className="signup-signup-text" onClick={handleSignUpClick}>
-                Sign-up
-              </p>
+              <BaseFloatingInput
+                name="password"
+                id="password"
+                inputType="password"
+                labelText="Password"
+              />
             </div>
 
             <div>
+              <p className="login__forgot__password">Forgot Password?</p>
+            </div>
+
+            <div className="login__btn__main">
+              <BaseButton
+                buttonText="Login"
+                variant="btn btn--primary--mobile"
+              />
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="signup__main">
+          <div className="signup__card">
+            <img src={image} className="signup__card__logo" />
+
+            <div className="signup__card__content ">
+              <p className="signup__login__text" onClick={handleLoginClick}>
+                Login
+              </p>
+
+              <p className="signup__text" onClick={handleSignUpClick}>
+                Sign-up
+              </p>
+            </div>
+          </div>
+          <div className="mobile__container">
+            <div>
               <BaseInput
                 labelText="Profile pic"
-                labelVariant="label-primary mt-8 pl-8"
+                labelVariant="label--primary"
                 inputType="file"
                 inputVariant="w-[80%] ml-8 mt-6 mb-4"
               />
@@ -110,11 +116,14 @@ const Login = () => {
             </div>
 
             <div>
-              <p className="forgot-password">Forgot Password?</p>
+              <p className="login__forgot__password">Forgot Password?</p>
             </div>
 
-            <div className="btn-main">
-              <BaseButton buttonText="Signup" variant="btn-primary-mobile" />
+            <div className="login__btn__main">
+              <BaseButton
+                buttonText="Signup"
+                variant="btn btn--primary--mobile"
+              />
             </div>
           </div>
         </section>

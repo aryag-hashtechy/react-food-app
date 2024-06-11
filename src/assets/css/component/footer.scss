@@ -1,0 +1,25 @@
+.footer {
+  &__main {
+    @apply flex flex-col md:flex-row items-center justify-around h-[140px];
+  }
+
+  &__image {
+    @apply hidden md:block w-[206px] h-[101.76px] ml-[20px];
+  }
+
+  &__socialmedia {
+    @apply flex items-center gap-8;
+  }
+
+  &__twitter {
+    @apply text-primary w-[33.31px] h-[27.06];
+  }
+
+  &__facebook {
+    @apply text-primary w-[40.99px] h-[40.99px];
+  }
+
+  &__instagram {
+    @apply text-primary w-[39px] h-[39px];
+  }
+}

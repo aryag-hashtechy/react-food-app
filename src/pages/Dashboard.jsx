@@ -6,11 +6,9 @@ import Footer from "../component/MobileView/Footer";
 const Dashboard = () => {
   return (
     <>
-      <div className="bg-[#F2F2F2]">
+      <div className="mobile__container">
         <Header />
-
         <Body />
-
         <Footer />
       </div>
     </>
