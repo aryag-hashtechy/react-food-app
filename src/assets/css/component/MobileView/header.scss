@@ -1,0 +1,13 @@
+.mobile__header {
+  &__main {
+    @apply flex items-center justify-between;
+  }
+
+  &__hamburger {
+    @apply w-[22px] h-[14.67];
+  }
+
+  &__cart {
+    @apply w-[24px] h-[24px];
+  }
+}

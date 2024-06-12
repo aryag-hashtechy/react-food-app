@@ -5,8 +5,8 @@ import BaseInput from "../base/BaseInput";
 const SearchBar = () => {
   return (
     <>
-      <div className="search-main">
-        <img src={image2} className="search-image" />
+      <div className="search__main">
+        <img src={image2} className="search__image" />
 
         <BaseInput
           inputType={"search"}

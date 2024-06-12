@@ -1,0 +1,35 @@
+/* Base CSS */
+@import "./assets/css/base/base.scss";
+@import "./assets/css/base/baseButton.scss";
+@import "./assets/css/base/baseInput.scss";
+@import "./assets/css/base/BaseFloatingInput.scss";
+
+/* Components CSS */
+@import "./assets/css/component/header.scss";
+@import "./assets/css/component/hero.scss";
+@import "./assets/css/component/body.scss";
+@import "./assets/css/component/bottomBanner.scss";
+@import "./assets/css/component/footer.scss";
+@import "./assets/css/component/userProfile.scss";
+@import "./assets/css/component/profileMenu.scss";
+
+/* auth CSS */
+@import "./assets/css/auth/splashSreen.scss";
+
+/* Page CSS */
+@import "./assets/css/page/auth/login.scss";
+@import "./assets/css/page/auth/signup.scss";
+@import "./assets/css/page/myProfile.scss";
+
+/* MobileView CSS */
+
+@import "./assets/css/component/MobileView/body.scss";
+@import "./assets/css/component/MobileView/card.scss";
+@import "./assets/css/component/MobileView/footer.scss";
+@import "./assets/css/component/MobileView/header.scss";
+@import "./assets/css/component/MobileView/searchbar.scss";
+@import "./assets/css/component/MobileView/title.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -15,12 +15,12 @@ const Hero = () => {
 
           <h3 className="h3">Download the bella onoje's food app now on</h3>
 
-          <div className="btn-center">
+          <div className="btn btn-center">
             <BaseButton />
 
             <BaseButton
               buttonText={"App Store"}
-              variant={"btn-secondary-orange"}
+              variant={"btn btn--secondary--orange"}
             />
           </div>
         </div>

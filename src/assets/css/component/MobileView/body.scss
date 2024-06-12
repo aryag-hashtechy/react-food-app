@@ -1,0 +1,19 @@
+.body {
+  &__main {
+    @apply mt-4 w-[190px];
+  }
+
+  &__title {
+    @apply font-bold text-[24px];
+  }
+
+  &__text {
+    @apply text-primary mt-12 text-right mr-8;
+  }
+}
+
+.slider {
+  &__main {
+    @apply -mr-[50px];
+  }
+}

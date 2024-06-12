@@ -7,11 +7,11 @@ import image3 from "../../assets/images/ic_sharp-history.svg";
 const Footer = () => {
   return (
     <>
-      <div className="mobile-footer">
-        <img src={image} className="footer-home " />
-        <img src={image1} className="footer-image1" />
-        <img src={image2} className="footer-image2" />
-        <img src={image3} className="footer-image3" />
+      <div className="footer__mobile">
+        <img src={image} className="footer__home " />
+        <img src={image1} className="footer__heart" />
+        <img src={image2} className="footer__user" />
+        <img src={image3} className="footer__history" />
       </div>
     </>
   );

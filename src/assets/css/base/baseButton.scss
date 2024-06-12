@@ -1,0 +1,27 @@
+.btn {
+  @apply text-white font-bold  text-xl;
+
+  &--primary {
+    @apply bg-primary hover:bg-white hover:text-primary rounded-[30px] px-[60px] py-[16px];
+  }
+
+  &--primary--square {
+    @apply bg-primary hover:bg-white hover:text-primary rounded-[10px] px-[20px] md:px-[40px] py-[20px];
+  }
+
+  &--secondary {
+    @apply bg-transparent rounded-[30px] px-[20px] py-[16px] border-2 border-white hover:bg-white hover:text-primary;
+  }
+
+  &--secondary--orange {
+    @apply bg-transparent rounded-[30px] px-[60px] py-[16px] border-2 border-white hover:bg-white hover:text-primary border-primary text-primary md:text-white md:border-white;
+  }
+
+  &--secondary--square {
+    @apply bg-transparent text-white font-medium rounded-[10px] px-[28px] md:px-[52px] py-[16px] border-2 border-white hover:bg-white hover:text-primary;
+  }
+
+  &--primary--mobile {
+    @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
+  }
+}

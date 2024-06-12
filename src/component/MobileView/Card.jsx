@@ -1,20 +1,19 @@
 import React from "react";
-import Swiper from "swiper";
 import image from "../../assets/images/Mask Group.png";
 
 const Card = () => {
   return (
     <>
-      <div>
-        <img src={image} className="card-image" />
+      <div className="card__main">
+        <img src={image} className="card__image" />
 
-        <div className="main-card">
-          <p className=" card-title">
+        <div className="card__content">
+          <p className=" card__title">
             Veggie <br />
             tomato mix
           </p>
 
-          <p className="card-price">Rs.1,900</p>
+          <p className="card__price">Rs.1,900</p>
         </div>
       </div>
     </>

@@ -1,0 +1,33 @@
+.profile {
+  &__main {
+    @apply bg-[#F5F5F8];
+  }
+
+  &__back--icon {
+    @apply w-[6px] h-[12px] mb-[30px];
+  }
+
+  &__header {
+    @apply text-[34px] font-semibold mb-8;
+  }
+
+  &__text__container {
+    @apply flex justify-between mb-1;
+  }
+
+  &__text__container > p:first-child {
+    @apply text-[18px] font-semibold;
+  }
+
+  &__text__container > p:last-child {
+    @apply text-[15px] font-normal text-[#FA4A0C];
+  }
+
+  &__menu__container {
+    @apply mb-[59px];
+  }
+
+  &__menu__container > :last-child {
+    @apply mb-0;
+  }
+}

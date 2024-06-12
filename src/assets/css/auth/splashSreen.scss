@@ -1,0 +1,43 @@
+.splash__layout {
+  @apply w-screen h-screen bg-[url('/public/images/splashscreen.png')]  bg-center bg-no-repeat bg-cover flex justify-center items-center;
+
+  .splash__body {
+    @apply bg-white py-[42px] rounded-full px-9;
+
+    .icon {
+      @apply max-w-[155px] pb-0.5;
+    }
+    .text {
+      @apply flex justify-center text-primary text-[10px] mb-5;
+    }
+  }
+}
+
+.loader {
+  @apply w-[27px] h-[27px] ml-[60px] rounded-[50%];
+  border: 3px solid white;
+  border-top: 3px solid #ff240c;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.splash__layout {
+  animation: fadeIn 1s;
+}

@@ -3,20 +3,20 @@ import React from "react";
 const BaseButton = ({ onClick, buttonText, variant }) => {
   const getVariantValue = (variant) => {
     switch (variant) {
-      case "btn-primary":
-        return "btn-primary";
-      case "btn-secondary":
-        return "btn-secondary";
-      case "btn-secondary-orange":
-        return "btn-secondary-orange";
-      case "btn-primary-square":
-        return "btn-primary-square";
-      case "btn-secondary-square":
-        return "btn-secondary-square";
-      case "btn-primary-mobile":
-        return "btn-primary-mobile";
+      case "btn btn--primary":
+        return "btn btn--primary";
+      case "btn btn--secondary":
+        return "btn btn--secondary";
+      case "btn btn--secondary--orange":
+        return "btn btn--secondary--orange";
+      case "btn btn--primary--square":
+        return "btn btn--primary--square";
+      case "btn btn--secondary--square":
+        return "btn btn--secondary--square";
+      case "btn btn--primary--mobile":
+        return "btn btn--primary--mobile";
       default:
-        return "btn-primary";
+        return "btn btn--primary";
     }
   };
 

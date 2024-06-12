@@ -1,7 +1,0 @@
-.search-main {
-  @apply flex justify-center items-center w-[80%] h-[52px] rounded-full mx-auto mt-8 bg-[#EFEEEE];
-}
-
-.search-image {
-  @apply w-[18px] h-[18px] mr-4;
-}

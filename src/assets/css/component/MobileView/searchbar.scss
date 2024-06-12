@@ -1,0 +1,13 @@
+.search {
+  &__main {
+    @apply flex justify-center items-center h-[52px] rounded-full mx-auto mt-8 bg-[#EFEEEE];
+  }
+
+  &__main > input {
+    @apply bg-transparent;
+  }
+
+  &__image {
+    @apply w-[18px] h-[18px] mr-4;
+  }
+}
