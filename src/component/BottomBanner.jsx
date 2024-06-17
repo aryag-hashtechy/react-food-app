@@ -16,23 +16,12 @@ const BottomBanner = () => {
           <div className="banner__btn--window">
             <BaseButton
               buttonText={"Playstore"}
-              variant={"btn btn--primary--square"}
+              variant={"btn btn--primary"}
             />
 
             <BaseButton
               buttonText={"App Store"}
-              variant={"btn btn--secondary--square"}
-            />
-          </div>
-          <div className="banner__btn--mobile">
-            <BaseButton
-              buttonText={"Buy now"}
-              variant={"btn btn--primary--square"}
-            />
-
-            <BaseButton
-              buttonText={"Try for free"}
-              variant={"btn btn--secondary--square"}
+              variant={"btn btn--transparent"}
             />
           </div>
         </div>

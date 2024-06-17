@@ -11,20 +11,8 @@
     @apply text-[40px];
   }
 
-  &__btn--window {
-    @apply hidden md:inline-block;
-  }
-
   &__btn--window > :first-child {
-    @apply md:mr-6;
-  }
-
-  &__btn--mobile {
-    @apply inline-block mx-auto  md:hidden;
-  }
-
-  &__btn--mobile > :first-child {
-    @apply mr-4;
+    @apply mr-4 md:mr-6;
   }
 }
 
