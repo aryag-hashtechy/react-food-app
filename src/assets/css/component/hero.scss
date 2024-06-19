@@ -47,3 +47,7 @@
 .hero-text > :first-child {
   @apply text-[#737373] md:text-white;
 }
+
+.btn--container >:first-child {
+  @apply mr-4 md:mr-10
+}
