@@ -1,9 +1,9 @@
 import React from "react";
 
 const BaseButton = ({ onClick, buttonText, variant }) => {
-
+  
   const getVariantValue = (variant) => {
-    return variant ? variant : "btn btn--primary" 
+    return variant ? variant : "btn btn--primary";
   };
 
   return (

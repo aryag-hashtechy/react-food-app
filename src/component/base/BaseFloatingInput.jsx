@@ -1,23 +1,17 @@
-import React from "react";
-
 const BaseFloatingInput = ({
   name,
   id,
-  inputVariant,
-  isRequired,
   inputType,
   placeholder,
+  handleChange,
+  errorMessage,
   labelText,
-  labelVariant,
+  value,
+  isRequired= true,
   isDisabled = false,
   isFloating = false,
 }) => {
-  const handleChange = (e) => {
-    if (name) {
-      let obj = {};
-      return (obj[name] = e.target.value);
-    }
-  };
+
   return (
     <>
       <div className="float">
@@ -25,14 +19,18 @@ const BaseFloatingInput = ({
           type={inputType}
           name={name}
           id={id}
-          required
-          autocomplete="off"
+          value={value}
+          required = {isRequired}
+          disabled={isDisabled}
+          onChange={handleChange}
+          autoComplete="off"
         />
 
         <label className="label-name">
           <span className="content-name">{labelText}</span>
         </label>
       </div>
+      { errorMessage[name] ? <p className="error-message">{errorMessage[name]}</p> : <></>}
     </>
   );
 };
