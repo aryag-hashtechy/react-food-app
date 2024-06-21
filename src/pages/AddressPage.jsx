@@ -23,18 +23,22 @@ const addressSchema = Yup.object().shape({
   pincode: Yup.string()
     .required("Pincode is required")
     .matches(/^\d{6}$/, "pincode must me max 6 digits"),
-  // reciverName: Yup.string().matches(
-  //   /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
-  //   "reciver name must be character"
-  // ),
-  // reciverNumber: Yup.string().when("reciverNumber", {
-  //   is: (value) => value && value?.length > 0,
-  //   then: Yup.string().matches(
-  //     /^[6-9]\d{9}$/,
-  //     "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
-  //   ),
-  //   otherwise: Yup.string(),
-  // }),
+  reciverName: Yup.string()
+    .optional()
+    .matches(
+      /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
+      "reciver name must be character"
+    ),
+  reciverNumber: Yup.string()
+    .optional()
+    .when("reciverNumber", {
+      is: (value) => value && value?.length > 0,
+      then: Yup.string().matches(
+        /^[6-9]\d{9}$/,
+        "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
+      ),
+      otherwise: Yup.string(),
+    }),
   type: Yup.string().required("Type is required"),
 });
 
