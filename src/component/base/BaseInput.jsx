@@ -11,13 +11,14 @@ const BaseInput = ({
   labelVariant,
   isDisable = false,
 }) => {
+
   const handleChange = (e) => {
     if (name) {
       let obj = {};
-
       return (obj[name] = e.target.value);
     }
   };
+
   return (
     <>
       {labelText && (

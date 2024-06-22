@@ -1,5 +1,5 @@
 .splash__layout {
-  @apply w-screen h-screen bg-[url('/public/images/splashscreen.png')]  bg-center bg-no-repeat bg-cover flex justify-center items-center;
+  @apply w-screen h-screen bg-[url('/public/images/splashscreen.png')] absolute z-[100]  bg-center bg-no-repeat bg-cover flex justify-center items-center;
 
   .splash__body {
     @apply bg-white py-[42px] rounded-full px-9;
