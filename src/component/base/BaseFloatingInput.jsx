@@ -2,12 +2,11 @@ const BaseFloatingInput = ({
   name,
   id,
   inputType,
-  placeholder,
   handleChange,
   errorMessage,
   labelText,
   value,
-  isRequired= true,
+  isRequired = true,
   isDisabled = false,
   isFloating = false,
 }) => {
@@ -19,7 +18,7 @@ const BaseFloatingInput = ({
           type={inputType}
           name={name}
           id={id}
-          value={value}
+          value={value[name] || ""}
           required = {isRequired}
           disabled={isDisabled}
           onChange={handleChange}

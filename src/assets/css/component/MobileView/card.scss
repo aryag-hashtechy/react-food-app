@@ -4,15 +4,15 @@
   }
 
   &__content {
-    @apply bg-white text-center font-semibold w-[220px] h-[270px] shadow mt-4 rounded-[30px];
+    @apply bg-white text-center font-semibold w-[220px] h-[240px] shadow mt-4 rounded-[30px];
   }
 
   &__image {
-    @apply w-[220px] relative h-[220px] -mb-[172px];
+    @apply w-[180px] relative h-[180px] -mb-[130px] rounded-[280px] ml-5;
   }
 
   &__title {
-    @apply text-xl pt-28;
+    @apply text-xl pt-[120px];
   }
 
   &__price {

@@ -1,12 +1,16 @@
 import React from "react";
 import image2 from "../../assets/images/search.svg";
+import { useNavigate } from "react-router-dom";
 import BaseInput from "../base/BaseInput";
 
-const SearchBar = () => {
+const SearchBar = ({ navigateTo }) => {
+  const navigate = useNavigate();
+
+  console.log(navigateTo)
   return (
     <>
-      <div className="search__main">
-        <img src={image2} className="search__image" />
+      <div className="search__main" onClick = { ()=>navigate(navigateTo) }>
+        <img src={image2} className="search__image"/>
 
         <BaseInput
           inputType={"search"}

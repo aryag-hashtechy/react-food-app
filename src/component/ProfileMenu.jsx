@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import frontIcon from "../assets/icons/front-icon.svg";
 
-const ProfileMenu = ({ text, navigateTo }) => {
+const ProfileMenu = ({ text, navigateTo}) => {
   const navigate = useNavigate();
 
   return (

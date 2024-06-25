@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 import image from "../../assets/images/Group 3.png";
 import BaseInput from "../../component/base/BaseInput";
 import BaseButton from "../../component/base/BaseButton";
 import BaseFloatingInput from "../../component/base/BaseFloatingInput";
 import apiPath from "../../apiPath";
 import SplashScreen from "./SplashScreen";
+import { parseCookies, setCookie} from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -81,11 +81,19 @@ const Login = () => {
       const path = login ? apiPath.signIn : apiPath.signup;
       const response = await axios.post(path, initialValue);
       if (response && response?.status === 200) {
-        setIsLoading(true);
-        setTimeout(()=>{
-          setIsLoading(false)
-          navigate("/dashboard");
-        },3000)
+        if(response?.data?.code === 200){
+          setCookie(null, "accessToken", response?.data?.data?.accessToken, {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
+          setIsLoading(true);
+          setTimeout(()=>{
+            setIsLoading(false)
+            navigate("/dashboard");
+          },3000)
+        }else{
+          console.log(response?.data?.message)
+        }
       }
     } catch (err) {
       console.log(err);
@@ -103,8 +111,6 @@ const Login = () => {
     setErrorMessage(false);
     setInitialValue({});
   };
-
-  useEffect(() => {}, [errorMessage]);
   
   return (
     <>
@@ -135,7 +141,7 @@ const Login = () => {
                   labelText="Email Address"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  value={initialValue.email || ""}
+                  value={initialValue}
                 />
 
                 <BaseFloatingInput
@@ -145,7 +151,7 @@ const Login = () => {
                   labelText="Password"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  value={initialValue.password || ""}
+                  value={initialValue}
                 />
               </div>
               <div>
@@ -193,7 +199,7 @@ const Login = () => {
                   labelText="Email Address"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  value={initialValue.email || ""}
+                  value={initialValue}
                 />
 
                 <BaseFloatingInput
@@ -203,17 +209,17 @@ const Login = () => {
                   labelText="Full Name"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  initialValue={initialValue.fullName || ""}
+                  value={initialValue}
                 />
 
                 <BaseFloatingInput
                   name="password"
                   id="password"
                   inputType="password"
-                  labelText=" Password"
+                  labelText="Password"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  value={initialValue.password || ""}
+                  value={initialValue}
                 />
 
                 <BaseFloatingInput
@@ -223,7 +229,7 @@ const Login = () => {
                   labelText="Re-enter Password"
                   handleChange={handleChange}
                   errorMessage={errorMessage}
-                  value={initialValue.confirmPassword || ""}
+                  value={initialValue}
                 />
               </div>
 
