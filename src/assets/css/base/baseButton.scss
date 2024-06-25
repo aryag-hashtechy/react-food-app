@@ -6,7 +6,7 @@
   }
 
   &--transparent {
-    @apply bg-transparent border-white border-2 md:px-[45px] md:py-[16px] hover:bg-white hover:text-primary;
+    @apply bg-transparent border-white border-2 md:px-[45px] md:py-[16px];
   }
 
   &--outline {
@@ -14,11 +14,6 @@
   }
 
   &--primary--mobile {
-    @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px];
-  }
-
-  &--primary--mobile:focus:hover {
-    background-color: white;
-    color: #fa4a0c;
+    @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
   }
 }
