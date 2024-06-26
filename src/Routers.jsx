@@ -6,6 +6,8 @@ import SplashScreen from "./pages/auth/SplashScreen";
 import Login from "./pages/auth/Login";
 import Dashboard from "./pages/Dashboard";
 import SearchPage from "./pages/MobileView/SearchPage";
+import AddressPage from "./pages/AddressPage";
+import Address from "./pages/Address";
 
 const Routers = () => {
   return (
@@ -17,6 +19,8 @@ const Routers = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/search-page" element={<SearchPage />} /> 
+        <Route path="/address-page/:id" element={<AddressPage />} />
+        <Route path="/address" element={<Address />} />
       </Routes>
     </>
   );

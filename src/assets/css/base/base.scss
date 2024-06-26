@@ -80,6 +80,6 @@ input[type="search"]::-webkit-search-cancel-button {
   background-size: contain;
 }
 
-.error-message{
-  @apply mt-[-20px] mb-[10px] text-[15px] text-[#ff0033] font-semibold
+.error-message {
+  @apply mt-[-20px] mb-[10px] text-[15px] text-[#ff0033] font-semibold;
 }

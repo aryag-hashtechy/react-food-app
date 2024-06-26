@@ -1,0 +1,11 @@
+.addressCard {
+  &__main {
+    @apply bg-white rounded-[20px] py-[25px] pl-[30px] pr-[53px] my-[20px] mx-[14px];
+  }
+  &__border {
+    @apply border-b-[0.5px] border-black my-[8px];
+  }
+  &__btn {
+    @apply flex justify-end text-primary text-[14px] cursor-pointer;
+  }
+}
