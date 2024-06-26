@@ -7,6 +7,7 @@ import Login from "./pages/auth/Login";
 import Dashboard from "./pages/Dashboard";
 import AddressPage from "./pages/AddressPage";
 import Address from "./pages/Address";
+import Cart from "./pages/mobileView/Cart";
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/address-page/:id" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );
