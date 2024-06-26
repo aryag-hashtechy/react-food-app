@@ -20,12 +20,8 @@ const SearchPage = () => {
         `${apiPath.searchItems}?search=${search}`
       );
       if (response && response.status === 200) {
-        if (response.data.code === 200) {
           setSearchData(response?.data?.data);
           setCount(response?.data?.count)
-        }
-      } else {
-        console.log(response?.data?.message);
       }
     } catch (err) {
       console.log(err);

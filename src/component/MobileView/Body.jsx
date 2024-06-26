@@ -19,9 +19,7 @@ const Body = () => {
     try {
       const response = await axios.get(apiPath.getAllFood);
       if (response && response?.status === 200) {
-        if (response?.data?.code === 200) {
-          setFoodItems(response?.data?.data);
-        }
+        setFoodItems(response?.data?.data);
       }
     } catch (err) {
       console.log(err);
@@ -41,7 +39,7 @@ const Body = () => {
         </h1>
       </div>
 
-      <SearchBar navigateTo = {"/search-page"}/>
+      <SearchBar navigateTo={"/search-page"} />
       <Title />
 
       <div>

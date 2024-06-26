@@ -6,14 +6,14 @@ import BaseButton from "../../component/base/BaseButton";
 import BaseFloatingInput from "../../component/base/BaseFloatingInput";
 import apiPath from "../../apiPath";
 import SplashScreen from "./SplashScreen";
-import { parseCookies, setCookie} from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 const signupSchema = Yup.object().shape({
   fullName: Yup.string()
     .required("Full name is require")
-    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/),
+    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/, "Please Enter valid Full Name"),
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is Required!"),
@@ -48,14 +48,24 @@ const Login = () => {
   const [login, setLogin] = useState(true);
   const [initialValue, setInitialValue] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
-  const [isLoading ,setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e?.target;
+   
+
     setInitialValue((draft) => ({
       ...draft,
       [name]: value,
     }));
+
+    if(e?.target?.files?.length >= 1){
+      const image = e?.target?.files[0];
+      setInitialValue((draft)=>({
+        ...draft,
+        [name]:image
+      }))
+    }
   };
 
   const validate = async (e) => {
@@ -79,21 +89,22 @@ const Login = () => {
     try {
       e.preventDefault();
       const path = login ? apiPath.signIn : apiPath.signup;
-      const response = await axios.post(path, initialValue);
+
+      const data = new FormData();
+      for (const key in initialValue) {
+        data.append(key, initialValue[key]);
+      }
+
+      for (var pair of data.entries()) {
+        console.log(pair[0] + "," + pair[1]);
+      }
+
+      const response = await axios.post(path, data);
       if (response && response?.status === 200) {
-        if(response?.data?.code === 200){
-          setCookie(null, "accessToken", response?.data?.data?.accessToken, {
-            maxAge: 24 * 60 * 60,
-            path: "/",
-          });
-          setIsLoading(true);
-          setTimeout(()=>{
-            setIsLoading(false)
-            navigate("/dashboard");
-          },3000)
-        }else{
-          console.log(response?.data?.message)
-        }
+        setCookie(null, "accessToken", response?.data?.data?.accessToken, {
+          maxAge: 24 * 60 * 60,
+          path: "/",
+        });
       }
     } catch (err) {
       console.log(err);
@@ -111,7 +122,7 @@ const Login = () => {
     setErrorMessage(false);
     setInitialValue({});
   };
-  
+
   return (
     <>
       {isLoading ? <SplashScreen /> : <></>}
@@ -119,7 +130,7 @@ const Login = () => {
         <form onSubmit={validate}>
           <section className="login__main">
             <div className="login__image">
-              <img src={image} alt="logo" className="image" />    
+              <img src={image} alt="logo" className="image"/>
 
               <div className="login__page ">
                 <p className="login__text" onClick={handleLoginClick}>
@@ -168,7 +179,7 @@ const Login = () => {
           </section>
         </form>
       ) : (
-        <form onSubmit={validate}>
+        <form onSubmit={validate} encType="multipart/form-data">
           <section className="signup__main">
             <div className="signup__card">
               <img src={image} alt="logo" className="signup__card__logo" />
@@ -189,6 +200,8 @@ const Login = () => {
                   labelText="Profile pic"
                   labelVariant="label--primary"
                   inputType="file"
+                  name={"userProfile"}
+                  handleChange={handleChange}
                   inputVariant="w-[80%] ml-8 mt-6 mb-4"
                 />
 
