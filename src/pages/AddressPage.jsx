@@ -29,16 +29,12 @@ const addressSchema = Yup.object().shape({
       /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
       "reciver name must be character"
     ),
-  reciverNumber: Yup.string()
+    receiverNumber: Yup.string()
     .optional()
-    .when("reciverNumber", {
-      is: (value) => value && value?.length > 0,
-      then: Yup.string().matches(
-        /^[6-9]\d{9}$/,
-        "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
-      ),
-      otherwise: Yup.string(),
-    }),
+    .matches(
+      /^[6-9]\d{9}$/,
+      "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
+    ),
   type: Yup.string().required("Type is required"),
 });
 

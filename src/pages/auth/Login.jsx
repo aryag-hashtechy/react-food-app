@@ -88,7 +88,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const path = login ? apiPath.signIn : apiPath.signup;
 
       const data = new FormData();
       for (const key in initialValue) {
@@ -99,7 +98,11 @@ const Login = () => {
         console.log(pair[0] + "," + pair[1]);
       }
 
-      const response = await axios.post(path, data);
+      const path = login ? apiPath.signIn : apiPath.signup;
+
+      const userData = login ? initialValue : data;
+
+      const response = await axios.post(path, userData);
       if (response && response?.status === 200) {
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
