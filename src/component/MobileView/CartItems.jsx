@@ -32,6 +32,7 @@ const CartItems = () => {
       image: { image1 },
     },
   ];
+
   const [cartItems, setCartItems] = useState(cartItemsV2);
 
   const handleDelete = (id) => {
