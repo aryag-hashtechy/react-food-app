@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "./SeachBar";
 import Card from "./Card";
 import Title from "./Title";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect } from "react";
+import axios from "axios";
+import apiPath from "../../apiPath";
+import { useNavigate } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/css";
 
 const Body = () => {
+  const [foodItems, setFoodItems] = useState();
+  const navigate = useNavigate();
+
+  const handleFetch = async () => {
+    try {
+      const response = await axios.get(apiPath.getAllFood);
+      if (response && response?.status === 200) {
+        setFoodItems(response?.data?.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
   return (
     <>
       <div className="body__main">
@@ -17,7 +39,7 @@ const Body = () => {
         </h1>
       </div>
 
-      <SearchBar />
+      <SearchBar navigateTo={"/search-page"} />
       <Title />
 
       <div>
@@ -31,21 +53,15 @@ const Body = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
+          {foodItems?.map((items) => (
+            <SwiperSlide>
+              <Card
+                name={items.name}
+                foodImage={items.foodImage}
+                price={items.price}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </>

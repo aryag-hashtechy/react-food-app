@@ -1,0 +1,38 @@
+.search {
+
+  &__header--container{
+    @apply px-[36px] pt-[41px]
+  }
+
+  &__background{
+    @apply bg-[#F5F5F8]
+  }
+
+  &__search--bar{
+    @apply h-8 w-60 -mt-2 border-[1px] outline-none ml-10 rounded-md
+  }
+
+  &__card--body{
+    @apply border-t-[2px] rounded-t-[30px] bg-white border-white
+  }
+  
+  &__head{
+    @apply flex
+  }  
+
+  &__back--icon {
+    @apply w-[6px] h-[12px] mb-[30px];
+  }
+
+  &__card--layout{
+    @apply grid grid-cols-2 mx-2
+  }
+
+  &__message{
+    @apply flex justify-center mb-8 pt-8 text-[28px] font-bold
+  }
+
+  &__card--layout > :nth-child(even) {
+    @apply pt-12;
+  }
+}

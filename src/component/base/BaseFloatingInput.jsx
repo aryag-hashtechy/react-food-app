@@ -11,34 +11,34 @@ const BaseFloatingInput = ({
   labelVariant,
   isRequired = true,
   isDisabled = false,
-  isFloating = false,
+  isFloating = false
 }) => {
   return (
     <>
-      <div className="float">
+      <div className='float'>
         <input
           type={inputType}
           name={name}
           id={id}
+          value={value[name] || ''}
           required={isRequired}
           disabled={isDisabled}
-          value={value}
-          autocomplete="off"
+          autocomplete='off'
           onChange={handleChange}
         />
 
-        <label className="label-name">
-          <span className="content-name">{labelText}</span>
+        <label className='label-name'>
+          <span className='content-name'>{labelText}</span>
         </label>
       </div>
 
       {errorMessage[name] ? (
-        <p className="error-message">{errorMessage[name]}</p>
+        <p className='error-message'>{errorMessage[name]}</p>
       ) : (
         <></>
       )}
     </>
-  );
-};
+  )
+}
 
-export default BaseFloatingInput;
+export default BaseFloatingInput

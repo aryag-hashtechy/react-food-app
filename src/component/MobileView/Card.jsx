@@ -1,19 +1,19 @@
 import React from "react";
 import image from "../../assets/images/Mask Group.png";
 
-const Card = () => {
+const Card = ({ name, foodImage , price}) => {
+
   return (
     <>
       <div className="card__main">
-        <img src={image} className="card__image" />
+        <img src={ foodImage ? `http://localhost:5000${foodImage}` : image } className="card__image" />
 
         <div className="card__content">
           <p className=" card__title">
-            Veggie <br />
-            tomato mix
+            { name ? name : "Veggie tomato mix" }
           </p>
 
-          <p className="card__price">Rs.1,900</p>
+          <p className="card__price">{ price ? price : "Rs. ---" }</p>
         </div>
       </div>
     </>
