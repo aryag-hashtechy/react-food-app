@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import SearchPage from "./pages/MobileView/SearchPage";
 import AddressPage from "./pages/AddressPage";
 import Address from "./pages/Address";
+import Cart from "./pages/mobileView/Cart";
 
 const Routers = () => {
   return (
@@ -21,6 +22,7 @@ const Routers = () => {
         <Route path="/search-page" element={<SearchPage />} /> 
         <Route path="/address-page/:id" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
   );

@@ -34,6 +34,9 @@
 @import "./assets/css/component/MobileView/header.scss";
 @import "./assets/css/component/MobileView/searchbar.scss";
 @import "./assets/css/component/MobileView/title.scss";
+@import "./assets/css/component/MobileView/cart.scss";
+// @import "./assets/css/component/MobileView/CartItems.scss";
+@import "./assets/css/component/MobileView/QuantityCounter.scss";
 
 @tailwind base;
 @tailwind components;

@@ -23,13 +23,13 @@ const addressSchema = Yup.object().shape({
   pincode: Yup.string()
     .required("Pincode is required")
     .matches(/^\d{6}$/, "pincode must me max 6 digits"),
-  reciverName: Yup.string()
+  receiverName: Yup.string()
     .optional()
     .matches(
       /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
-      "reciver name must be character"
+      "receiver name must be character"
     ),
-    receiverNumber: Yup.string()
+  receiverNumber: Yup.string()
     .optional()
     .matches(
       /^[6-9]\d{9}$/,
@@ -182,23 +182,23 @@ const AddressPage = () => {
           />
 
           <BaseFloatingInput
-            name="reciverName"
-            id="reciverName"
+            name="receiverName"
+            id="receiverName"
             labelText="Receiver Name:"
             handleChange={handleChange}
             isRequired={false}
-            value={initialValues?.reciverName || ""}
+            value={initialValues?.receiverName || ""}
             errorMessage={errorMessage}
           />
 
           <BaseFloatingInput
-            name="reciverNumber"
-            id="reciverNumber"
+            name="receiverNumber"
+            id="receiverNumber"
             inputType="text"
             isRequired={false}
             labelText="Receiver No:"
             handleChange={handleChange}
-            value={initialValues?.reciverNumber || ""}
+            value={initialValues?.receiverNumber || ""}
             errorMessage={errorMessage}
           />
 

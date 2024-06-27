@@ -1,0 +1,8 @@
+.cart {
+  &__container {
+    @apply text-xl font-semibold text-center pt-8 h-[100vh] bg-[#f5f5f8];
+  }
+  &__btn-container {
+    @apply absolute top-[550px] left-[89px];
+  }
+}
