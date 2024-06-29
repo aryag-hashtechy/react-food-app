@@ -17,9 +17,11 @@ const Body = () => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(apiPath.getAllFood);
+      const response = await axios.get(
+        `${apiPath.getAllFood}?category=${"Foods"}&status=${"Active"}`
+      );
       if (response && response?.status === 200) {
-        setFoodItems(response?.data?.data);
+        setFoodItems(response?.data?.data?.data);
       }
     } catch (err) {
       console.log(err);
