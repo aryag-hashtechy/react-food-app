@@ -13,13 +13,14 @@ import "swiper/css";
 
 const Body = () => {
   const [foodItems, setFoodItems] = useState();
+  const [category, setCategory] = useState("Foods");
   const navigate = useNavigate();
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(apiPath.getAllFood);
+      const response = await axios.get(`${apiPath.getAllFood}?category=${category}`);
       if (response && response?.status === 200) {
-        setFoodItems(response?.data?.data);
+        setFoodItems(response?.data?.data?.data);
       }
     } catch (err) {
       console.log(err);
@@ -53,12 +54,12 @@ const Body = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          {foodItems?.map((items) => (
+          {foodItems && foodItems?.map((items) => (
             <SwiperSlide>
               <Card
-                name={items.name}
-                foodImage={items.foodImage}
-                price={items.price}
+                name={items?.name}
+                foodImage={items?.foodImage}
+                price={items?.price}
               />
             </SwiperSlide>
           ))}

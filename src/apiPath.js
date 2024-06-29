@@ -6,6 +6,8 @@ let apiPath = {
     getAllFood: baseUrl + "/admin/get-all-food",
     getUser: baseUrl + "/api/users/get-user",
     searchItems: baseUrl + "/api/users/search-items",
+    updateAddress: baseUrl + "/api/address/update-address/",
+    addAddress: baseUrl + "/api/address/add-address",
 }
 
 export default apiPath;

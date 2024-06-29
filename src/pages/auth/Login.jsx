@@ -59,7 +59,7 @@ const Login = () => {
       [name]: value,
     }));
 
-    if(e?.target?.files?.length >= 1){
+    if(e?.target?.files){
       const image = e?.target?.files[0];
       setInitialValue((draft)=>({
         ...draft,
@@ -92,10 +92,6 @@ const Login = () => {
       const data = new FormData();
       for (const key in initialValue) {
         data.append(key, initialValue[key]);
-      }
-
-      for (var pair of data.entries()) {
-        console.log(pair[0] + "," + pair[1]);
       }
 
       const path = login ? apiPath.signIn : apiPath.signup;

@@ -26,7 +26,7 @@
 @import "./assets/css/page/address.scss";
 @import "./assets/css/page/addressList.scss";
 
-/* MobileView CSS */
+/* MobileView Component CSS */
 
 @import "./assets/css/component/MobileView/body.scss";
 @import "./assets/css/component/MobileView/card.scss";
@@ -37,6 +37,9 @@
 @import "./assets/css/component/MobileView/cart.scss";
 // @import "./assets/css/component/MobileView/CartItems.scss";
 @import "./assets/css/component/MobileView/QuantityCounter.scss";
+
+/* MobileView Page CSS */
+@import "./assets/css/page/foodPage.scss";
 
 @tailwind base;
 @tailwind components;

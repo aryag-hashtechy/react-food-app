@@ -52,11 +52,11 @@ const SearchPage = () => {
       <p className="search__message">Found {count} results</p>
       <div className="search__card--layout">
 
-        {searchData?.map((items) => (
+        {searchData &&searchData?.map((items) => (
           <SearchCard
-            name={items.name}
-            foodImage={items.foodImage}
-            price={items.price}
+            name={items?.name}
+            foodImage={items?.foodImage}
+            price={items?.price}
           />
         ))}
       </div>

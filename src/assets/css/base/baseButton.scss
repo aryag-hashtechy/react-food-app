@@ -16,4 +16,12 @@
   &--primary--mobile {
     @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
   }
+
+  &--primary-large{
+    @apply bg-primary text-white  font-bold rounded-[30px] px-[95px] text-xl py-[16px] hover:bg-white hover:text-primary;
+  }
+  
+  &--primary-small{
+    @apply bg-primary text-white text-[12px]  font-bold rounded-[10px] px-[8px] py-[4px] hover:bg-white hover:text-primary;
+  }
 }

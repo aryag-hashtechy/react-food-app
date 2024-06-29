@@ -1,0 +1,51 @@
+.food {
+
+  &__container{
+    @apply py-[41px] px-[36px] bg-[#F6F6F9] h-max
+  }
+
+  &__back-icon{
+    @apply h-[12px] w-[6px] mb-[60px]
+  }
+
+  &__veg-icon{
+    @apply h-[17px] w-[17px] mb-4
+  }
+
+  &__heart-icon{
+    @apply h-[15px] w-[15px] mt-4
+  }
+
+  &__body{
+    @apply mb-10
+  }
+
+  &__banner-img{
+
+  }
+
+  &__header{
+    @apply text-[28px] font-semibold mb-4
+  }
+
+  &__price{
+    @apply text-red-600 font-semibold mb-4
+  }
+
+  &__price-heading{
+    @apply text-black font-semibold mb-2
+  }
+
+  &__description-header{
+    @apply font-semibold text-[18px] mb-2 
+  }
+
+  &__header-container{
+    @apply flex justify-between
+  }
+
+  &__ratings > svg{
+    @apply flex
+  }
+
+}

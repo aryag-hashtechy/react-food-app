@@ -11,9 +11,9 @@ const Title = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide className="title--active">Foods</SwiperSlide>
+          <SwiperSlide id="Food" onClick={(e)=>console.log(e?.target?.id)} className="title--active">Foods</SwiperSlide>
 
-          <SwiperSlide>Drinks</SwiperSlide>
+          <SwiperSlide id="Drinks" onClick={(e)=>console.log(e?.target?.id)}>Drinks</SwiperSlide>
 
           <SwiperSlide>Snacks</SwiperSlide>
 

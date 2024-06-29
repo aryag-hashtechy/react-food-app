@@ -8,7 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import SearchPage from "./pages/MobileView/SearchPage";
 import AddressPage from "./pages/AddressPage";
 import Address from "./pages/Address";
-import Cart from "./pages/mobileView/Cart";
+import Cart from "./pages/MobileView/Cart";
+import FoodPage from "./pages/MobileView/FoodPage";
 
 const Routers = () => {
   return (
@@ -20,9 +21,10 @@ const Routers = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/search-page" element={<SearchPage />} /> 
-        <Route path="/address-page/:id" element={<AddressPage />} />
+        <Route path="/address-page" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/food-detail-page" element={ <FoodPage /> } />
       </Routes>
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import Address from "../pages/Address";
 import { useNavigate } from "react-router-dom";
 
-const AddressCard = ({ name, address, number, id }) => {
+const AddressCard = ({ address, city, pincode, id }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,16 +11,16 @@ const AddressCard = ({ name, address, number, id }) => {
         <p
           className="addressCard__btn"
           onClick={() => {
-            navigate(`/address-page/${id}`);
+            navigate(`/address-page?id=${id}`);
           }}
         >
           Edit
         </p>
-        <p>{name}</p>
-        <div className="addressCard__border" />
         <p>{address}</p>
         <div className="addressCard__border" />
-        <p>{number}</p>
+        <p>{city}</p>
+        <div className="addressCard__border" />
+        <p>{pincode}</p>
       </div>
     </>
   );
