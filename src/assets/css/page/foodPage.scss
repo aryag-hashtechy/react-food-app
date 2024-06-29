@@ -21,7 +21,8 @@
   }
 
   &__banner-img{
-
+    max-width: 303px;
+    max-height: 303px;
   }
 
   &__header{
@@ -44,8 +45,15 @@
     @apply flex justify-between
   }
 
-  &__ratings > svg{
+  &__ratings{
+    @apply mb-4 -ml-2.5
+  }
+
+  &__img-container{
     @apply flex
   }
 
+  &__img-description{
+    @apply -mt-1 ml-2
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddressCard from "../component/AddressCard";
-import backIcon from '../assets/icons/back-icon.svg'
+import backIcon from '../assets/icons/back-icon.svg';
 import axios from "axios";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
@@ -25,7 +25,6 @@ const Address = () => {
           },
         }
       );
-      // handle exception =...
       if( response && response?.status === 200){
         setAddressData(response?.data?.data);
         setCount(response?.data?.dataCount)
@@ -45,7 +44,7 @@ const Address = () => {
     <section className="addressList__main">
       <div className="mobile__container">
         <div className="addressList__header">
-          <img src={backIcon} alt="back-icon" className="addressList__img"/>
+          <img src={backIcon} alt="back-icon" className="addressList__img" onClick={()=>navigate("/my-profile")}/>
 
           <p className="addressList__text">Address</p>
         </div>

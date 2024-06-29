@@ -8,7 +8,11 @@
   }
 
   &__text {
-    @apply text-primary mt-12 text-right mr-8;
+    @apply text-primary mt-12 text-right mr-8 mb-2;
+  }
+
+  &__paginate{
+    @apply flex justify-center mt-8
   }
 }
 

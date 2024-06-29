@@ -54,6 +54,7 @@ const SearchPage = () => {
 
         {searchData &&searchData?.map((items) => (
           <SearchCard
+            id = { items?.id }
             name={items?.name}
             foodImage={items?.foodImage}
             price={items?.price}

@@ -6,7 +6,6 @@ import BaseInput from "../base/BaseInput";
 const SearchBar = ({ navigateTo }) => {
   const navigate = useNavigate();
 
-  console.log(navigateTo)
   return (
     <>
       <div className="search__main" onClick = { ()=>navigate(navigateTo) }>

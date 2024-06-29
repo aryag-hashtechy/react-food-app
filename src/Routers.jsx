@@ -24,7 +24,7 @@ const Routers = () => {
         <Route path="/address-page" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/food-detail-page" element={ <FoodPage /> } />
+        <Route path="/food-detail-page/:id" element={ <FoodPage /> } />
       </Routes>
     </>
   );
