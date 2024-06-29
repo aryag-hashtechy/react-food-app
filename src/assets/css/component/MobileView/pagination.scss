@@ -1,0 +1,20 @@
+.pagination {
+  &__main {
+    @apply flex;
+  }
+
+  &__back-icon {
+    @apply w-[12px] h-[12px] mr-1.5;
+  }
+
+  &__number {
+    @apply border rounded-[60px] -mt-1.5 px-2 text-black  mx-[2px];
+    &.active {
+      @apply bg-primary text-white;
+    }
+  }
+
+  &__front-icon {
+    @apply w-[12px] h-[12px] ml-1.5;
+  }
+}

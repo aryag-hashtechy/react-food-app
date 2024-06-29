@@ -9,19 +9,19 @@ import { useNavigate } from "react-router-dom";
 const SearchPage = () => {
   const [value, setValue] = useState();
   const [searchText] = useDebounce(value, 2000);
-  const [count, setCount] = useState()
+  const [count, setCount] = useState();
   const [searchData, setSearchData] = useState();
   const navigate = useNavigate();
 
   const handleSearch = async (searchText) => {
     try {
-      let search = searchText === undefined ? "" : searchText; 
+      let search = searchText === undefined ? "" : searchText;
       const response = await axios.get(
         `${apiPath.searchItems}?search=${search}`
       );
       if (response && response.status === 200) {
-          setSearchData(response?.data?.data);
-          setCount(response?.data?.count)
+        setSearchData(response?.data?.data);
+        setCount(response?.data?.count);
       }
     } catch (err) {
       console.log(err);
@@ -31,12 +31,17 @@ const SearchPage = () => {
   useEffect(() => {
     handleSearch(searchText);
   }, [searchText]);
-    
+
   return (
     <div className="search__background">
       <div className="search__header--container">
         <div className="search__head">
-          <img src={backIcon} alt="back-icon" onClick={()=>navigate("/dashboard")} className="search__back--icon" />
+          <img
+            src={backIcon}
+            alt="back-icon"
+            onClick={() => navigate("/dashboard")}
+            className="search__back--icon"
+          />
 
           <input
             type="search"
@@ -49,17 +54,17 @@ const SearchPage = () => {
       </div>
 
       <div className="search__card--body">
-      <p className="search__message">Found {count} results</p>
-      <div className="search__card--layout">
-
-        {searchData?.map((items) => (
-          <SearchCard
-            name={items.name}
-            foodImage={items.foodImage}
-            price={items.price}
-          />
-        ))}
-      </div>
+        <p className="search__message">Found {count} results</p>
+        <div className="search__card--layout">
+          {searchData?.map((items) => (
+            <SearchCard
+              id={items?.id}
+              name={items.name}
+              foodImage={items.foodImage}
+              price={items.price}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .detail {
   &__main {
-    @apply justify-center flex;
+    @apply justify-center flex mb-[20px];
   }
   &__back-icon {
     @apply w-[6px] h-[12px];
@@ -10,8 +10,20 @@
     @apply w-[200px] h-[200px] flex items-center;
   }
 
+  &__img-container {
+    @apply flex;
+  }
+
+  &__veg-title {
+    @apply -mt-[3px] ml-[8px] text-[#0B6623];
+  }
+
   &__veg-icon {
-    @apply w-[20px]  h-[20px] mt-8;
+    @apply w-[20px]  h-[20px];
+  }
+
+  &__nonveg-icon {
+    @apply w-[20px] h-[20px];
   }
 
   &__title {
@@ -31,10 +43,10 @@
   }
 
   &__description {
-    @apply text-base mt-[12px];
+    @apply text-base mt-[16px];
   }
 
   &__btn {
-    @apply mt-[80px] bg-primary text-white  font-bold rounded-[30px] px-[90px] text-xl py-[16px] hover:bg-white hover:text-primary;
+    @apply mt-[40px] bg-primary text-white  font-bold rounded-[30px] px-[90px] text-xl py-[16px] hover:bg-white hover:text-primary;
   }
 }
