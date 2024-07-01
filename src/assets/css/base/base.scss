@@ -71,6 +71,10 @@ img {
   @apply py-[41px] px-[36px];
 }
 
+svg {
+  display: inline-block !important ;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   height: 20px;

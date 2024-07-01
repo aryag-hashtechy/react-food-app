@@ -47,6 +47,10 @@
   &__large {
     @apply text-[40px] font-bold  mb-4;
   }
+
+  &__paginate {
+    @apply mt-[40px] flex justify-center;
+  }
 }
 
 .image__layout {
