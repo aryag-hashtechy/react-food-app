@@ -9,7 +9,8 @@ import SearchPage from "./pages/MobileView/SearchPage";
 import AddressPage from "./pages/AddressPage";
 import Address from "./pages/Address";
 import Cart from "./pages/MobileView/Cart";
-import FoodPage from "./pages/MobileView/FoodPage";
+// import FoodPage from "./pages/MobileView/FoodPage";
+import DetailPage from "./pages/MobileView/DetailPage";
 
 const Routers = () => {
   return (
@@ -20,11 +21,12 @@ const Routers = () => {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/my-profile" element={<MyProfile />} />
-        <Route path="/search-page" element={<SearchPage />} /> 
-        <Route path="/address-page" element={<AddressPage />} />
+
+        <Route path="/search-page" element={<SearchPage />} />
+        <Route path="/address-page/:id" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/food-detail-page/:id" element={ <FoodPage /> } />
+        <Route path="/detail-page/:id" element={<DetailPage />} />
       </Routes>
     </>
   );

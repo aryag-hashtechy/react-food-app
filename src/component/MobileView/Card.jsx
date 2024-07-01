@@ -6,8 +6,12 @@ const Card = ({ name, foodImage, price, id }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="card__main">
-      <div onClick={() => navigate(`/food-detail-page/${id}`)}>
+
+    <>
+      <div
+        className="card__main"
+        onClick={() => navigate(`/detail-page/${id}`)}
+      >
         <img
           src={foodImage ? `http://localhost:5000${foodImage}` : image}
           className="card__image"
