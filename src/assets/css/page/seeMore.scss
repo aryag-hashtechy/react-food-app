@@ -1,0 +1,24 @@
+.see-more {
+  &__main {
+    @apply pt-[41px];
+  }
+
+  &__layout {
+    @apply grid grid-cols-2 mx-2.5;
+  }
+
+  &__btn {
+    @apply flex justify-center pb-4 pt-2;
+  }
+
+  &__back-icon {
+    @apply w-[10px] h-[10px];
+  }
+
+  &__header {
+    @apply px-[36px] mb-[40px];
+  }
+
+  //   &__searchbar {
+  //     @apply;
+}
