@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import AddressCard from "../component/AddressCard";
+import backIcon from '../assets/icons/back-icon.svg';
 import axios from "axios";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
+import { useNavigate } from "react-router-dom";
+import BaseButton from "../component/base/BaseButton";
 
 const Address = () => {
   const [addressData, setAddressData] = useState();
+  const [count, setCount] = useState(0);
+  const navigate = useNavigate();
   const cookies = parseCookies();
 
   const fetchAddressData = async () => {
@@ -20,14 +25,16 @@ const Address = () => {
           },
         }
       );
-      // handle exception =...
-      setAddressData(response.data.data);
+      if( response && response?.status === 200){
+        setAddressData(response?.data?.data);
+        setCount(response?.data?.dataCount)
+      }else{
+        console.log(response?.data?.message)
+      }
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(addressData);
 
   useEffect(() => {
     fetchAddressData();
@@ -36,16 +43,23 @@ const Address = () => {
   return (
     <section className="addressList__main">
       <div className="mobile__container">
-        <p className="addressList__text">Address</p>
+        <div className="addressList__header">
+          <img src={backIcon} alt="back-icon" className="addressList__img" onClick={()=>navigate("/my-profile")}/>
+
+          <p className="addressList__text">Address</p>
+        </div>
+
+        <div className="addressList_btn">
+        <BaseButton onClick={()=> navigate("/address-page")} variant={"btn btn--primary-small"} buttonText={"Add Address"}/>
+        </div>
 
         {addressData &&
-          addressData.map((data) => (
+          addressData?.map((data) => (
             <AddressCard
-              key={data.id}
-              id={data.id}
-              name="Mark"
-              address={data.addressLine1}
-              number="1234567890"
+              id={data?.id}
+              address={data?.addressLine1}
+              city={data?.city}
+              pincode={data?.pincode}
             />
           ))}
       </div>

@@ -59,12 +59,12 @@ const MyProfile = () => {
           fullName = { userData?.fullName}
           email = {userData?.email}
           mobileNumber = { userData?.mobileNumber }
-          address = {userData.Addresses}
+          address = {userData?.Addresses}
         />
 
         <div className="profile__menu__container">
           <ProfileMenu text={"Orders"} navigateTo={"#"} />
-          <ProfileMenu text={"Address"} navigateTo={"#"} />
+          <ProfileMenu text={"Address"} navigateTo={"/address"} />
         </div>
 
         <BaseButton

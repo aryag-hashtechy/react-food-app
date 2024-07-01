@@ -3,17 +3,19 @@ import BaseFloatingInput from "../component/base/BaseFloatingInput";
 import BaseButton from "../component/base/BaseButton";
 import axios from "axios";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import backIcon from "../assets/icons/back-icon.svg";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import apiPath from "../apiPath";
+
 
 const addressSchema = Yup.object().shape({
   addressLine1: Yup.string()
     .required("Address line 1 is required")
     .matches(/^[\w\d\s.,#\-\/]+$/, "only character and digit are allowed"),
-  addressLine2: Yup.string().matches(
+  addressLine2: Yup.string().optional().nullable(true).matches(
     /^[\w\d\s.,#\-\/]+$/,
     "only character and digit are allowed"
   ),
@@ -25,12 +27,14 @@ const addressSchema = Yup.object().shape({
     .matches(/^\d{6}$/, "pincode must me max 6 digits"),
   receiverName: Yup.string()
     .optional()
+    .nullable(true)
     .matches(
       /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
       "receiver name must be character"
     ),
   receiverNumber: Yup.string()
     .optional()
+    .nullable(true)
     .matches(
       /^[6-9]\d{9}$/,
       "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
@@ -39,7 +43,10 @@ const addressSchema = Yup.object().shape({
 });
 
 const AddressPage = () => {
-  let addressId = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const id = queryParams.get('id');
+
   const cookies = parseCookies();
   const navigate = useNavigate();
 
@@ -50,7 +57,7 @@ const AddressPage = () => {
   const handlefetch = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/address/get-single-address/${addressId.id}`,
+        `http://localhost:5000/api/address/get-single-address/${id}`,
         {
           headers: {
             Authorization: cookies.accessToken
@@ -60,7 +67,7 @@ const AddressPage = () => {
         }
       );
       if (response && response?.status === 200) {
-        if (response?.data?.code === 200) {
+        if (response?.status === 200) {
           setInitialValues(response?.data?.data);
         } else {
           console.log(response.data?.message);
@@ -91,18 +98,23 @@ const AddressPage = () => {
     try {
       e.preventDefault();
 
-      const response = await axios.put(
-        `http://localhost:5000/api/address/update-address/${addressId.id}`,
+      const method = id ? axios.put : axios.post;
+      const path = id ? `${apiPath.updateAddress}${id}` : apiPath.addAddress
+
+      const response = await method(
+        `${path}`,
         initialValues,
         {
           headers: {
             Authorization: cookies.accessToken
-              ? `Bearer ${cookies.accessToken}`
+              ? `Bearer ${cookies?.accessToken}`
               : "",
           },
         }
       );
-      console.log(response);
+      if( response && response?.status === 200){
+        console.log(response)
+      }
     } catch (error) {
       console.log(error);
     }
@@ -125,9 +137,8 @@ const AddressPage = () => {
 
   useEffect(() => {
     handlefetch();
-  }, [errorMessage]);
+  }, []);
 
-  console.log(initialValues);
   return (
     <section className="mobile__container">
       <img
@@ -146,7 +157,7 @@ const AddressPage = () => {
             id="addressLine1"
             inputType="text"
             labelText="AddressLine 1:"
-            value={initialValues?.addressLine1 || ""}
+            value={initialValues}
             handleChange={handleChange}
             errorMessage={errorMessage}
           />
@@ -156,8 +167,9 @@ const AddressPage = () => {
             id="addressLine2"
             inputType="text"
             labelText="AddressLine 2:"
+            isRequired={ false }
             handleChange={handleChange}
-            value={initialValues?.addressLine2 || ""}
+            value={initialValues}
             errorMessage={errorMessage}
           />
 
@@ -167,7 +179,7 @@ const AddressPage = () => {
             inputType="text"
             labelText="City:"
             handleChange={handleChange}
-            value={initialValues?.city || ""}
+            value={initialValues}
             errorMessage={errorMessage}
           />
 
@@ -177,7 +189,7 @@ const AddressPage = () => {
             inputType="text"
             labelText="Pincode:"
             handleChange={handleChange}
-            value={initialValues?.pincode || ""}
+            value={initialValues}
             errorMessage={errorMessage}
           />
 
@@ -187,7 +199,7 @@ const AddressPage = () => {
             labelText="Receiver Name:"
             handleChange={handleChange}
             isRequired={false}
-            value={initialValues?.receiverName || ""}
+            value={initialValues}
             errorMessage={errorMessage}
           />
 
@@ -198,7 +210,7 @@ const AddressPage = () => {
             isRequired={false}
             labelText="Receiver No:"
             handleChange={handleChange}
-            value={initialValues?.receiverNumber || ""}
+            value={initialValues}
             errorMessage={errorMessage}
           />
 

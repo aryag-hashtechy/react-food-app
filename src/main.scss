@@ -27,7 +27,7 @@
 @import "./assets/css/page/addressList.scss";
 @import "./assets/css/page/detailPage.scss";
 
-/* MobileView CSS */
+/* MobileView Component CSS */
 
 @import "./assets/css/component/MobileView/body.scss";
 @import "./assets/css/component/MobileView/card.scss";
@@ -36,9 +36,13 @@
 @import "./assets/css/component/MobileView/searchbar.scss";
 @import "./assets/css/component/MobileView/title.scss";
 @import "./assets/css/component/MobileView/cart.scss";
+@import "./assets/css/component/MobileView/paginate.scss";
 // @import "./assets/css/component/MobileView/CartItems.scss";
 @import "./assets/css/component/MobileView/QuantityCounter.scss";
 @import "./assets/css/component/MobileView/pagination.scss";
+
+/* MobileView Page CSS */
+@import "./assets/css/page/foodPage.scss";
 
 @tailwind base;
 @tailwind components;
