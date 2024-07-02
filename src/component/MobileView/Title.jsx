@@ -1,23 +1,27 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Title = () => {
+const Title = ({ setCategory, setCurrentPage }) => {
+
+  const handlePageChange = (id) => {
+    setCategory(id);
+    setCurrentPage(1);
+  }
+
   return (
     <>
       <div className="title__main">
         <Swiper
           spaceBetween={20}
           slidesPerView={4}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide id="Food" onClick={(e)=>console.log(e?.target?.id)} className="title--active">Foods</SwiperSlide>
+          <SwiperSlide id="Foods" onClick={(e)=>handlePageChange(e?.target?.id)} className="title--active">Foods</SwiperSlide>
 
-          <SwiperSlide id="Drinks" onClick={(e)=>console.log(e?.target?.id)}>Drinks</SwiperSlide>
+          <SwiperSlide id="Drinks" onClick={(e)=>handlePageChange(e?.target?.id)}>Drinks</SwiperSlide>
 
-          <SwiperSlide>Snacks</SwiperSlide>
+          <SwiperSlide id="Snacks" onClick={(e)=>handlePageChange(e?.target?.id)}>Snacks</SwiperSlide>
 
-          <SwiperSlide>Sauces</SwiperSlide>
+          <SwiperSlide id="Sauces" onClick={(e)=>handlePageChange(e?.target?.id)}>Sauces</SwiperSlide>
 
           <SwiperSlide>Milk</SwiperSlide>
         </Swiper>
