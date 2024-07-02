@@ -6,30 +6,37 @@ import apiPath from "../../apiPath";
 import Paginate from "../../component/MobileView/Paginate";
 import backicon from "../../assets/icons/back-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "use-debounce";
 
 const SeeMore = () => {
   // const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
   // const queryParams = new URLSearchParams(location.search);
   const type = params?.cat || "";
-  const [searchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page"));
   const navigate = useNavigate();
-
-  const [foodItems, setFoodItems] = useState();
+  const [foodItems, setFoodItems] = useState([]);
+  const [value, setValue] = useState("");
   const [category, setCategory] = useState(type);
   const [currentPage, setCurrentPage] = useState(page);
   const [pageCount, setPageCount] = useState([1]);
+  const [searchText] = useDebounce(value, 2000);
 
-  const handleFetch = async () => {
+  const handleFetch = async (searchText) => {
     try {
+      searchText ? setFoodItems([]) : <></>;
       const response = await axios.get(
         `${
           apiPath.getAllFood
-        }?category=${category}&page=${currentPage}&status=${"Active"}`
+        }?category=${category}&page=${currentPage}&status=${"Active"}&search=${searchText}`
       );
+
       if (response && response?.status === 200) {
-        setFoodItems(response?.data?.data?.data);
+        setFoodItems((prevItems) => [
+          ...prevItems,
+          ...response?.data?.data?.data,
+        ]);
         handlePageCount(response?.data?.data?.totalPage);
       }
     } catch (error) {
@@ -50,6 +57,7 @@ const SeeMore = () => {
   const handlePageChange = (id) => {
     console.log(id);
     setCurrentPage(id);
+    setSearchParams({ category, page: id });
   };
 
   const handleIncrement = () => {
@@ -65,8 +73,8 @@ const SeeMore = () => {
   };
 
   useEffect(() => {
-    handleFetch();
-  }, [currentPage, category]);
+    handleFetch(searchText);
+  }, [currentPage, category, searchText]);
 
   return (
     <>
@@ -77,7 +85,16 @@ const SeeMore = () => {
             className="see-more__back-icon"
             onClick={() => navigate(`/dashboard`)}
           />
+
+          <input
+            type="search"
+            id="search"
+            name="search"
+            onChange={(e) => setValue(e?.target?.value)}
+            className="see-more__searchbar"
+          />
         </div>
+
         <div className="see-more__layout">
           {foodItems &&
             foodItems?.map((items) => (
@@ -89,6 +106,7 @@ const SeeMore = () => {
               />
             ))}
         </div>
+
         <div className="see-more__btn">
           <Paginate
             pageCount={pageCount}
