@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import SearchCard from "../../component/MobileView/SearchCard";
 import axios from "axios";
 import apiPath from "../../apiPath";
 import Paginate from "../../component/MobileView/Paginate";
-import { useDebounce } from "use-debounce";
-import backIcon from "../../assets/icons/back-icon.svg";
-import { useSearchParams } from "react-router-dom";
+import backicon from "../../assets/icons/back-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "use-debounce";
 
 const SeeMore = () => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location?.search);
-  const type = queryParams.get("category");
-  const page = parseInt(queryParams.get("page"));
+  // const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const params = useParams();
+  // const queryParams = new URLSearchParams(location.search);
+  const type = params?.cat || "";
+  const page = parseInt(searchParams.get("page"));
   const navigate = useNavigate();
-
   const [foodItems, setFoodItems] = useState([]);
   const [value, setValue] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(type);
   const [currentPage, setCurrentPage] = useState(page);
   const [pageCount, setPageCount] = useState([1]);
@@ -29,31 +28,44 @@ const SeeMore = () => {
       if (searchText) {
         setFoodItems([]);
         setCurrentPage(1);
+        console.log({ category, page: currentPage });
         setSearchParams({ category, page: currentPage });
       }
+      searchText ? setFoodItems([]) : <></>;
       const response = await axios.get(
-        `${apiPath.getAllFood}?category=${category}&page=${currentPage}&search=${searchText}`
+        `${
+          apiPath.getAllFood
+        }?category=${category}&page=${currentPage}&status=${"Active"}&search=${searchText}`
       );
+
       if (response && response?.status === 200) {
-        setFoodItems((prevItems) => [...prevItems, ...response.data.data.data]);
-        handlePageCount(response?.data?.data?.totalPage);
+        if (response?.data?.data?.data.length) {
+          setFoodItems((prevItems) => [
+            ...prevItems,
+            ...response?.data?.data?.data,
+          ]);
+          handlePageCount(response?.data?.data?.totalPage);
+        }
       }
     } catch (error) {
+      setPageCount([1]);
+      setCurrentPage(1);
       console.log(error.response);
     }
   };
 
   const handlePageCount = (totalPage) => {
-    let a = [];
+    let page = [];
     let count = 1;
     while (count <= totalPage) {
-      a.push(count);
+      page.push(count);
       count++;
     }
-    setPageCount(a);
+    setPageCount(page);
   };
 
   const handlePageChange = (id) => {
+    console.log(id);
     setCurrentPage(id);
     setSearchParams({ category, page: id });
   };
@@ -79,39 +91,38 @@ const SeeMore = () => {
   }, [currentPage, category, searchText]);
 
   return (
-    <div className="category__main">
-      <div className="category__header">
-        <img
-          src={backIcon}
-          alt="back-icon"
-          className="category__back-icon"
-          onClick={() => navigate("/dashboard")}
-        />
+    <>
+      <div className="see-more__main">
+        <div className="see-more__header">
+          <img
+            src={backicon}
+            className="see-more__back-icon"
+            onClick={() => navigate(`/dashboard`)}
+          />
 
-        <input
-          type="search"
-          id="search"
-          name="search"
-          onChange={(e) => setValue(e?.target?.value)}
-          className="category__search-bar"
-        />
-      </div>
+          <input
+            type="search"
+            id="search"
+            name="search"
+            onChange={(e) => setValue(e?.target?.value)}
+            className="see-more__searchbar"
+          />
+        </div>
 
-      <div className="category__layout">
-        {foodItems &&
-          foodItems?.map((items) => (
-            <SearchCard
-              id={items?.id}
-              key={items?.id}
-              name={items?.name}
-              price={items?.price}
-              foodImage={items?.foodImage}
-            />
-          ))}
-      </div>
-      <div>
-        <div className="category__paginate">
-          {foodItems?.length > 0 && (
+        <div className="see-more__layout">
+          {foodItems &&
+            foodItems?.map((items) => (
+              <SearchCard
+                key={items.id}
+                name={items.name}
+                price={items.price}
+                foodImage={items.foodImage}
+              />
+            ))}
+        </div>
+
+        <div className="see-more__btn">
+          {foodItems.length > 0 && (
             <Paginate
               pageCount={pageCount}
               handlePageChange={handlePageChange}
@@ -122,7 +133,7 @@ const SeeMore = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -72,9 +72,15 @@ const Body = () => {
       </div>
 
       <SearchBar navigateTo={"/search-page"} />
-      <Title setCategory={setCategory} setCurrentPage={setCurrentPage}/>
+      <Title setCategory={setCategory} setCurrentPage={setCurrentPage} />
 
-      <p className="body__text" onClick={()=> navigate(`/see-more?category=${category}&page=${currentPage}`)}>See more</p>
+
+      <p
+        className="body__text"
+        onClick={() => navigate(`/category/${category}?page=${currentPage}`)}
+      >
+        See more
+      </p>
 
       <div className="slider__main">
         <Swiper spaceBetween={-100} slidesPerView={1}>
@@ -92,7 +98,6 @@ const Body = () => {
         </Swiper>
       </div>
       <div className="body__paginate">
-
         <Paginate
           pageCount={pageCount}
           handlePageChange={handlePageChange}

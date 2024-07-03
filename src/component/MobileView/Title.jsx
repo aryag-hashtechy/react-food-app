@@ -23,7 +23,12 @@ const Title = ({ setCategory, setCurrentPage }) => {
 
           <SwiperSlide id="Sauces" onClick={(e)=>handlePageChange(e?.target?.id)}>Sauces</SwiperSlide>
 
-          <SwiperSlide>Milk</SwiperSlide>
+          <SwiperSlide
+            id="Milk"
+            onClick={(e) => handlePageChange(e?.target?.id)}
+          >
+            Milk
+          </SwiperSlide>
         </Swiper>
       </div>
     </>
