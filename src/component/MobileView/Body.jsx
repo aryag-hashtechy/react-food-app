@@ -7,11 +7,10 @@ import { useEffect } from "react";
 import axios from "axios";
 import apiPath from "../../apiPath";
 import { useNavigate } from "react-router-dom";
+import Paginate from "./Paginate";
 
 // Import Swiper styles
 import "swiper/css";
-
-import Pagination from "./Pagination";
 
 const Body = () => {
   const [foodItems, setFoodItems] = useState();
@@ -20,15 +19,13 @@ const Body = () => {
   const [pageCount, setPageCount] = useState([1]);
   const [limit, setLimit] = useState(5);
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageCount, setPageCount] = useState([1]);
-  const [limit, setLimit] = useState(5);
-  const [category, setCategory] = useState("Foods");
 
   const handleFetch = async () => {
     try {
       const response = await axios.get(
-                `${apiPath.getAllFood}?category=${category}&page=${currentPage}`
+        `${
+          apiPath.getAllFood
+        }?category=${category}&page=${currentPage}&status=${"Active"}`
       );
       if (response && response?.status === 200) {
         setFoodItems(response?.data?.data?.data);
@@ -65,35 +62,9 @@ const Body = () => {
     }
   };
 
-  const handlePageCount = (totalPage) => {
-    let page = [];
-    let count = 1;
-    while (count <= totalPage) {
-      page.push(count);
-      count++;
-    }
-    setPageCount(page);
-  };
-
-  const handlePageChange = (id) => {
-    setCurrentPage(id);
-  };
-
-  const handleIncrement = () => {
-    if (currentPage < pageCount?.length) {
-      setCurrentPage((items) => ++items);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (currentPage > 1) {
-      setCurrentPage((items) => --items);
-    }
-  };
-
   useEffect(() => {
     handleFetch();
-  }, [currentPage]);
+  }, [currentPage, category]);
 
   return (
     <>
@@ -105,11 +76,14 @@ const Body = () => {
       </div>
 
       <SearchBar navigateTo={"/search-page"} />
-      <Title />
+      <Title setCategory={setCategory} setCurrentPage={setCurrentPage} />
 
-      <div>
-        <p className="body__text">See more</p>
-      </div>
+      <p
+        className="body__text"
+        onClick={() => navigate(`/category/${category}?page=${currentPage}`)}
+      >
+        See more
+      </p>
 
       <div className="slider__main">
         <Swiper spaceBetween={-100} slidesPerView={1}>
@@ -128,7 +102,6 @@ const Body = () => {
       </div>
       <div className="body__paginate">
         <Paginate
-
           pageCount={pageCount}
           handlePageChange={handlePageChange}
           handleIncrement={handleIncrement}

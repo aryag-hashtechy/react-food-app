@@ -15,7 +15,7 @@ const SearchPage = () => {
 
   const handleSearch = async (searchText) => {
     try {
-      let search = searchText === undefined ? "" : searchText;
+      let search = searchText ? searchText : "";
       const response = await axios.get(
         `${apiPath.searchItems}?search=${search}`
       );

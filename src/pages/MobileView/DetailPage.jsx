@@ -6,7 +6,7 @@ import veg from "../../assets/images/veg.png";
 import nonveg from "../../assets/images/non-veg-icon.png";
 import image3 from "../../assets/images/heart.png";
 import { Rating } from "react-simple-star-rating";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import apiPath from "../../apiPath";
@@ -34,7 +34,7 @@ const DetailPage = () => {
     }
   };
 
-  console.log(foodData);
+  // console.log(foodData);
 
   const onPointerEnter = () => console.log("Enter");
   const onPointerLeave = () => console.log("Leave");

@@ -6,7 +6,6 @@ const Card = ({ name, foodImage, price, id }) => {
   const navigate = useNavigate();
 
   return (
-
     <>
       <div
         className="card__main"
@@ -23,7 +22,7 @@ const Card = ({ name, foodImage, price, id }) => {
           <p className="card__price">{price ? `Rs. ${price}` : "Rs. ---"}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
