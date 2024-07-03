@@ -26,8 +26,7 @@ const SeeMore = () => {
       if (searchText) {
         setFoodItems([]);
         setCurrentPage(1);
-        console.log({ category, page: currentPage });
-        setSearchParams({ category, page: currentPage });
+        setSearchParams({page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
       const response = await axios.get(
