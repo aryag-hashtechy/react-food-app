@@ -5,8 +5,8 @@ import axios from "axios";
 import apiPath from "../../apiPath";
 import Paginate from "../../component/MobileView/Paginate";
 import { useDebounce } from "use-debounce";
-import backIcon from '../../assets/icons/back-icon.svg'
-import { useSearchParams } from 'react-router-dom';
+import backIcon from "../../assets/icons/back-icon.svg";
+import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const SeeMore = () => {
@@ -18,7 +18,7 @@ const SeeMore = () => {
 
   const [foodItems, setFoodItems] = useState([]);
   const [value, setValue] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams(); 
+  const [searchParams, setSearchParams] = useSearchParams();
   const [category, setCategory] = useState(type);
   const [currentPage, setCurrentPage] = useState(page);
   const [pageCount, setPageCount] = useState([1]);
@@ -26,10 +26,10 @@ const SeeMore = () => {
 
   const handleFetch = async (searchText) => {
     try {
-      if(searchText){
-        setFoodItems([])
-        setCurrentPage(1)
-        setSearchParams({ category, page: currentPage })
+      if (searchText) {
+        setFoodItems([]);
+        setCurrentPage(1);
+        setSearchParams({ category, page: currentPage });
       }
       const response = await axios.get(
         `${apiPath.getAllFood}?category=${category}&page=${currentPage}&search=${searchText}`
@@ -39,9 +39,7 @@ const SeeMore = () => {
         handlePageCount(response?.data?.data?.totalPage);
       }
     } catch (error) {
-      setPageCount([1]);
-      setCurrentPage(error.response?.data?.data?.currentPage);
-      console.log(error.response)
+      console.log(error.response);
     }
   };
 
@@ -57,24 +55,22 @@ const SeeMore = () => {
 
   const handlePageChange = (id) => {
     setCurrentPage(id);
-    setSearchParams({ category , page: id })
+    setSearchParams({ category, page: id });
   };
 
   const handleIncrement = () => {
     if (currentPage < pageCount?.length) {
-      setCurrentPage((items) => (
-        ++items,
-        setSearchParams({ category, page: items })
-      ));
+      setCurrentPage(
+        (items) => (++items, setSearchParams({ category, page: items }))
+      );
     }
   };
 
   const handleDecrement = () => {
     if (currentPage > 1) {
-      setCurrentPage((items) => (
-        --items,
-        setSearchParams({ category, page: items })
-      ));
+      setCurrentPage(
+        (items) => (--items, setSearchParams({ category, page: items }))
+      );
     }
   };
 
@@ -85,22 +81,27 @@ const SeeMore = () => {
   return (
     <div className="category__main">
       <div className="category__header">
-      <img src={backIcon} alt="back-icon" className="category__back-icon" onClick={()=>navigate("/dashboard")}/>
+        <img
+          src={backIcon}
+          alt="back-icon"
+          className="category__back-icon"
+          onClick={() => navigate("/dashboard")}
+        />
 
-      <input
-        type="search"
-        id="search"
-        name="search"
-        onChange={(e) => setValue(e?.target?.value)}
-        className="category__search-bar"
-      />
+        <input
+          type="search"
+          id="search"
+          name="search"
+          onChange={(e) => setValue(e?.target?.value)}
+          className="category__search-bar"
+        />
       </div>
 
       <div className="category__layout">
         {foodItems &&
           foodItems?.map((items) => (
             <SearchCard
-              id = { items?.id }
+              id={items?.id}
               key={items?.id}
               name={items?.name}
               price={items?.price}
@@ -110,13 +111,15 @@ const SeeMore = () => {
       </div>
       <div>
         <div className="category__paginate">
-          <Paginate
-            pageCount={pageCount}
-            handlePageChange={handlePageChange}
-            handleIncrement={handleIncrement}
-            handleDecrement={handleDecrement}
-            currentPage={currentPage}
-          />
+          {foodItems.length > 0 && (
+            <Paginate
+              pageCount={pageCount}
+              handlePageChange={handlePageChange}
+              handleIncrement={handleIncrement}
+              handleDecrement={handleDecrement}
+              currentPage={currentPage}
+            />
+          )}
         </div>
       </div>
     </div>
