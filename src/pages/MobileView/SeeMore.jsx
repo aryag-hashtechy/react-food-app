@@ -28,6 +28,7 @@ const SeeMore = () => {
       if (searchText) {
         setFoodItems([]);
         setCurrentPage(1);
+        console.log({ category, page: currentPage });
         setSearchParams({ category, page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
@@ -38,15 +39,17 @@ const SeeMore = () => {
       );
 
       if (response && response?.status === 200) {
-        setFoodItems((prevItems) => [
-          ...prevItems,
-          ...response?.data?.data?.data,
-        ]);
-        handlePageCount(response?.data?.data?.totalPage);
+        if (response?.data?.data?.data.length) {
+          setFoodItems((prevItems) => [
+            ...prevItems,
+            ...response?.data?.data?.data,
+          ]);
+          handlePageCount(response?.data?.data?.totalPage);
+        }
       }
     } catch (error) {
       setPageCount([1]);
-      setCurrentPage(error.response?.data?.data?.currentPage);
+      setCurrentPage(1);
       console.log(error.response);
     }
   };
@@ -119,13 +122,15 @@ const SeeMore = () => {
         </div>
 
         <div className="see-more__btn">
-          <Paginate
-            pageCount={pageCount}
-            handlePageChange={handlePageChange}
-            handleIncrement={handleIncrement}
-            handleDecrement={handleDecrement}
-            currentPage={currentPage}
-          />
+          {foodItems.length > 0 && (
+            <Paginate
+              pageCount={pageCount}
+              handlePageChange={handlePageChange}
+              handleIncrement={handleIncrement}
+              handleDecrement={handleDecrement}
+              currentPage={currentPage}
+            />
+          )}
         </div>
       </div>
     </>
