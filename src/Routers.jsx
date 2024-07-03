@@ -22,7 +22,6 @@ const Routers = () => {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/my-profile" element={<MyProfile />} />
-
         <Route path="/search-page" element={<SearchPage />} />
         <Route path="/address-page" element={<AddressPage />} />
         <Route path="/address" element={<Address />} />
