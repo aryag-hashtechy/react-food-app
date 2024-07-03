@@ -111,7 +111,7 @@ const SeeMore = () => {
       </div>
       <div>
         <div className="category__paginate">
-          {foodItems.length > 0 && (
+          {foodItems?.length > 0 && (
             <Paginate
               pageCount={pageCount}
               handlePageChange={handlePageChange}
