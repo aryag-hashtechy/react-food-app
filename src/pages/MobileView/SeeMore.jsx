@@ -26,7 +26,11 @@ const SeeMore = () => {
 
   const handleFetch = async (searchText) => {
     try {
-      searchText ? setFoodItems([]) : <></>;
+      if(searchText){
+        setFoodItems([])
+        setCurrentPage(1)
+        setSearchParams({ category, page: currentPage })
+      }
       const response = await axios.get(
         `${apiPath.getAllFood}?category=${category}&page=${currentPage}&search=${searchText}`
       );
@@ -35,7 +39,9 @@ const SeeMore = () => {
         handlePageCount(response?.data?.data?.totalPage);
       }
     } catch (error) {
-      console.log(error);
+      setPageCount([1]);
+      setCurrentPage(error.response?.data?.data?.currentPage);
+      console.log(error.response)
     }
   };
 
