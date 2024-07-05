@@ -29,11 +29,14 @@ const SeeMore = () => {
         setSearchParams({page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
-      const response = await axios.get(
-        `${
-          apiPath.getAllFood
-        }?category=${category}&page=${currentPage}&status=${"Active"}&search=${searchText}`
-      );
+      const response = await axios.get(`${apiPath.getAllFood}`,{
+        params:{
+          category,
+          page:{currentPage},
+          status:"Active",
+          search: {searchText},
+        }
+      });
 
       if (response && response?.status === 200) {
         if (response?.data?.data?.data.length) {
