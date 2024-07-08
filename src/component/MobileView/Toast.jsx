@@ -28,7 +28,7 @@ const Toast = ({ type = "failure", message }) => {
                 <div className="toast__message">Successful</div>
               </div>
 
-              <div className="toast__close-icon">
+              <div className="toast__close-icon" onClick={()=>hadleAnimation()}>
                 <CloseIcon />
               </div>
             </div>
