@@ -1,0 +1,62 @@
+.toast {
+  &__main {
+    animation: fadeIn 350ms;
+    @apply mt-4 mr-4 z-50 shadow-2xl w-[75%] absolute left-[75px];
+
+    &:hover{
+      .toast__failure{
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  &__container {
+    @apply border-none rounded-[8px] flex py-[20px] px-[10px] justify-center items-center;
+  }
+
+  &__close-icon {
+    @apply flex justify-end px-2;
+  }
+
+  &__body {
+    @apply flex gap-[1px] grow;
+  }
+
+  &__icon {
+    @apply w-[23px] flex-shrink-0 basis-[23px];
+  }
+
+  &__message {
+    @apply pl-2;
+  }
+
+  &__success {
+    animation: progress 1800ms ease-in 1 forwards;
+    @apply h-[5px] bg-green-600;
+  }
+
+  &__failure {
+    animation: progress 1800ms ease-in 1 forwards;
+    @apply h-[5px] bg-red-600;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}

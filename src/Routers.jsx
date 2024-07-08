@@ -12,6 +12,7 @@ import Cart from "./pages/MobileView/Cart";
 // import FoodPage from "./pages/MobileView/FoodPage";
 import DetailPage from "./pages/MobileView/DetailPage";
 import SeeMore from "./pages/MobileView/SeeMore";
+import Toast from "./component/MobileView/Toast";
 
 const Routers = () => {
   return (
@@ -28,6 +29,7 @@ const Routers = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/detail-page/:id" element={<DetailPage />} />
         <Route path="/category/:cat" element={<SeeMore />} />
+        <Route path="/Toast" element={ <Toast /> } />
       </Routes>
     </>
   );

@@ -22,7 +22,7 @@ const Body = () => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(`${apiPath.getAllFood}?category=${category}&page=${currentPage}`);
+      const response = await axios.get(`${apiPath.getAllFood}?category=${category}&page=${currentPage}&status=${"Active"}`);
       if (response && response?.status === 200) {
         setFoodItems(response?.data?.data?.data);
         handlePageCount(response?.data?.data?.totalPage);

@@ -86,7 +86,6 @@ const AddressPage = () => {
       handleSubmit(e);
     } catch (err) {
       let obj = {};
-      setErrorMessage(err.errors);
       err.inner.forEach((fieldError) => {
         obj[fieldError.path] = fieldError.message;
         setErrorMessage(obj);

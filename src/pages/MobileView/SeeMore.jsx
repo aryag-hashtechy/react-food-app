@@ -9,10 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "use-debounce";
 
 const SeeMore = () => {
-  // const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
-  // const queryParams = new URLSearchParams(location.search);
   const type = params?.cat || "";
   const page = parseInt(searchParams.get("page"));
   const navigate = useNavigate();
@@ -28,15 +26,17 @@ const SeeMore = () => {
       if (searchText) {
         setFoodItems([]);
         setCurrentPage(1);
-        console.log({ category, page: currentPage });
-        setSearchParams({ category, page: currentPage });
+        setSearchParams({page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
-      const response = await axios.get(
-        `${
-          apiPath.getAllFood
-        }?category=${category}&page=${currentPage}&status=${"Active"}&search=${searchText}`
-      );
+      const response = await axios.get(`${apiPath.getAllFood}`,{
+        params:{
+          category,
+          page:{currentPage},
+          status:"Active",
+          search: {searchText},
+        }
+      });
 
       if (response && response?.status === 200) {
         if (response?.data?.data?.data.length) {
@@ -48,32 +48,29 @@ const SeeMore = () => {
         }
       }
     } catch (error) {
-      setPageCount([1]);
-      setCurrentPage(1);
       console.log(error.response);
     }
   };
 
   const handlePageCount = (totalPage) => {
-    let page = [];
+    let arrayCount = [];
     let count = 1;
     while (count <= totalPage) {
-      page.push(count);
+      arrayCount.push(count);
       count++;
     }
-    setPageCount(page);
+    setPageCount(arrayCount);
   };
 
   const handlePageChange = (id) => {
-    console.log(id);
     setCurrentPage(id);
-    setSearchParams({ category, page: id });
+    setSearchParams({ page: id });
   };
 
   const handleIncrement = () => {
     if (currentPage < pageCount?.length) {
       setCurrentPage(
-        (items) => (++items, setSearchParams({ category, page: items }))
+        (items) => (++items, setSearchParams({ page: items }))
       );
     }
   };
@@ -81,7 +78,7 @@ const SeeMore = () => {
   const handleDecrement = () => {
     if (currentPage > 1) {
       setCurrentPage(
-        (items) => (--items, setSearchParams({ category, page: items }))
+        (items) => (--items, setSearchParams({ page: items }))
       );
     }
   };
