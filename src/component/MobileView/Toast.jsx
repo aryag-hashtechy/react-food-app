@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CloseIcon, SuccessIcon, FailureIcon } from "./ToastIcons";
 
-const Toast = ({ type = "failure", message }) => {
+const Toast = ({ type, message }) => {
   const [visibility, setVisibility] = useState(true);
 
   const icon = {
@@ -20,21 +20,23 @@ const Toast = ({ type = "failure", message }) => {
       {visibility && (
         <div className="toast" role="alert">
           <div className="toast__main">
-            
             <div className="toast__container">
               <div className="toast__body">
                 {toastIcon && <div className="toast__icon">{toastIcon}</div>}
 
-                <div className="toast__message">Successful</div>
+                <div className="toast__message">{message}</div>
               </div>
 
-              <div className="toast__close-icon" onClick={()=>hadleAnimation()}>
+              <div
+                className="toast__close-icon"
+                onClick={() => hadleAnimation()}
+              >
                 <CloseIcon />
               </div>
             </div>
 
             <div
-              className={`toast__${type ? type : "sucess"}`}
+              className={`toast__${type ? type : "success"}`}
               onAnimationEnd={hadleAnimation}
             ></div>
           </div>

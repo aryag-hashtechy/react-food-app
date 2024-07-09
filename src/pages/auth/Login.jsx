@@ -9,11 +9,16 @@ import SplashScreen from "./SplashScreen";
 import { parseCookies, setCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import Toast from "../../component/MobileView/Toast";
+import axiosProvider from "../../common/axiosProvider";
 
 const signupSchema = Yup.object().shape({
   fullName: Yup.string()
     .required("Full name is require")
-    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/, "Please Enter valid Full Name"),
+    .matches(
+      /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
+      "Please Enter valid Full Name"
+    ),
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is Required!"),
@@ -49,22 +54,26 @@ const Login = () => {
   const [initialValue, setInitialValue] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState({
+    visible: false,
+    message: "",
+    type: "failure",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e?.target;
-   
 
     setInitialValue((draft) => ({
       ...draft,
       [name]: value,
     }));
 
-    if(e?.target?.files){
+    if (e?.target?.files) {
       const image = e?.target?.files[0];
-      setInitialValue((draft)=>({
+      setInitialValue((draft) => ({
         ...draft,
-        [name]:image
-      }))
+        [name]: image,
+      }));
     }
   };
 
@@ -94,17 +103,47 @@ const Login = () => {
       }
 
       const path = login ? apiPath.signIn : apiPath.signup;
-
+      const endpoint = login ? apiPath.signIn : apiPath.signup;
       const userData = login ? initialValue : data;
+      const bodyData = login ? initialValue : data;
+      // const response = await axios.post(path, userData);
+      const response = await axiosProvider({ endpoint, bodyData });
 
-      const response = await axios.post(path, userData);
       if (response && response?.status === 200) {
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
+
+        setToast((items) => ({
+          ...items,
+          visible: true,
+          message: response?.data?.message,
+          type: "success",
+        }));
+
+        setTimeout(() => {
+          setToast((items) => ({
+            ...items,
+            visible: false,
+          }));
+        }, 3000);
       }
     } catch (err) {
+      setToast((items) => ({
+        ...items,
+        visible: true,
+        message: err.response?.data?.message,
+        type: "failure",
+      }));
+
+      setTimeout(() => {
+        setToast((items) => ({
+          ...items,
+          visible: false,
+        }));
+      }, 3000);
+
       console.log(err);
     }
   };
@@ -124,11 +163,12 @@ const Login = () => {
   return (
     <>
       {isLoading ? <SplashScreen /> : <></>}
+      {toast.visible && <Toast type={toast.type} message={toast.message} />}
       {login ? (
         <form onSubmit={validate}>
           <section className="login__main">
             <div className="login__image">
-              <img src={image} alt="logo" className="image"/>
+              <img src={image} alt="logo" className="image" />
 
               <div className="login__page ">
                 <p className="login__text" onClick={handleLoginClick}>

@@ -1,17 +1,17 @@
 .toast {
   &__main {
     animation: fadeIn 350ms;
-    @apply mt-4 mr-4 z-50 shadow-2xl w-[75%] absolute left-[75px];
+    @apply mt-4 mr-4 z-50 shadow-2xl w-[75%] absolute left-[80px] top-[20px];
 
-    &:hover{
-      .toast__failure{
+    &:hover {
+      .toast__failure {
         animation-play-state: paused;
       }
     }
   }
 
   &__container {
-    @apply border-none rounded-[8px] flex py-[20px] px-[10px] justify-center items-center;
+    @apply border-none rounded-[8px] bg-white  flex py-[20px] px-[10px] justify-center items-center;
   }
 
   &__close-icon {

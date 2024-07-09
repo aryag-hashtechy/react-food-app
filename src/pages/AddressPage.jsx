@@ -3,22 +3,23 @@ import BaseFloatingInput from "../component/base/BaseFloatingInput";
 import BaseButton from "../component/base/BaseButton";
 import axios from "axios";
 import { useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import backIcon from "../assets/icons/back-icon.svg";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import apiPath from "../apiPath";
-
+import Toast from "../component/MobileView/Toast";
+import axiosProvider from "../common/axiosProvider";
 
 const addressSchema = Yup.object().shape({
   addressLine1: Yup.string()
     .required("Address line 1 is required")
     .matches(/^[\w\d\s.,#\-\/]+$/, "only character and digit are allowed"),
-  addressLine2: Yup.string().optional().nullable(true).matches(
-    /^[\w\d\s.,#\-\/]+$/,
-    "only character and digit are allowed"
-  ),
+  addressLine2: Yup.string()
+    .optional()
+    .nullable(true)
+    .matches(/^[\w\d\s.,#\-\/]+$/, "only character and digit are allowed"),
   city: Yup.string()
     .required("City is required")
     .matches(/^[a-zA-Z]{1,100}$/, "must be character"),
@@ -45,7 +46,7 @@ const addressSchema = Yup.object().shape({
 const AddressPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get('id');
+  const id = queryParams.get("id");
 
   const cookies = parseCookies();
   const navigate = useNavigate();
@@ -54,18 +55,24 @@ const AddressPage = () => {
   const [errorMessage, setErrorMessage] = useState(false);
   const accessToken = cookies.accessToken;
 
+  const [toast, setToast] = useState({
+    visible: false,
+    message: "",
+    type: "failure",
+  });
+
   const handlefetch = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/address/get-single-address/${id}`,
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies.accessToken}`
-              : "",
-          },
-        }
-      );
+      let headers = {
+        Authorization: `Bearer ${cookies.accessToken}`,
+      };
+
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: `${apiPath.getsingleaddress}/${id}`,
+        headers,
+      });
+
       if (response && response?.status === 200) {
         if (response?.status === 200) {
           setInitialValues(response?.data?.data);
@@ -73,8 +80,8 @@ const AddressPage = () => {
           console.log(response.data?.message);
         }
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -97,24 +104,45 @@ const AddressPage = () => {
     try {
       e.preventDefault();
 
-      const method = id ? axios.put : axios.post;
-      const path = id ? `${apiPath.updateAddress}${id}` : apiPath.addAddress
+      let headers = {
+        Authorization: `Bearer ${cookies.accessToken}`,
+      };
 
-      const response = await method(
-        `${path}`,
-        initialValues,
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies?.accessToken}`
-              : "",
-          },
-        }
-      );
-      if( response && response?.status === 200){
-        console.log(response)
+      const response = await axiosProvider({
+        method: id ? "PUT" : "POST",
+        apiURL: id ? apiPath.updateAddress + id : apiPath.addAddress,
+        bodyData: initialValues,
+        headers,
+      });
+
+      if (response && response?.status === 200) {
+        setToast((items) => ({
+          ...items,
+          visible: true,
+          message: response?.data?.message,
+          type: "success",
+        }));
+
+        setTimeout((items) => {
+          setToast((items) => ({
+            ...items,
+            visible: false,
+          }));
+        }, 3000);
       }
     } catch (error) {
+      setToast((items) => ({
+        visible: true,
+        message: error.response?.data?.message,
+        type: "failure",
+      }));
+
+      setTimeout((items) => {
+        setToast((items) => ({
+          ...items,
+          visible: false,
+        }));
+      }, 3000);
       console.log(error);
     }
   };
@@ -135,119 +163,126 @@ const AddressPage = () => {
   };
 
   useEffect(() => {
-    handlefetch();
+    id ? handlefetch() : <></>;
   }, []);
 
   return (
-    <section className="mobile__container">
-      <img
-        src={backIcon}
-        alt="back-icon"
-        className="profile__back--icon"
-        onClick={() => navigate("/address")}
-      />
-      <div>
-        <p className="address__text">My Address</p>
-      </div>
-      <form onSubmit={validate}>
+    <>
+      {toast.visible && <Toast type={toast.type} message={toast.message} />}
+      <section className="mobile__container">
+        <img
+          src={backIcon}
+          alt="back-icon"
+          className="profile__back--icon"
+          onClick={() => navigate("/address")}
+        />
         <div>
-          <BaseFloatingInput
-            name="addressLine1"
-            id="addressLine1"
-            inputType="text"
-            labelText="AddressLine 1:"
-            value={initialValues}
-            handleChange={handleChange}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="addressLine2"
-            id="addressLine2"
-            inputType="text"
-            labelText="AddressLine 2:"
-            isRequired={ false }
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="city"
-            id="city"
-            inputType="text"
-            labelText="City:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="pincode"
-            id="pincode"
-            inputType="text"
-            labelText="Pincode:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="receiverName"
-            id="receiverName"
-            labelText="Receiver Name:"
-            handleChange={handleChange}
-            isRequired={false}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="receiverNumber"
-            id="receiverNumber"
-            inputType="text"
-            isRequired={false}
-            labelText="Receiver No:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
+          <p className="address__text">My Address</p>
+        </div>
+        <form onSubmit={validate}>
           <div>
-            <label className="radio__text">Type: </label>
-            <br />
-            <div className="radio__btn">
-              <div>
-                <input
-                  type="radio"
-                  id="Home"
-                  name="addressType"
-                  value="Home"
-                  checked={initialValues.type === "Home" || null}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor="Home">Home</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="Work"
-                  name="addressType"
-                  value="Work"
-                  checked={initialValues.type === "Work" || null}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor="Work">Work</label>
+            <BaseFloatingInput
+              name="addressLine1"
+              id="addressLine1"
+              inputType="text"
+              labelText="AddressLine 1:"
+              value={initialValues}
+              handleChange={handleChange}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="addressLine2"
+              id="addressLine2"
+              inputType="text"
+              labelText="AddressLine 2:"
+              isRequired={false}
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="city"
+              id="city"
+              inputType="text"
+              labelText="City:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="pincode"
+              id="pincode"
+              inputType="text"
+              labelText="Pincode:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="receiverName"
+              id="receiverName"
+              labelText="Receiver Name:"
+              handleChange={handleChange}
+              isRequired={false}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="receiverNumber"
+              id="receiverNumber"
+              inputType="text"
+              isRequired={false}
+              labelText="Receiver No:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <div>
+              <label className="radio__text">Type: </label>
+              <br />
+              <div className="radio__btn">
+                <div>
+                  <input
+                    type="radio"
+                    id="Home"
+                    name="addressType"
+                    value="Home"
+                    checked={initialValues.type === "Home" || null}
+                    onChange={handleRadioChange}
+                  />
+                  <label htmlFor="Home">Home</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="Work"
+                    name="addressType"
+                    value="Work"
+                    checked={initialValues.type === "Work" || null}
+                    onChange={handleRadioChange}
+                  />
+                  <label htmlFor="Work">Work</label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="address__btn">
-          <BaseButton buttonText="Update" variant="btn btn--primary--mobile" />
-        </div>
-      </form>
-    </section>
+          <div className="address__btn">
+            <BaseButton
+              buttonText="Update"
+              variant="btn btn--primary--mobile"
+              onClick={handleSubmit}
+            />
+          </div>
+        </form>
+      </section>
+    </>
   );
 };
 
