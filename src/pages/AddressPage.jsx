@@ -9,7 +9,8 @@ import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import apiPath from "../apiPath";
-
+import Toast from "../component/MobileView/Toast";
+import axiosProvider from "../common/axiosProvider";
 
 const addressSchema = Yup.object().shape({
   addressLine1: Yup.string()
@@ -52,26 +53,21 @@ const AddressPage = () => {
 
   const [initialValues, setInitialValues] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
+  const [toast, setToast] = useState({
+    message: null,
+    type: null,
+    isVisible: false,
+  });
   const accessToken = cookies.accessToken;
 
   const handlefetch = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/address/get-single-address/${id}`,
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies.accessToken}`
-              : "",
-          },
-        }
-      );
+      const response = await axiosProvider({ method: "GET", apiURL: `${apiPath.getSingleAddress}/${id}`, navigate})
+
       if (response && response?.status === 200) {
-        if (response?.status === 200) {
-          setInitialValues(response?.data?.data);
-        } else {
-          console.log(response.data?.message);
-        }
+        setInitialValues(response?.data?.data);
+      }else{
+        console.log(response)
       }
     } catch (err) {
       console.log(err);
@@ -97,25 +93,40 @@ const AddressPage = () => {
     try {
       e.preventDefault();
 
-      const method = id ? axios.put : axios.post;
+      const method = id ? "PUT" : "POST";
       const path = id ? `${apiPath.updateAddress}${id}` : apiPath.addAddress
 
-      const response = await method(
-        `${path}`,
-        initialValues,
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies?.accessToken}`
-              : "",
-          },
-        }
-      );
+      const response = await axiosProvider({ method, apiURL: path, bodyData: initialValues, navigate})
+
       if( response && response?.status === 200){
-        console.log(response)
+        setToast((items)=>({
+          ...items,
+          type:"success",
+          message: response?.data?.message,
+          isVisible: true
+        }));
+
+        setTimeout(()=>{
+          setToast((items)=>({
+            ...items,
+            isVisible:false
+          }));
+        },3000);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      setToast((items)=>({
+        ...items,
+        type: "failure",
+        message: err.response?.data?.message,
+        isVisible: true
+      }))
+
+      setTimeout(()=>{
+        setToast((items)=>({
+          ...items,
+          isVisible: false
+        }))
+      },3000)
     }
   };
 
@@ -135,11 +146,13 @@ const AddressPage = () => {
   };
 
   useEffect(() => {
-    handlefetch();
+    id ? handlefetch() : <></>;
   }, []);
 
   return (
-    <section className="mobile__container">
+    <>
+      { toast.isVisible && <Toast type={toast.type} message={toast.message} /> }
+      <section className="mobile__container">
       <img
         src={backIcon}
         alt="back-icon"
@@ -244,10 +257,11 @@ const AddressPage = () => {
         </div>
 
         <div className="address__btn">
-          <BaseButton buttonText="Update" variant="btn btn--primary--mobile" />
+          <BaseButton buttonText= {id ? "Update" : "Add"} variant="btn btn--primary--mobile" />
         </div>
       </form>
     </section>
+    </>
   );
 };
 

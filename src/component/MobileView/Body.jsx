@@ -8,6 +8,7 @@ import axios from "axios";
 import apiPath from "../../apiPath";
 import { useNavigate } from "react-router-dom";
 import Paginate from "./Paginate";
+import axiosProvider from "../../common/axiosProvider";
 
 // Import Swiper styles
 import "swiper/css";
@@ -22,7 +23,7 @@ const Body = () => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(`${apiPath.getAllFood}?category=${category}&page=${currentPage}&status=${"Active"}`);
+      const response = await axiosProvider({method: "GET" , apiURL:apiPath.getAllFood, params: { category, page:currentPage } });
       if (response && response?.status === 200) {
         setFoodItems(response?.data?.data?.data);
         handlePageCount(response?.data?.data?.totalPage);

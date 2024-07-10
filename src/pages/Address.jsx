@@ -6,6 +6,9 @@ import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import { useNavigate } from "react-router-dom";
 import BaseButton from "../component/base/BaseButton";
+import Toast from "../component/MobileView/Toast";
+import axiosProvider from "../common/axiosProvider";
+import apiPath from "../apiPath";
 
 const Address = () => {
   const [addressData, setAddressData] = useState();
@@ -15,24 +18,24 @@ const Address = () => {
 
   const fetchAddressData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/address/getall-address",
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies.accessToken}`
-              : "",
-          },
-        }
-      );
+      // const response = await axios.get(
+      //   "http://localhost:5000/api/address/getall-address",
+      //   {
+      //     headers: {
+      //       Authorization: cookies.accessToken
+      //         ? `Bearer ${cookies.accessToken}`
+      //         : "",
+      //     },
+      //   }
+      // );
+
+      const response = await axiosProvider({ method: "GET", apiURL: `${apiPath.getAllAddress}` , navigate})
       if( response && response?.status === 200){
         setAddressData(response?.data?.data);
         setCount(response?.data?.dataCount)
-      }else{
-        console.log(response?.data?.message)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 

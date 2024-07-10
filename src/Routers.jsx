@@ -12,24 +12,28 @@ import Cart from "./pages/MobileView/Cart";
 // import FoodPage from "./pages/MobileView/FoodPage";
 import DetailPage from "./pages/MobileView/DetailPage";
 import SeeMore from "./pages/MobileView/SeeMore";
-import Toast from "./component/MobileView/Toast";
+import ProtectedRoutes from "./lib/ProtectedRoutes";
 
 const Routers = () => {
   return (
     <>
       <Routes>
+        
+        {/* unprotected routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/splashscreen" element={<SplashScreen />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/search-page" element={<SearchPage />} />
-        <Route path="/address-page" element={<AddressPage />} />
-        <Route path="/address" element={<Address />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/detail-page/:id" element={<DetailPage />} />
         <Route path="/category/:cat" element={<SeeMore />} />
-        <Route path="/Toast" element={ <Toast /> } />
+
+        {/* protected routes */}
+        <Route element = {<ProtectedRoutes redirectTo= {"/auth/login"} />} >
+          <Route path="/address-page" element={<AddressPage />} />
+          <Route path="/address" element={<Address />} />
+          <Route path="/my-profile" element={<MyProfile />} />
+        </Route>
       </Routes>
     </>
   );

@@ -8,12 +8,13 @@ import apiPath from "../../apiPath";
 import SplashScreen from "./SplashScreen";
 import { parseCookies, setCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
+import Toast from "../../component/MobileView/Toast"
 import * as Yup from "yup";
+import axiosProvider from "../../common/axiosProvider";
 
-const signupSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .required("Full name is require")
-    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/, "Please Enter valid Full Name"),
+// GlobalValidation object 
+
+const GlobalValidation = {
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is Required!"),
@@ -24,22 +25,22 @@ const signupSchema = Yup.object().shape({
     .matches(/[a-zA-Z]/, "Password should contain at least one character")
     .matches(/[0-9]/, "Password should contain Numbers")
     .matches(/[^\w]/, "Password requires a special character"),
+}
+
+const signupSchema = Yup.object().shape({
+  fullName: Yup.string()
+    .required("Full name is require")
+    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/, "Please Enter valid Full Name"),
+  email: GlobalValidation.email,
+  password: GlobalValidation.password,
   confirmPassword: Yup.string()
     .required("Confirm Password is Required!")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
 const signinSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is Required!"),
-  password: Yup.string()
-    .required("Password is Required!")
-    .min(8, "Password should be 8 chars minimum.")
-    .max(16, "Password should be 16 chars maximum.")
-    .matches(/[a-zA-Z]/, "Password should contain at least one character")
-    .matches(/[0-9]/, "Password should contain Numbers")
-    .matches(/[^\w]/, "Password requires a special character"),
+  email: GlobalValidation.email,
+  password: GlobalValidation.password,
 });
 
 const Login = () => {
@@ -48,12 +49,14 @@ const Login = () => {
   const [login, setLogin] = useState(true);
   const [initialValue, setInitialValue] = useState({});
   const [errorMessage, setErrorMessage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState({
+    message: null,
+    type: null,
+    isVisible: false,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e?.target;
-   
-
     setInitialValue((draft) => ({
       ...draft,
       [name]: value,
@@ -61,9 +64,9 @@ const Login = () => {
 
     if(e?.target?.files){
       const image = e?.target?.files[0];
-      setInitialValue((draft)=>({
+      setInitialValue((draft) => ({
         ...draft,
-        [name]:image
+        [name]: image
       }))
     }
   };
@@ -94,20 +97,38 @@ const Login = () => {
       }
 
       const path = login ? apiPath.signIn : apiPath.signup;
-
       const userData = login ? initialValue : data;
 
-      const response = await axios.post(path, userData);
+      const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData});
+
       if (response && response?.status === 200) {
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
+        handleToast(response, "/dashboard")
       }
     } catch (err) {
-      console.log(err);
+      handleToast()
     }
   };
+
+  const handleToast = (response, redirectTo) => {
+    setToast((items)=>({
+      ...items,
+      type:"success",
+      message: response?.data?.message,
+      isVisible: true
+    }));
+
+    setTimeout(()=>{
+      setToast((items)=>({
+        ...items,
+        isVisible:false,
+      }));
+      redirectTo ? navigate(redirectTo) : <></>;
+    },3000);
+  }
 
   const handleLoginClick = () => {
     setLogin(true);
@@ -123,7 +144,7 @@ const Login = () => {
 
   return (
     <>
-      {isLoading ? <SplashScreen /> : <></>}
+      { toast?.isVisible && <Toast type={toast.type} message={toast.message}/> }
       {login ? (
         <form onSubmit={validate}>
           <section className="login__main">
@@ -152,7 +173,6 @@ const Login = () => {
                   errorMessage={errorMessage}
                   value={initialValue}
                 />
-
                 <BaseFloatingInput
                   name="password"
                   id="password"
