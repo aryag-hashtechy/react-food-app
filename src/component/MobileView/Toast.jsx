@@ -20,7 +20,6 @@ const Toast = ({ type = "success" , message }) => {
       {visibility && (
         <div className="toast" role="alert">
           <div className="toast__main">
-            
             <div className="toast__container">
               <div className="toast__body">
                 {toastIcon && <div className="toast__icon">{toastIcon}</div>}
@@ -28,13 +27,16 @@ const Toast = ({ type = "success" , message }) => {
                 <div className="toast__message">{message}</div>
               </div>
 
-              <div className="toast__close-icon" onClick={()=>hadleAnimation()}>
+              <div
+                className="toast__close-icon"
+                onClick={() => hadleAnimation()}
+              >
                 <CloseIcon />
               </div>
             </div>
 
             <div
-              className={`toast__${type ? type : "sucess"}`}
+              className={`toast__${type ? type : "success"}`}
               onAnimationEnd={hadleAnimation}
             ></div>
           </div>

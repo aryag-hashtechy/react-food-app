@@ -5,7 +5,6 @@ import BaseInput from "../../component/base/BaseInput";
 import BaseButton from "../../component/base/BaseButton";
 import BaseFloatingInput from "../../component/base/BaseFloatingInput";
 import apiPath from "../../apiPath";
-import SplashScreen from "./SplashScreen";
 import { parseCookies, setCookie } from "nookies";
 import { useNavigate } from "react-router-dom";
 import Toast from "../../component/MobileView/Toast"

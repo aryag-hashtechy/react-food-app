@@ -2,7 +2,7 @@ import React from "react";
 import Address from "../pages/Address";
 import { useNavigate } from "react-router-dom";
 
-const AddressCard = ({ address, city, pincode, id }) => {
+const AddressCard = ({ address, city, pincode, id, handleDelete }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,6 +15,9 @@ const AddressCard = ({ address, city, pincode, id }) => {
           }}
         >
           Edit
+        </p>
+        <p className="addressCard__btn" onClick={() => handleDelete(id)}>
+          Delete
         </p>
         <p>{address}</p>
         <div className="addressCard__border" />

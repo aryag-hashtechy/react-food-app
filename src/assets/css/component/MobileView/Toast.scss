@@ -3,8 +3,8 @@
     animation: fadeIn 350ms;
     @apply mr-4 z-50 shadow-2xl w-[75%] absolute left-[80px] top-[20px];
 
-    &:hover{
-      .toast__failure{
+    &:hover {
+      .toast__failure {
         animation-play-state: paused;
       }
     }
