@@ -5,4 +5,13 @@
   &__btn-container {
     @apply absolute top-[550px] left-[89px];
   }
+  &__main {
+    @apply flex px-[34px];
+  }
+  &__back-icon {
+    @apply left-[20px];
+  }
+  &__text {
+    @apply mx-auto;
+  }
 }

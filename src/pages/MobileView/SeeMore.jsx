@@ -26,16 +26,16 @@ const SeeMore = () => {
       if (searchText) {
         setFoodItems([]);
         setCurrentPage(1);
-        setSearchParams({page: currentPage });
+        setSearchParams({ page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
-      const response = await axios.get(`${apiPath.getAllFood}`,{
-        params:{
+      const response = await axios.get(`${apiPath.getAllFood}`, {
+        params: {
           category,
-          page:{currentPage},
-          status:"Active",
-          search: {searchText},
-        }
+          page: currentPage,
+          status: "Active",
+          search: searchText,
+        },
       });
 
       if (response && response?.status === 200) {
@@ -69,17 +69,13 @@ const SeeMore = () => {
 
   const handleIncrement = () => {
     if (currentPage < pageCount?.length) {
-      setCurrentPage(
-        (items) => (++items, setSearchParams({ page: items }))
-      );
+      setCurrentPage((items) => (++items, setSearchParams({ page: items })));
     }
   };
 
   const handleDecrement = () => {
     if (currentPage > 1) {
-      setCurrentPage(
-        (items) => (--items, setSearchParams({ page: items }))
-      );
+      setCurrentPage((items) => (--items, setSearchParams({ page: items })));
     }
   };
 

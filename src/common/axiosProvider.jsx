@@ -12,8 +12,6 @@ const axiosProvider = async (data) => {
     },
   };
 
-  console.log("config", data);
-
   let apiURL = `${process.env.REACT_APP_BASE_URL}${config.endpoint}`;
 
   if (config && config.queryString) {
@@ -23,11 +21,9 @@ const axiosProvider = async (data) => {
   // if path login / signup / dashboard to ===> token ?
 
   // Add validation for config....
-
   switch (config?.method) {
     case "GET":
       try {
-        console.log(config.apiURL);
         const res = await requestInstance.get(config.apiURL, {
           params: config?.params || "",
           headers: config?.headers || {},
@@ -47,8 +43,9 @@ const axiosProvider = async (data) => {
 
     case "POST":
       try {
+        console.log("inpostttt ", config?.endpoint, config?.bodyData);
         const res = await requestInstance.post(
-          config?.apiURL,
+          config?.endpoint,
           config?.bodyData,
           {
             params: config?.params || "",

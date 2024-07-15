@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import QuantityCounter from "../../component/MobileView/QuantityCounter";
 import apiPath from "../../apiPath";
 import axiosProvider from "../../common/axiosProvider";
+import backIcon from "../../assets/icons/back-icon.svg";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -13,15 +14,15 @@ const Cart = () => {
 
   const handleFetch = async () => {
     try {
-      console.log("before ", apiPath.getCart);
       const response = await axiosProvider({
         method: "GET",
-        apiPath: apiPath.getCart,
+        apiURL: apiPath.getCart,
+        // query
         navigate,
       });
-      console.log("herer ");
-      console.log("Response", response);
-      if (response?.data?.response === 200) {
+      console.log(response);
+
+      if (response?.status === 200) {
         setCartItems(response?.data?.data);
         setQuantity(response?.data?.data[0].no_of_items);
       }
@@ -80,6 +81,8 @@ const Cart = () => {
     }
   };
 
+  console.log(cartItems);
+
   useEffect(() => {
     handleFetch();
   }, []);
@@ -87,17 +90,36 @@ const Cart = () => {
   return (
     <section className="cart__container">
       <div>
-        <p>Cart</p>
-        {cartItems?.map((item) => (
-          <QuantityCounter
-            key={item.id}
-            id={item.id}
-            image={item.image.image1}
-            name={item.name}
-            mrp={item.mrp}
-            handleDelete={handleDelete}
+        <div className="cart__main">
+          <img
+            src={backIcon}
+            alt="back-icon"
+            className="cart__back-icon"
+            onClick={() => {
+              navigate("/dashboard");
+            }}
           />
-        ))}
+          <p className="cart__text">Cart</p>
+        </div>
+
+        {cartItems &&
+          cartItems?.map((item) => (
+            <>
+              <QuantityCounter
+                key={item.id}
+                // no_of_items={item?.food?.foodImage}
+                id={item?.id}
+                foodId={item?.food?.foodId}
+                image={item.Food?.foodImage}
+                name={item?.Food?.name}
+                price={item?.Food?.price}
+                no_of_items={item?.no_of_item || 1}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                handleDelete={handleDelete}
+              />
+            </>
+          ))}
       </div>
       <div className="cart__btn-container ">
         <BaseButton

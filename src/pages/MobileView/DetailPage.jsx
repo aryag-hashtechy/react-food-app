@@ -23,7 +23,7 @@ const DetailPage = () => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(`${apiPath.getSingleFood}${id}`);
+      const response = await axios.get(`${apiPath.getSingleFood}/${id}`);
       if (response && response.status === 200) {
         setFoodData(response?.data?.data);
       } else {

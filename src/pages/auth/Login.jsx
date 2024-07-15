@@ -107,9 +107,18 @@ const Login = () => {
       const userData = login ? initialValue : data;
       const bodyData = login ? initialValue : data;
       // const response = await axios.post(path, userData);
-      const response = await axiosProvider({ endpoint, bodyData });
-
+      console.log("endpoint, bodyData ", endpoint, bodyData);
+      const response = await axiosProvider({
+        method: "POST",
+        endpoint,
+        bodyData,
+      });
+      console.log("res", response.status);
       if (response && response?.status === 200) {
+        console.log(
+          "response?.data?.data?.accessToken",
+          response?.data?.data?.accessToken
+        );
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
@@ -121,6 +130,7 @@ const Login = () => {
           message: response?.data?.message,
           type: "success",
         }));
+        navigate("/dashboard");
 
         setTimeout(() => {
           setToast((items) => ({
