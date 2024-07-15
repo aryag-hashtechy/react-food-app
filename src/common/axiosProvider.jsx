@@ -12,6 +12,8 @@ const axiosProvider = async (data) => {
     },
   };
 
+  console.log("config", data);
+
   let apiURL = `${process.env.REACT_APP_BASE_URL}${config.endpoint}`;
 
   if (config && config.queryString) {
@@ -25,6 +27,7 @@ const axiosProvider = async (data) => {
   switch (config?.method) {
     case "GET":
       try {
+        console.log(config.apiURL);
         const res = await requestInstance.get(config.apiURL, {
           params: config?.params || "",
           headers: config?.headers || {},

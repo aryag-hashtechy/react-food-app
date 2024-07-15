@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 
-const QuantityCounter = ({ image, name, mrp, id, handleDelete }) => {
+const QuantityCounter = ({
+  image,
+  name,
+  mrp,
+  cartId,
+  handleDelete,
+  foodId,
+}) => {
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
@@ -23,7 +30,7 @@ const QuantityCounter = ({ image, name, mrp, id, handleDelete }) => {
           <p className="item-card__card-price">${mrp.toFixed(2)}</p>
         </div>
         <div className="item-card__cross">
-          <TiDeleteOutline onClick={() => handleDelete(id)} />
+          <TiDeleteOutline onClick={() => handleDelete(foodId, cartId)} />
         </div>
         <div className="item-card__quantity-container">
           <button
