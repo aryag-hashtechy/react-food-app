@@ -83,7 +83,7 @@ const axiosProvider = async (data) => {
 
     case "PATCH":
       try {
-        const res = await requestInstance.put(
+        const res = await requestInstance.patch(
           config?.apiURL,
           config?.bodyData,
           {
@@ -105,7 +105,7 @@ const axiosProvider = async (data) => {
 
     case "DELETE":
       try {
-        const res = await requestInstance.get(config?.apiURL, {
+        const res = await requestInstance.delete(config?.apiURL, {
           params: config?.params || "",
           headers: config?.headers || {},
         });

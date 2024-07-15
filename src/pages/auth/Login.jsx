@@ -98,25 +98,26 @@ const Login = () => {
       const path = login ? apiPath.signIn : apiPath.signup;
       const userData = login ? initialValue : data;
 
-      const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData});
+      const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData, navigate});
 
       if (response && response?.status === 200) {
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
-        handleToast(response, "/dashboard")
+        
+        handleToast(response?.data?.message, "success", "/dashboard")
       }
     } catch (err) {
-      handleToast()
+      handleToast(err?.response?.data?.message, 'failure')
     }
   };
 
-  const handleToast = (response, redirectTo) => {
+  const handleToast = (response, type, redirectTo) => {
     setToast((items)=>({
       ...items,
-      type:"success",
-      message: response?.data?.message,
+      type,
+      message: response,
       isVisible: true
     }));
 

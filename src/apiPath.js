@@ -12,6 +12,11 @@ let apiPath = {
   deleteAddress: baseUrl + "/api/address/delete-address/",
   getSingleAddress: baseUrl + "/api/address/get-single-address",
   getAllAddress: baseUrl + "/api/address/getall-address",
+  createCart: baseUrl + '/cart/add-cart',
+  getCart: baseUrl + '/cart/get-cart',
+  updateCart: baseUrl + '/cart/update-cart',
+  deleteCart: baseUrl + '/cart/delete-cart',
+  createOrder: baseUrl + '/order/create-order',
 };
 
 export default apiPath;

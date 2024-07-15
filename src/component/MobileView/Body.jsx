@@ -73,8 +73,7 @@ const Body = () => {
       </div>
 
       <SearchBar navigateTo={"/search-page"} />
-      <Title setCategory={setCategory} setCurrentPage={setCurrentPage} />
-
+      <Title setCategory={setCategory} setCurrentPage={setCurrentPage} category={category} />
 
       <p
         className="body__text"

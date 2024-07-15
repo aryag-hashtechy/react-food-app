@@ -24,7 +24,6 @@ const Routers = () => {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/search-page" element={<SearchPage />} />
-        <Route path="/cart" element={<Cart />} />
         <Route path="/detail-page/:id" element={<DetailPage />} />
         <Route path="/category/:cat" element={<SeeMore />} />
 
@@ -33,6 +32,7 @@ const Routers = () => {
           <Route path="/address-page" element={<AddressPage />} />
           <Route path="/address" element={<Address />} />
           <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </>
