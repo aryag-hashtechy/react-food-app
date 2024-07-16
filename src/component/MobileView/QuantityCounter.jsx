@@ -5,21 +5,23 @@ const QuantityCounter = ({
   image,
   name,
   price,
-  cartId,
+  id,
   handleDelete,
   foodId,
   no_of_items,
+  handleSubmit,
 }) => {
-  console.log("no_of_items", image);
   const [quantity, setQuantity] = useState(no_of_items);
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
+    handleSubmit(quantity + 1, id);
   };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      handleSubmit(quantity - 1, id);
     }
   };
 
@@ -38,7 +40,7 @@ const QuantityCounter = ({
           <p className="item-card__card-price"></p>
         </div>
         <div className="item-card__cross">
-          <TiDeleteOutline onClick={() => handleDelete(foodId, cartId)} />
+          <TiDeleteOutline onClick={() => handleDelete(foodId, id)} />
         </div>
         <div className="item-card__quantity-container">
           <button

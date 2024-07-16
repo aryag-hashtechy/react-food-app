@@ -17,10 +17,7 @@ const Cart = () => {
       const response = await axiosProvider({
         method: "GET",
         apiURL: apiPath.getCart,
-        // query
-        navigate,
       });
-      console.log(response);
 
       if (response?.status === 200) {
         setCartItems(response?.data?.data);
@@ -33,28 +30,31 @@ const Cart = () => {
 
   const handleDelete = async (foodId, cartId) => {
     try {
+      console.log(foodId, cartId);
       const response = await axiosProvider({
         method: "DELETE",
-        apiPath: apiPath.deleteCart,
-        navigate,
+        apiURL: apiPath.deleteCart,
         params: { foodId, cartId },
       });
-      if (response?.data?.response === 200) {
+
+      if (response?.status === 200) {
         console.log(response?.data?.data);
+        handleFetch();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleSubmit = async (values, cartId, userId, foodId, id) => {
+  const handleSubmit = async (values, cartId) => {
     try {
+      console.log(values, cartId);
       const response = await axiosProvider({
-        method: id ? "PUT" : "POST",
-        apiPath: id ? apiPath.updateCart + userId : apiPath.addCart,
-        params: id ? cartId : { foodId, userId },
-        bodyData: values,
+        method: "PUT",
+        apiURL: apiPath.updateCart,
+        params: { cartId, no_of_item: values },
       });
+      console.log(response);
       if (response?.data?.response === 200) {
         console.log(response?.data?.data);
       }
@@ -80,8 +80,6 @@ const Cart = () => {
       });
     }
   };
-
-  console.log(cartItems);
 
   useEffect(() => {
     handleFetch();
@@ -109,7 +107,7 @@ const Cart = () => {
                 key={item.id}
                 // no_of_items={item?.food?.foodImage}
                 id={item?.id}
-                foodId={item?.food?.foodId}
+                foodId={item?.food_id}
                 image={item.Food?.foodImage}
                 name={item?.Food?.name}
                 price={item?.Food?.price}
@@ -117,6 +115,7 @@ const Cart = () => {
                 increaseQuantity={increaseQuantity}
                 decreaseQuantity={decreaseQuantity}
                 handleDelete={handleDelete}
+                handleSubmit={handleSubmit}
               />
             </>
           ))}
