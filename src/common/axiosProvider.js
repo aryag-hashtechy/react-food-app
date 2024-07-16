@@ -31,7 +31,7 @@ const axiosProvider = async (data) => {
       } catch (err) {
         if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
           nookies.destroy({}, "accessToken");
-          data.navigate("/auth/login");
+          data.navigate ? data.navigate("/auth/login"): <></>;
         }
         return Promise.reject(err);
       }
@@ -53,7 +53,7 @@ const axiosProvider = async (data) => {
       } catch (err) {
         if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
           nookies.destroy({}, "accessToken");
-          data.navigate("/auth/login");
+          data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
@@ -75,7 +75,7 @@ const axiosProvider = async (data) => {
       } catch (err) {
         if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
           nookies.destroy({}, "accessToken");
-          data.navigate("/auth/login");
+          data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
@@ -97,7 +97,7 @@ const axiosProvider = async (data) => {
       } catch (err) {
         if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
           nookies.destroy({}, "accessToken");
-          data.navigate("/auth/login");
+          data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
@@ -116,7 +116,7 @@ const axiosProvider = async (data) => {
       } catch (err) {
         if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
           nookies.destroy({}, "accessToken");
-          data.navigate("/auth/login");
+          data.navigate ? data.navigate("/auth/login"): <></>;
         }
         return Promise.reject(err);
       }
