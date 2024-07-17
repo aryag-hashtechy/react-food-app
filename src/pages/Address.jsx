@@ -72,24 +72,13 @@ const Address = () => {
 
   const fetchAddressData = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/address/getall-address",
-        {
-          headers: {
-            Authorization: cookies.accessToken
-              ? `Bearer ${cookies.accessToken}`
-              : "",
-          },
-        }
-      );
-      if (response && response?.status === 200) {
+      const response = await axiosProvider({ method: "GET", apiURL: `${apiPath.getAllAddress}` , navigate})
+      if( response && response?.status === 200){
         setAddressData(response?.data?.data);
-        setCount(response?.data?.dataCount);
-      } else {
-        console.log(response?.data?.message);
+        setCount(response?.data?.dataCount)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   };
 

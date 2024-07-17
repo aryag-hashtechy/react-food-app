@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDebounce } from "use-debounce";
 import apiPath from "../../apiPath";
 import { useNavigate } from "react-router-dom";
+import axiosProvider from "../../common/axiosProvider";
 
 const SearchPage = () => {
   const [value, setValue] = useState();
@@ -16,9 +17,9 @@ const SearchPage = () => {
   const handleSearch = async (searchText) => {
     try {
       let search = searchText ? searchText : "";
-      const response = await axios.get(
-        `${apiPath.searchItems}?search=${search}`
-      );
+
+      const response = await axiosProvider({ method: "GET" , apiURL: apiPath.searchItems, params: { search }})
+
       if (response && response.status === 200) {
         setSearchData(response?.data?.data);
         setCount(response?.data?.count);

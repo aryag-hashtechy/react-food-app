@@ -7,6 +7,7 @@ import Paginate from "../../component/MobileView/Paginate";
 import backicon from "../../assets/icons/back-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "use-debounce";
+import axiosProvider from "../../common/axiosProvider";
 
 const SeeMore = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,15 +30,7 @@ const SeeMore = () => {
         setSearchParams({ page: currentPage });
       }
       searchText ? setFoodItems([]) : <></>;
-      const response = await axios.get(`${apiPath.getAllFood}`, {
-        params: {
-          category,
-          page: currentPage,
-          status: "Active",
-          search: searchText,
-        },
-      });
-
+ const response = await axiosProvider({ method: "GET" , apiURL: `${apiPath.getAllFood}`, params: { category, page: currentPage, search: searchText } })
       if (response && response?.status === 200) {
         if (response?.data?.data?.data.length) {
           setFoodItems((prevItems) => [

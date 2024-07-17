@@ -1,7 +1,7 @@
 .toast {
   &__main {
     animation: fadeIn 350ms;
-    @apply mt-4 mr-4 z-50 shadow-2xl w-[75%] absolute left-[80px] top-[20px];
+    @apply mr-4 z-50 shadow-2xl w-[75%] absolute left-[80px] top-[20px];
 
     &:hover {
       .toast__failure {
@@ -11,7 +11,7 @@
   }
 
   &__container {
-    @apply border-none rounded-[8px] bg-white  flex py-[20px] px-[10px] justify-center items-center;
+    @apply border-none bg-white rounded-[8px] flex py-[20px] px-[10px] justify-center items-center;
   }
 
   &__close-icon {
@@ -31,12 +31,12 @@
   }
 
   &__success {
-    animation: progress 1800ms ease-in 1 forwards;
+    animation: progress 2000ms ease-in 1 forwards;
     @apply h-[5px] bg-green-600;
   }
 
   &__failure {
-    animation: progress 1800ms ease-in 1 forwards;
+    animation: progress 2000ms ease-in 1 forwards;
     @apply h-[5px] bg-red-600;
   }
 }

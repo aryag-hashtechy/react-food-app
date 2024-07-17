@@ -7,12 +7,14 @@ import apiPath from "../../apiPath";
 import axiosProvider from "../../common/axiosProvider";
 import backIcon from "../../assets/icons/back-icon.svg";
 
+
 const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
   const handleFetch = async () => {
+
     try {
       const response = await axiosProvider({
         method: "GET",
@@ -85,6 +87,7 @@ const Cart = () => {
     handleFetch();
   }, []);
 
+
   return (
     <section className="cart__container">
       <div>
@@ -122,6 +125,7 @@ const Cart = () => {
       </div>
       <div className="cart__btn-container ">
         <BaseButton
+          onClick={()=>handleOrder}
           buttonText={"Complete Order"}
           variant={"btn btn--primary"}
           onClick={handleSubmit}

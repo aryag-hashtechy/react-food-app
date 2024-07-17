@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
+import axiosProvider from "../../common/axiosProvider";
+import apiPath from "../../apiPath";
+import { useNavigate } from "react-router-dom";
 
 const QuantityCounter = ({
   image,
@@ -25,33 +28,29 @@ const QuantityCounter = ({
     }
   };
 
+
   return (
     <div className="item-card__card-main">
-      <img
-        src={`http://localhost:5000${image}`}
-        alt={name}
-        className="item-card__card-image"
-      />
+    <img src={foodImage ? `http://localhost:5000${foodImage}` : img} alt={"img"} className="item-card__card-image" />
+    
       <div className="item-card__card-details">
         <div className="item-card__card-price">
           <h2 className="item-card__card-name">{name}</h2>
-          <p>{price}</p>
-
-          <p className="item-card__card-price"></p>
+          <p className="item-card__card-price">{`Rs. ${price}`}</p>
         </div>
         <div className="item-card__cross">
           <TiDeleteOutline onClick={() => handleDelete(foodId, id)} />
         </div>
         <div className="item-card__quantity-container">
           <button
-            onClick={decreaseQuantity}
+            onClick={() => decreaseQuantity(id)}
             className="item-card__quantity-btn"
           >
             -
           </button>
           <span className="item-card__quantity">{quantity}</span>
           <button
-            onClick={increaseQuantity}
+            onClick={() => increaseQuantity(id)}
             className="item-card__quantity-btn"
           >
             +

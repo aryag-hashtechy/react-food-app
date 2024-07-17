@@ -6,8 +6,8 @@ import BaseButton from "../../component/base/BaseButton";
 import { parseCookies } from "nookies";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import apiPath from "../../apiPath";
+import axiosProvider from "../../common/axiosProvider";
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -16,13 +16,8 @@ const MyProfile = () => {
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get(apiPath.getUser, {
-        headers: {
-          Authorization: cookies.accessToken
-            ? `Bearer ${cookies.accessToken}`
-            : "",
-        },
-      });
+      const response = await axiosProvider({ method: "GET" , apiURL: apiPath.getUser, navigate})
+
       if (response && response?.status === 200) {
         setUserData(response?.data?.data);
       } else {

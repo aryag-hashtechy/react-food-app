@@ -9,11 +9,18 @@ import { Rating } from "react-simple-star-rating";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import Toast from "../../component/MobileView/Toast";
 import apiPath from "../../apiPath";
+import axiosProvider from "../../common/axiosProvider";
 
 const DetailPage = () => {
   const [rating, setRating] = useState(0);
   const [foodData, setFoodData] = useState();
+  const [toast, setToast] = useState({
+    message: null,
+    type: null,
+    isVisible: false,
+  });
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -34,7 +41,33 @@ const DetailPage = () => {
     }
   };
 
-  // console.log(foodData);
+  const handleCart = async (id) => { 
+    try{
+      const response = await axiosProvider({ method: "POST", apiURL: apiPath.createCart ,params: { foodId: id }, navigate })
+      if(response && response.status === 200){
+        handleToast(response?.data?.message, 'success');
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const handleToast = (response, type, redirectTo) => {
+    setToast((items)=>({
+      ...items,
+      type,
+      message: response,
+      isVisible: true
+    }));
+
+    setTimeout(()=>{
+      setToast((items)=>({
+        ...items,
+        isVisible:false,
+      }));
+      redirectTo ? navigate(redirectTo) : <></>;
+    },3000);
+  }
 
   const onPointerEnter = () => console.log("Enter");
   const onPointerLeave = () => console.log("Leave");
@@ -46,6 +79,7 @@ const DetailPage = () => {
 
   return (
     <>
+      { toast?.isVisible && <Toast type={toast.type} message={toast.message}/> }
       <section className="mobile__container">
         <div>
           <img
@@ -90,6 +124,7 @@ const DetailPage = () => {
           <p className="detail__price">
             {foodData?.price ? `Rs. ${foodData.price}` : "Rs. 550"}
           </p>
+
           <Rating
             onClick={handleRating}
             onPointerEnter={onPointerEnter}
@@ -105,7 +140,7 @@ const DetailPage = () => {
         </div>
 
         <div>
-          <BaseButton buttonText={"Add to cart"} variant={"btn detail__btn"} />
+          <BaseButton buttonText={"Add to cart"} variant={"btn detail__btn"} onClick={()=> handleCart(foodData?.id)}/>
         </div>
       </section>
     </>
