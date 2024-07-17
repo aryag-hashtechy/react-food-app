@@ -17,7 +17,7 @@ const Header = () => {
             }}
           />
 
-          <img src={image1} className="mobile__header__cart" />
+          <img src={image1} className="mobile__header__cart" onClick={() => navigate('/cart')}/>
         </div>
       </section>
     </>

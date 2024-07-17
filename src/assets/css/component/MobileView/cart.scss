@@ -2,7 +2,20 @@
   &__container {
     @apply text-xl font-semibold text-center pt-8 h-[100vh] bg-[#f5f5f8];
   }
+
   &__btn-container {
     @apply absolute top-[550px] left-[89px];
+  }
+
+  &__back-icon{
+    @apply h-[12px] w-[6px] mt-2;
+  }
+
+  &__header{
+    @apply flex px-[35px]
+  }
+
+  &__header--title{
+    @apply mx-auto
   }
 }

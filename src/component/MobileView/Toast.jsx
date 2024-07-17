@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CloseIcon, SuccessIcon, FailureIcon } from "./ToastIcons";
 
-const Toast = ({ type, message }) => {
+const Toast = ({ type = "success" , message }) => {
   const [visibility, setVisibility] = useState(true);
 
   const icon = {
