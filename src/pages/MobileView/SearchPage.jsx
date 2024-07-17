@@ -24,8 +24,8 @@ const SearchPage = () => {
         setSearchData(response?.data?.data);
         setCount(response?.data?.count);
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

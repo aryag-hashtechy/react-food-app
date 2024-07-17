@@ -21,7 +21,6 @@ const axiosProvider = async (data) => {
   // if path login / signup / dashboard to ===> token ?
 
   // Add validation for config....
-
   switch (config?.method) {
     case "GET":
       try {
@@ -44,8 +43,9 @@ const axiosProvider = async (data) => {
 
     case "POST":
       try {
+        console.log("inpostttt ", config?.endpoint, config?.bodyData);
         const res = await requestInstance.post(
-          config?.apiURL,
+          config?.endpoint,
           config?.bodyData,
           {
             params: config?.params || "",

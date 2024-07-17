@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import BaseButton from "../../component/base/BaseButton";
-import axiosProvider from "../../common/axiosProvider";
+import image1 from "../../assets/images/image2.png";
+import { useNavigate } from "react-router-dom";
 import QuantityCounter from "../../component/MobileView/QuantityCounter";
 import apiPath from "../../apiPath";
-import { useNavigate } from "react-router-dom";
-import image1 from "../../assets/images/image2.png";
-import backIcon from "../../assets/icons/back-icon.svg"
+import axiosProvider from "../../common/axiosProvider";
+import backIcon from "../../assets/icons/back-icon.svg";
+
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -13,102 +14,121 @@ const Cart = () => {
   const [quantity, setQuantity] = useState(1);
 
   const handleFetch = async () => {
-    try{
-      const response = await axiosProvider({ method: "GET", apiURL: apiPath.getCart,  navigate});
-      if(response && response.status === 200){
-        setCartItems(response?.data?.data)
-        setQuantity(response?.data?.data[0].no_of_item);
-      }
-    }catch(err){
-      console.log(err);
-    }
-  }
 
-  const handleUpdate = async (quantity, id) => {
-    try{
-      const response = await axiosProvider({ method: "PATCH", apiURL: apiPath?.updateCart, navigate, params: { cartId : id, no_of_item: quantity } })
-      if(response && response.status === 200){
-        console.log(response?.data?.message);
+    try {
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: apiPath.getCart,
+      });
+
+      if (response?.status === 200) {
+        setCartItems(response?.data?.data);
+        setQuantity(response?.data?.data[0].no_of_items);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (foodId, cartId) => {
+    try {
+      console.log(foodId, cartId);
+      const response = await axiosProvider({
+        method: "DELETE",
+        apiURL: apiPath.deleteCart,
+        params: { foodId, cartId },
+      });
+
+      if (response?.status === 200) {
+        console.log(response?.data?.data);
         handleFetch();
       }
-    }catch(err){
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
-  const handleDelete = async (cartId, foodId) =>{
-    try{
-      const response = await axiosProvider({ method: "DELETE", apiURL: apiPath.deleteCart, navigate, params: {foodId, cartId} })
-      if(response && response?.status === 200){
-        console.log(response?.data?.message);
-        handleFetch();
+  const handleSubmit = async (values, cartId) => {
+    try {
+      console.log(values, cartId);
+      const response = await axiosProvider({
+        method: "PUT",
+        apiURL: apiPath.updateCart,
+        params: { cartId, no_of_item: values },
+      });
+      console.log(response);
+      if (response?.data?.response === 200) {
+        console.log(response?.data?.data);
       }
-    }catch(err){
-      console.log(err)
+    } catch (error) {
+      console.log(error);
     }
-  }
-
-  const handleOrder = async () => {
-    try{
-      const response = await axiosProvider({ method: "POST", apiURL: apiPath.createOrder,  })
-      if(response && response?.status === 200){
-        console.log(response?.data?.message)
-      }
-    }catch(err){
-      console.log(err)
-    }
-  }
+  };
 
   const increaseQuantity = (id) => {
-    setQuantity((data)=>{
-      let newQunatity = data + 1;
-      handleUpdate(newQunatity, id);
-      return newQunatity;
+    setQuantity((data) => {
+      let newQuantity = data + 1;
+      handleSubmit(newQuantity, id);
+      return newQuantity;
     });
   };
 
   const decreaseQuantity = (id) => {
     if (quantity > 1) {
-      setQuantity((data)=>{
-        let newQunatity = data - 1;
-        handleUpdate(newQunatity, id);
-        return newQunatity;
+      setQuantity((data) => {
+        let newQuantity = data - 1;
+        handleSubmit(newQuantity, id);
+        return newQuantity;
       });
     }
   };
 
-  useEffect(()=>{
-    handleFetch()
-  },[])
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
 
   return (
     <section className="cart__container">
       <div>
-        <div className="cart__header">
-          <img src={backIcon} alt="back-icon" className="cart__back-icon" onClick={()=>navigate("/dashboard")}/>
-          <p className="cart__header--title">Cart</p>
-        </div>
-        {cartItems?.map((item) => (
-          <QuantityCounter
-            id={item?.id}
-            no_of_items = {item?.no_of_item}
-            foodId = {item?.Food?.id}
-            price = {item?.Food?.price}
-            name = {item?.Food?.name}
-            foodImage = {item?.Food?.foodImage}
-            handleDelete = {handleDelete}
-            img = {image1}
-            quantity = {quantity}
-            increaseQuantity = {increaseQuantity}
-            decreaseQuantity = {decreaseQuantity}
+        <div className="cart__main">
+          <img
+            src={backIcon}
+            alt="back-icon"
+            className="cart__back-icon"
+            onClick={() => {
+              navigate("/dashboard");
+            }}
           />
-        ))}
+          <p className="cart__text">Cart</p>
+        </div>
+
+        {cartItems &&
+          cartItems?.map((item) => (
+            <>
+              <QuantityCounter
+                key={item.id}
+                // no_of_items={item?.food?.foodImage}
+                id={item?.id}
+                foodId={item?.food_id}
+                image={item.Food?.foodImage}
+                name={item?.Food?.name}
+                price={item?.Food?.price}
+                no_of_items={item?.no_of_item || 1}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                handleDelete={handleDelete}
+                handleSubmit={handleSubmit}
+              />
+            </>
+          ))}
       </div>
       <div className="cart__btn-container ">
         <BaseButton
           onClick={()=>handleOrder}
           buttonText={"Complete Order"}
           variant={"btn btn--primary"}
+          onClick={handleSubmit}
         />
       </div>
     </section>

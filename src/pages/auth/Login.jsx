@@ -98,13 +98,35 @@ const Login = () => {
       const path = login ? apiPath.signIn : apiPath.signup;
       const userData = login ? initialValue : data;
 
+
       const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData, navigate});
 
       if (response && response?.status === 200) {
+        console.log(
+          "response?.data?.data?.accessToken",
+          response?.data?.data?.accessToken
+        );
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
+
+
+//         setToast((items) => ({
+//           ...items,
+//           visible: true,
+//           message: response?.data?.message,
+//           type: "success",
+//         }));
+//         navigate("/dashboard");
+
+//         setTimeout(() => {
+//           setToast((items) => ({
+//             ...items,
+//             visible: false,
+//           }));
+//         }, 3000);
+
         
         handleToast(response?.data?.message, "success", "/dashboard")
       }
