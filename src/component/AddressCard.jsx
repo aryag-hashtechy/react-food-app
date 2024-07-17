@@ -8,17 +8,19 @@ const AddressCard = ({ address, city, pincode, id, handleDelete }) => {
   return (
     <>
       <div className="addressCard__main">
-        <p
-          className="addressCard__btn"
-          onClick={() => {
-            navigate(`/address-page?id=${id}`);
-          }}
-        >
-          Edit
-        </p>
-        <p className="addressCard__btn" onClick={() => handleDelete(id)}>
-          Delete
-        </p>
+        <div className="addressCard__btn-container">
+          <p
+            className="addressCard__btn"
+            onClick={() => {
+              navigate(`/address-page?id=${id}`);
+            }}
+          >
+            Edit
+          </p>
+          <p className="addressCard__btn" onClick={() => handleDelete(id)}>
+            Delete
+          </p>
+        </div>
         <p>{address}</p>
         <div className="addressCard__border" />
         <p>{city}</p>

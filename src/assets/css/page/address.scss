@@ -6,13 +6,15 @@
   &__btn {
     @apply text-center;
   }
+
+  &__radio-btn{
+    @apply flex gap-8 mt-4 mb-8 items-center;
+  }
 }
 
 .radio {
   &__text {
     @apply text-xl;
   }
-  &__btn {
-    @apply flex gap-8 mt-4 mb-8 items-center;
-  }
+ 
 }
