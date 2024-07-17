@@ -122,7 +122,7 @@ const Cart = () => {
       </div>
       <div className="cart__btn-container ">
         <BaseButton
-          buttonText={"Complete Order"}
+          buttonText={"Procced to payment"}
           variant={"btn btn--primary"}
           onClick={handleSubmit}
         />

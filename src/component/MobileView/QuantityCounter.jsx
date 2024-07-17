@@ -35,7 +35,7 @@ const QuantityCounter = ({
       <div className="item-card__card-details">
         <div className="item-card__card-price">
           <h2 className="item-card__card-name">{name}</h2>
-          <p>{price}</p>
+          <p>Rs.{price}</p>
 
           <p className="item-card__card-price"></p>
         </div>

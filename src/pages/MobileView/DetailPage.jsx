@@ -10,6 +10,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import apiPath from "../../apiPath";
+import axiosProvider from "../../common/axiosProvider";
 
 const DetailPage = () => {
   const [rating, setRating] = useState(0);
@@ -34,7 +35,23 @@ const DetailPage = () => {
     }
   };
 
-  // console.log(foodData);
+  const handleCart = async (id) => {
+    try {
+      const response = await axiosProvider({
+        method: "POST",
+        endpoint: apiPath.addCart,
+        params: { foodId: id },
+      });
+      console.log(response);
+      if (response && response.status === 200) {
+        // handleToast(response?.data?.message, "success");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log("test", foodData);
 
   const onPointerEnter = () => console.log("Enter");
   const onPointerLeave = () => console.log("Leave");
@@ -105,7 +122,13 @@ const DetailPage = () => {
         </div>
 
         <div>
-          <BaseButton buttonText={"Add to cart"} variant={"btn detail__btn"} />
+          <BaseButton
+            buttonText={"Add to cart"}
+            variant={"btn detail__btn"}
+            onClick={() => {
+              handleCart(foodData.id);
+            }}
+          />
         </div>
       </section>
     </>

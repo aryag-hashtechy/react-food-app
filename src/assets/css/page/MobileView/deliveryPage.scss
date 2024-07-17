@@ -1,0 +1,20 @@
+.delivery {
+  &__main {
+    @apply flex mb-[20px];
+  }
+  &__back-icon {
+    @apply w-[6px] h-[12px] pt-[26px];
+  }
+  &__title {
+    @apply pt-[20px] text-[#000000] mx-auto;
+  }
+  &__text {
+    @apply font-semibold text-2xl;
+  }
+  &__address {
+    @apply text-base pt-[40px] flex justify-between;
+  }
+  &__text-change {
+    @apply text-primary text-base;
+  }
+}

@@ -47,6 +47,7 @@ const AddressPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
+  console.log("id", id);
 
   const cookies = parseCookies();
   const navigate = useNavigate();
@@ -63,14 +64,9 @@ const AddressPage = () => {
 
   const handlefetch = async () => {
     try {
-      let headers = {
-        Authorization: `Bearer ${cookies.accessToken}`,
-      };
-
       const response = await axiosProvider({
         method: "GET",
         apiURL: `${apiPath.getsingleaddress}/${id}`,
-        headers,
       });
 
       if (response && response?.status === 200) {
@@ -103,16 +99,10 @@ const AddressPage = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
-      let headers = {
-        Authorization: `Bearer ${cookies.accessToken}`,
-      };
-
       const response = await axiosProvider({
         method: id ? "PUT" : "POST",
         apiURL: id ? apiPath.updateAddress + id : apiPath.addAddress,
         bodyData: initialValues,
-        headers,
       });
 
       if (response && response?.status === 200) {
@@ -163,7 +153,7 @@ const AddressPage = () => {
   };
 
   useEffect(() => {
-    id ? handlefetch() : <></>;
+    handlefetch();
   }, []);
 
   return (

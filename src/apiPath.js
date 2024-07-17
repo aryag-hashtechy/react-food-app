@@ -9,6 +9,7 @@ let apiPath = {
   getSingleFood: baseUrl + "/api/product/getsingle-food",
   updateAddress: baseUrl + "/api/address/update-address/",
   addAddress: baseUrl + "/api/address/add-address/",
+  getAllAddress: baseUrl + "/api/address/getall-address",
   getsingleaddress: baseUrl + "/api/address/get-single-address",
   deleteAddress: baseUrl + "/api/address/delete-address/",
   deleteCart: baseUrl + "/api/cart/delete-cart",

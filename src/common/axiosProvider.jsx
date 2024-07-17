@@ -43,7 +43,7 @@ const axiosProvider = async (data) => {
 
     case "POST":
       try {
-        console.log("inpostttt ", config?.endpoint, config?.bodyData);
+        console.log("inpostttt ", config?.apiURL, config?.bodyData);
         const res = await requestInstance.post(
           config?.endpoint,
           config?.bodyData,
