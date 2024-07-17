@@ -16,8 +16,13 @@ const Header = () => {
               navigate("/my-profile");
             }}
           />
-
-          <img src={image1} className="mobile__header__cart" onClick={() => navigate('/cart')}/>
+    <img
+            src={image1}
+            className="mobile__header__cart"
+            onClick={() => {
+              navigate("/cart");
+            }}
+          />
         </div>
       </section>
     </>
