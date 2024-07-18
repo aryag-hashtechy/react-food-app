@@ -14,7 +14,7 @@ let apiPath = {
   getAllAddress: baseUrl + "/api/address/getall-address",
   createCart: baseUrl + '/api/cart/add-cart',
   getCart: baseUrl + '/api/cart/get-cart',
-  updateCart: baseUrl + '/cart/update-cart',
+  updateCart: baseUrl + '/api/cart/update-cart',
   deleteCart: baseUrl + '/api/cart/delete-cart',
   createOrder: baseUrl + '/api/order/create-order',
 };

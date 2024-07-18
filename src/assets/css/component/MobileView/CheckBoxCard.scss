@@ -1,0 +1,35 @@
+.radio__card{
+
+    &--main{
+        @apply border rounded-[20px] bg-white;
+    }
+
+    &--option{
+
+        &-one{
+            @apply px-8 py-5;
+        }
+
+        &-two{
+           @apply px-8 py-5;
+        }
+
+    }
+
+    &--border{
+        @apply border-b-2 ml-[54px] mr-[38px];
+    }
+
+    &--label{
+
+        &-one{
+            @apply pl-4;
+        }
+
+        &-two{
+            @apply pl-4;
+        }
+
+    }
+
+}

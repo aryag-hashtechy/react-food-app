@@ -7,11 +7,9 @@ const BaseButton = ({ onClick, buttonText, variant }) => {
   };
 
   return (
-    <>
       <button onClick={onClick} className={getVariantValue(variant)}>
         {buttonText ? buttonText : "Playstore"}
       </button>
-    </>
   );
 };
 

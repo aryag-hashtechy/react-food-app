@@ -35,37 +35,9 @@ const Address = () => {
       });
 
       if (response && response?.status === 200) {
-        setToast((items) => ({
-          ...items,
-          visible: true,
-          message: response?.data?.message,
-          type: "success",
-        }));
-
         fetchAddressData();
-
-        setTimeout((items) => {
-          setToast((items) => ({
-            ...items,
-            visible: false,
-          }));
-        }, 3000);
-        console.log(response);
       }
     } catch (error) {
-      setToast((items) => ({
-        visible: true,
-        message: error.response?.data?.message,
-        type: "failure",
-      }));
-
-      setTimeout((items) => {
-        setToast((items) => ({
-          ...items,
-          visible: false,
-        }));
-      }, 3000);
-      console.log(error);
       return error;
     }
   };
@@ -103,7 +75,7 @@ const Address = () => {
 
           <div className="addressList_btn">
             <BaseButton
-              onClick={() => navigate("/address-page")}
+              onClick={() => { count < 5 ? navigate("/address-page") : <></>}}
               variant={"btn btn--primary-small"}
               buttonText={"Add Address"}
             />

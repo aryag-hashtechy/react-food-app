@@ -12,7 +12,6 @@ import * as Yup from "yup";
 import axiosProvider from "../../common/axiosProvider";
 
 // GlobalValidation object 
-
 const GlobalValidation = {
   email: Yup.string()
     .email("Invalid email format")
@@ -35,6 +34,9 @@ const signupSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .required("Confirm Password is Required!")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  mobileNumber: Yup.string()
+    .required("Mobile Number is required")
+    .matches( /^[6-9]\d{0,9}$|^$/, "Pleas Enter valid Number"),
 });
 
 const signinSchema = Yup.object().shape({
@@ -97,36 +99,13 @@ const Login = () => {
 
       const path = login ? apiPath.signIn : apiPath.signup;
       const userData = login ? initialValue : data;
-
-
       const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData, navigate});
 
       if (response && response?.status === 200) {
-        console.log(
-          "response?.data?.data?.accessToken",
-          response?.data?.data?.accessToken
-        );
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
-
-
-//         setToast((items) => ({
-//           ...items,
-//           visible: true,
-//           message: response?.data?.message,
-//           type: "success",
-//         }));
-//         navigate("/dashboard");
-
-//         setTimeout(() => {
-//           setToast((items) => ({
-//             ...items,
-//             visible: false,
-//           }));
-//         }, 3000);
-
         
         handleToast(response?.data?.message, "success", "/dashboard")
       }
@@ -264,7 +243,16 @@ const Login = () => {
                   errorMessage={errorMessage}
                   value={initialValue}
                 />
-
+                
+                <BaseFloatingInput
+                  name={"mobileNumber"}
+                  id={"mobileNumber"}
+                  inputType={"text"}
+                  labelText={"Mobile Number"}
+                  handleChange={handleChange}
+                  errorMessage={errorMessage}
+                  value={initialValue}
+                />  
                 <BaseFloatingInput
                   name="password"
                   id="password"

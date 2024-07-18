@@ -13,6 +13,8 @@ import Cart from "./pages/MobileView/Cart";
 import DetailPage from "./pages/MobileView/DetailPage";
 import SeeMore from "./pages/MobileView/SeeMore";
 import ProtectedRoutes from "./lib/ProtectedRoutes";
+import OrderPage from "./pages/MobileView/OrderPage";
+import CheckBoxCard from "./component/MobileView/CheckBoxCard";
 
 const Routers = () => {
   return (
@@ -33,6 +35,8 @@ const Routers = () => {
           <Route path="/address" element={<Address />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/checkbox" element={<CheckBoxCard />} />
         </Route>
       </Routes>
     </>

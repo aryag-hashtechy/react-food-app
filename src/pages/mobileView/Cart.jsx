@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from "react";
 import BaseButton from "../../component/base/BaseButton";
-import image1 from "../../assets/images/image2.png";
 import { useNavigate } from "react-router-dom";
 import QuantityCounter from "../../component/MobileView/QuantityCounter";
 import apiPath from "../../apiPath";
 import axiosProvider from "../../common/axiosProvider";
 import backIcon from "../../assets/icons/back-icon.svg";
-
+import Toast from "../../component/MobileView/Toast";
 
 const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [toast, setToast] = useState({
+    message: null,
+    type: null,
+    isVisible: false,
+  });
 
   const handleFetch = async () => {
-
     try {
       const response = await axiosProvider({
         method: "GET",
         apiURL: apiPath.getCart,
+        navigate,
       });
 
       if (response?.status === 200) {
         setCartItems(response?.data?.data);
-        setQuantity(response?.data?.data[0].no_of_items);
+        setQuantity(response?.data?.data[0].no_of_item);
       }
     } catch (error) {
       console.log(error);
@@ -32,10 +36,10 @@ const Cart = () => {
 
   const handleDelete = async (foodId, cartId) => {
     try {
-      console.log(foodId, cartId);
       const response = await axiosProvider({
         method: "DELETE",
         apiURL: apiPath.deleteCart,
+        navigate,
         params: { foodId, cartId },
       });
 
@@ -48,17 +52,16 @@ const Cart = () => {
     }
   };
 
-  const handleSubmit = async (values, cartId) => {
+  const handleUpdate = async (values, cartId) => {
     try {
-      console.log(values, cartId);
       const response = await axiosProvider({
-        method: "PUT",
+        method: "PATCH",
         apiURL: apiPath.updateCart,
+        navigate,
         params: { cartId, no_of_item: values },
       });
-      console.log(response);
-      if (response?.data?.response === 200) {
-        console.log(response?.data?.data);
+      if (response && response.status === 200) {
+        handleFetch()
       }
     } catch (error) {
       console.log(error);
@@ -68,7 +71,7 @@ const Cart = () => {
   const increaseQuantity = (id) => {
     setQuantity((data) => {
       let newQuantity = data + 1;
-      handleSubmit(newQuantity, id);
+      handleUpdate(newQuantity, id);
       return newQuantity;
     });
   };
@@ -77,21 +80,47 @@ const Cart = () => {
     if (quantity > 1) {
       setQuantity((data) => {
         let newQuantity = data - 1;
-        handleSubmit(newQuantity, id);
+        handleUpdate(newQuantity, id);
         return newQuantity;
       });
     }
   };
 
+  const handleToast = (response, type, redirectTo) => {
+    setToast((items)=>({
+      ...items,
+      type,
+      message: response,
+      isVisible: true
+    }));
+
+    setTimeout(()=>{
+      setToast((items)=>({
+        ...items,
+        isVisible:false,
+      }));
+      redirectTo ? navigate(redirectTo) : <></>;
+    },3000);
+  }
+
+  const handleNavigate = () => {
+    if(cartItems.length > 0){
+      navigate('/order');
+    }else{
+      handleToast("Please add an item to cart", "failure")
+    }
+  }
+
   useEffect(() => {
     handleFetch();
   }, []);
 
-
   return (
-    <section className="cart__container">
+   <>
+     { toast?.isVisible && <Toast type={toast.type} message={toast.message}/> }
+     <section className="cart__container">
       <div>
-        <div className="cart__main">
+        <div className="cart__header">
           <img
             src={backIcon}
             alt="back-icon"
@@ -100,38 +129,35 @@ const Cart = () => {
               navigate("/dashboard");
             }}
           />
-          <p className="cart__text">Cart</p>
+          <p className="cart__header--title">Cart</p>
         </div>
 
         {cartItems &&
           cartItems?.map((item) => (
-            <>
               <QuantityCounter
                 key={item.id}
-                // no_of_items={item?.food?.foodImage}
                 id={item?.id}
-                foodId={item?.food_id}
+                foodId={item?.Food?.id}
                 image={item.Food?.foodImage}
                 name={item?.Food?.name}
                 price={item?.Food?.price}
                 no_of_items={item?.no_of_item || 1}
                 increaseQuantity={increaseQuantity}
-                decreaseQuantity={decreaseQuantity}
+                decreaseQuantity={decreaseQuantity}     
                 handleDelete={handleDelete}
-                handleSubmit={handleSubmit}
               />
-            </>
           ))}
       </div>
+
       <div className="cart__btn-container ">
         <BaseButton
-          onClick={()=>handleOrder}
           buttonText={"Complete Order"}
-          variant={"btn btn--primary"}
-          onClick={handleSubmit}
+          variant={"btn btn--primary-large"}
+          onClick={()=>handleNavigate()}
         />
       </div>
     </section>
+   </>
   );
 };
 

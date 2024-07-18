@@ -1,6 +1,6 @@
 .addressList {
   &__main {
-    @apply bg-[#F5F5F8] h-[100vh];
+    @apply bg-[#F5F5F8] min-h-screen;
   }
 
   &__text {
