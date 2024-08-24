@@ -1,6 +1,11 @@
 .mobile__header {
   &__main {
-    @apply flex items-center justify-between;
+    @apply flex items-center justify-between sticky top-0 z-10 bg-white pt-8 pb-6;
+  }
+
+  &__logo{
+    max-height: 80px;
+    max-width: 80px;
   }
 
   &__hamburger {

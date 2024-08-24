@@ -1,21 +1,33 @@
 .card {
   &__main {
-    @apply pb-2 pl-2;
+    @apply mb-2 shadow w-[226px];
   }
 
-  &__content {
-    @apply bg-white text-center font-semibold w-[220px] h-[240px] shadow mt-4 rounded-[30px];
+  &__body {
+    @apply bg-white text-center font-semibold w-[220px];
   }
 
   &__image {
-    @apply w-[180px] relative h-[180px] -mb-[130px] rounded-[280px] ml-5;
+    @apply w-[194px] h-[180px] mx-auto mb-2;
   }
 
   &__title {
-    @apply text-xl pt-[120px];
+    @apply text-xl mb-[5px];
   }
 
   &__price {
-    @apply text-primary pt-4;
+    @apply text-primary mb-[20px];
+  }
+
+  &__btn-primary{
+    @apply bg-primary text-white text-[16px] font-bold rounded-[10px] px-[25px] py-[9px] hover:bg-white hover:text-primary mb-[25px];
+  }
+
+  &__footer{
+    @apply flex justify-around;
+  }
+
+  &__wishlist{
+    @apply mt-2 w-[20px] h-[20px];
   }
 }

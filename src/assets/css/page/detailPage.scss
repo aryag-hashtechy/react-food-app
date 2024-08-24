@@ -2,6 +2,7 @@
   &__main {
     @apply justify-center flex mb-[20px];
   }
+
   &__back-icon {
     @apply w-[6px] h-[12px];
   }
@@ -27,7 +28,7 @@
   }
 
   &__title {
-    @apply flex items-center justify-between;
+    @apply flex items-center mb-2 justify-between;
   }
 
   &__heart {
@@ -39,14 +40,18 @@
   }
 
   &__price {
-    @apply text-lg mt-2 font-semibold text-[#FA4A0C];
+    @apply text-lg font-semibold text-[#FA4A0C] mb-2;
   }
 
   &__description {
-    @apply text-base mt-[16px];
+    @apply text-base mb-[40px];
+  }
+
+  &__ratings{
+    @apply mb-3;
   }
 
   &__btn {
-    @apply mt-[40px] bg-primary text-white  font-bold rounded-[30px] px-[90px] text-xl py-[16px] hover:bg-white hover:text-primary;
+    @apply bg-primary text-white  font-bold rounded-[30px] px-[90px] text-xl py-[16px] hover:bg-white hover:text-primary;
   }
 }

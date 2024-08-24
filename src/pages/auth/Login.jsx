@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
 import image from "../../assets/images/Group 3.png";
 import BaseInput from "../../component/base/BaseInput";
 import BaseButton from "../../component/base/BaseButton";
 import BaseFloatingInput from "../../component/base/BaseFloatingInput";
-import apiPath from "../../apiPath";
-import { parseCookies, setCookie } from "nookies";
+import endPoints from "../../common/endPoints";
+import { setCookie } from "nookies";
+import { createWishlist } from "../../feature/wishlist/wishlistSlice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Toast from "../../component/MobileView/Toast"
+import { handleToast } from "../../lib/GlobalMethods";
+import Toast from "../../component/MobileView/Toast";
 import * as Yup from "yup";
 import axiosProvider from "../../common/axiosProvider";
 
-// GlobalValidation object 
+// GlobalValidation object
 const GlobalValidation = {
   email: Yup.string()
     .email("Invalid email format")
@@ -23,12 +25,15 @@ const GlobalValidation = {
     .matches(/[a-zA-Z]/, "Password should contain at least one character")
     .matches(/[0-9]/, "Password should contain Numbers")
     .matches(/[^\w]/, "Password requires a special character"),
-}
+};
 
 const signupSchema = Yup.object().shape({
   fullName: Yup.string()
     .required("Full name is require")
-    .matches(/^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/, "Please Enter valid Full Name"),
+    .matches(
+      /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
+      "Please Enter valid Full Name"
+    ),
   email: GlobalValidation.email,
   password: GlobalValidation.password,
   confirmPassword: Yup.string()
@@ -36,7 +41,7 @@ const signupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
   mobileNumber: Yup.string()
     .required("Mobile Number is required")
-    .matches( /^[6-9]\d{0,9}$|^$/, "Pleas Enter valid Number"),
+    .matches(/^[6-9]\d{0,9}$|^$/, "Pleas Enter valid Number"),
 });
 
 const signinSchema = Yup.object().shape({
@@ -46,6 +51,7 @@ const signinSchema = Yup.object().shape({
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [login, setLogin] = useState(true);
   const [initialValue, setInitialValue] = useState({});
@@ -63,12 +69,12 @@ const Login = () => {
       [name]: value,
     }));
 
-    if(e?.target?.files){
+    if (e?.target?.files) {
       const image = e?.target?.files[0];
       setInitialValue((draft) => ({
         ...draft,
-        [name]: image
-      }))
+        [name]: image,
+      }));
     }
   };
 
@@ -97,39 +103,29 @@ const Login = () => {
         data.append(key, initialValue[key]);
       }
 
-      const path = login ? apiPath.signIn : apiPath.signup;
+      const path = login ? endPoints.signIn : endPoints.signup;
       const userData = login ? initialValue : data;
-      const response = await axiosProvider({method: "POST", apiURL:path, bodyData:userData, navigate});
+      const response = await axiosProvider({
+        method: "POST",
+        apiURL: path,
+        bodyData: userData,
+        navigate,
+      });
 
       if (response && response?.status === 200) {
         setCookie(null, "accessToken", response?.data?.data?.accessToken, {
           maxAge: 24 * 60 * 60,
           path: "/",
         });
-        
-        handleToast(response?.data?.message, "success", "/dashboard")
+
+        dispatch(createWishlist(response.data.wishlist));
+
+        handleToast( setToast, response, "/dashboard", navigate);
       }
     } catch (err) {
-      handleToast(err?.response?.data?.message, 'failure')
+      handleToast( setToast, err.response)
     }
   };
-
-  const handleToast = (response, type, redirectTo) => {
-    setToast((items)=>({
-      ...items,
-      type,
-      message: response,
-      isVisible: true
-    }));
-
-    setTimeout(()=>{
-      setToast((items)=>({
-        ...items,
-        isVisible:false,
-      }));
-      redirectTo ? navigate(redirectTo) : <></>;
-    },3000);
-  }
 
   const handleLoginClick = () => {
     setLogin(true);
@@ -145,12 +141,12 @@ const Login = () => {
 
   return (
     <>
-      { toast?.isVisible && <Toast type={toast.type} message={toast.message}/> }
+      {toast?.isVisible && <Toast type={toast.type} message={toast.message} />}
       {login ? (
         <form onSubmit={validate}>
           <section className="login__main">
             <div className="login__image">
-              <img src={image} alt="logo" className="image"/>
+              <img src={image} alt="logo" className="image" />
 
               <div className="login__page ">
                 <p className="login__text" onClick={handleLoginClick}>
@@ -174,6 +170,7 @@ const Login = () => {
                   errorMessage={errorMessage}
                   value={initialValue}
                 />
+
                 <BaseFloatingInput
                   name="password"
                   id="password"
@@ -243,7 +240,7 @@ const Login = () => {
                   errorMessage={errorMessage}
                   value={initialValue}
                 />
-                
+
                 <BaseFloatingInput
                   name={"mobileNumber"}
                   id={"mobileNumber"}
@@ -252,7 +249,8 @@ const Login = () => {
                   handleChange={handleChange}
                   errorMessage={errorMessage}
                   value={initialValue}
-                />  
+                />
+
                 <BaseFloatingInput
                   name="password"
                   id="password"

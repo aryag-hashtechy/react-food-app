@@ -1,7 +1,7 @@
 .toast {
   &__main {
     animation: fadeIn 350ms;
-    @apply mr-4 z-50 shadow-2xl w-[75%] absolute left-[80px] top-[20px];
+    @apply mr-4 z-50 shadow-2xl w-[75%] fixed left-[80px] top-[15px];
 
     &:hover {
       .toast__failure {
@@ -31,12 +31,12 @@
   }
 
   &__success {
-    animation: progress 2000ms ease-in 1 forwards;
+    animation: progress 2295ms ease-in 1 forwards;
     @apply h-[5px] bg-green-600;
   }
 
   &__failure {
-    animation: progress 2000ms ease-in 1 forwards;
+    animation: progress 2295ms ease-in 1 forwards;
     @apply h-[5px] bg-red-600;
   }
 }

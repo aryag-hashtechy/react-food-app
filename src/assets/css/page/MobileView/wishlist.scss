@@ -1,0 +1,13 @@
+.wishlist{
+    &__main{
+        @apply min-h-screen px-[30px] py-[41px] bg-[#f5f5f8] text-xl font-semibold;
+    }
+
+    &__header{
+        @apply flex mb-[24px];
+
+        &-title{
+            @apply mx-auto;
+        }
+    }
+}

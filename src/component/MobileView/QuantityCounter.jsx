@@ -8,37 +8,58 @@ const QuantityCounter = ({
   id,
   handleDelete,
   foodId,
-  no_of_items,
+  no_of_item,
   increaseQuantity,
   decreaseQuantity,
+  handleWishlist,
 }) => {
-
   return (
     <div className="item-card__card-main">
-    <img src={`http://localhost:5000${image}`} alt={"img"} className="item-card__card-image" />
-    
-      <div className="item-card__card-details">
-        <div className="item-card__card-price">
+      <img
+        src={`http://localhost:5000${image}`}
+        alt={"img"}
+        className="item-card__card-image"
+      />
+
+      <div className="item-card__details">
+        <div className="item-card__details-container">
           <h2 className="item-card__card-name">{name}</h2>
-          <p className="item-card__card-price">{`Rs. ${price}`}</p>
+
+          <TiDeleteOutline
+            className="item-card__cross"
+            onClick={() => handleDelete(id, foodId)}
+          />
         </div>
-        <div className="item-card__cross">
-          <TiDeleteOutline onClick={() => handleDelete(foodId, id)} />
-        </div>
-        <div className="item-card__quantity-container">
-          <button
-            onClick={() => decreaseQuantity(id)}
-            className="item-card__quantity-btn"
-          >
-            -
-          </button>
-          <span className="item-card__quantity">{no_of_items}</span>
-          <button
-            onClick={() => increaseQuantity(id)}
-            className="item-card__quantity-btn"
-          >
-            +
-          </button>
+
+        <p className="item-card__card-price">{`Rs. ${price}`}</p>
+
+        <div className="item-card__btn-container">
+          {!handleWishlist && (
+            <div className="item-card__quantity-container">
+              <button
+                onClick={() => decreaseQuantity(id)}
+                className="item-card__quantity-btn"
+              >
+                -
+              </button>
+              <span className="item-card__quantity">{no_of_item}</span>
+              <button
+                onClick={() => increaseQuantity(id)}
+                className="item-card__quantity-btn"
+              >
+                +
+              </button>
+            </div>
+          )}
+
+          {handleWishlist && (
+            <button
+              className="item-card__btn-cart"
+              onClick={() => handleWishlist(id)}
+            >
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@
   }
 
   &__message{
-    @apply flex justify-center mb-8 pt-8 text-[28px] font-bold
+    @apply flex justify-center my-8 text-[28px] font-bold
   }
 
   &__card--layout > :nth-child(even) {

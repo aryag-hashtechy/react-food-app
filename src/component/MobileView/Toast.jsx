@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { CloseIcon, SuccessIcon, FailureIcon } from "./ToastIcons";
+import { useNavigate } from "react-router-dom";
 
-const Toast = ({ type = "success" , message }) => {
+const Toast = ({ type = "success" , message, redirectTo }) => {
   const [visibility, setVisibility] = useState(true);
+  const navigate = useNavigate()
 
   const icon = {
     success: <SuccessIcon />,
@@ -11,8 +13,9 @@ const Toast = ({ type = "success" , message }) => {
 
   const toastIcon = icon[type] || icon.success;
 
-  const hadleAnimation = () => {
+  const handleAnimation = () => {
     setVisibility(false);
+    redirectTo ? navigate(redirectTo) : <></>;
   };
 
   return (
@@ -29,7 +32,7 @@ const Toast = ({ type = "success" , message }) => {
 
               <div
                 className="toast__close-icon"
-                onClick={() => hadleAnimation()}
+                onClick={() => handleAnimation()}
               >
                 <CloseIcon />
               </div>
@@ -37,7 +40,7 @@ const Toast = ({ type = "success" , message }) => {
 
             <div
               className={`toast__${type ? type : "success"}`}
-              onAnimationEnd={hadleAnimation}
+              onAnimationEnd={handleAnimation}
             ></div>
           </div>
         </div>

@@ -1,14 +1,13 @@
-import react, { useState } from "react";
-import BaseFloatingInput from "../component/base/BaseFloatingInput";
-import BaseButton from "../component/base/BaseButton";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import backIcon from "../assets/icons/back-icon.svg";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import apiPath from "../apiPath";
-import Toast from "../component/MobileView/Toast";
+import endPoints from "../common/endPoints";
+import backIcon from "../assets/icons/back-icon.svg";
 import axiosProvider from "../common/axiosProvider";
+import BaseButton from "../component/base/BaseButton";
+import BaseFloatingInput from "../component/base/BaseFloatingInput";
+import Toast from "../component/MobileView/Toast";
+import { handleToast } from "../lib/GlobalMethods";
 
 const addressSchema = Yup.object().shape({
   addressLine1: Yup.string()
@@ -23,20 +22,20 @@ const addressSchema = Yup.object().shape({
     .matches(/^[a-zA-Z]{1,100}$/, "must be character"),
   pincode: Yup.string()
     .required("Pincode is required")
-    .matches(/^\d{6}$/, "pincode must me max 6 digits"),
+    .matches(/^\d{6}$/, "Pincode must me max 6 digits"),
   receiverName: Yup.string()
     .optional()
     .nullable(true)
     .matches(
       /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
-      "receiver name must be character"
+      "Receiver name must be a character."
     ),
   receiverNumber: Yup.string()
     .optional()
     .nullable(true)
     .matches(
       /^[6-9]\d{9}$/,
-      "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
+      "Please enter a valid phone number."
     ),
   type: Yup.string().required("Type is required"),
 });
@@ -59,14 +58,12 @@ const AddressPage = () => {
     try {
       const response = await axiosProvider({
         method: "GET",
-        apiURL: `${apiPath.getSingleAddress}/${id}`,
+        apiURL: `${endPoints.getSingleAddress}/${id}`,
         navigate,
       });
 
       if (response && response?.status === 200) {
         setInitialValues(response?.data?.data);
-      } else {
-        console.log(response);
       }
     } catch (err) {
       console.log(err);
@@ -92,8 +89,8 @@ const AddressPage = () => {
     try {
       e.preventDefault();
 
-      const method = id ? "PUT" : "POST";
-      const path = id ? `${apiPath.updateAddress}${id}` : apiPath.addAddress;
+      const method = id ? "PATCH" : "POST";
+      const path = id ? `${endPoints.updateAddress}/${id}` : endPoints.addAddress;
 
       const response = await axiosProvider({
         method,
@@ -103,10 +100,10 @@ const AddressPage = () => {
       });
 
       if (response && response?.status === 200) {
-        handleToast(response?.data?.message, "success")
+        handleToast(setToast, response);
       }
     } catch (err) {
-      handleToast(err.response?.data?.message, "failure")
+      handleToast(setToast, err.response);
     }
   };
 
@@ -125,23 +122,6 @@ const AddressPage = () => {
     }));
   };
 
-  const handleToast = (response, type, redirectTo) => {
-    setToast((items)=>({
-      ...items,
-      type,
-      message: response,
-      isVisible: true
-    }));
-
-    setTimeout(()=>{
-      setToast((items)=>({
-        ...items,
-        isVisible:false,
-      }));
-      redirectTo ? navigate(redirectTo) : <></>;
-    },3000);
-  }
-    
   useEffect(() => {
     id ? handlefetch() : <></>;
   }, []);
@@ -251,35 +231,46 @@ const AddressPage = () => {
                 </div>
               </div>
               <div>
-                <label className="address__radio-label" htmlFor="defaultAddress">Default Address:</label>
+                <label
+                  className="address__radio-label"
+                  htmlFor="defaultAddress"
+                >
+                  Default Address:
+                </label>
                 <br />
 
                 <div className="address__radio-btn">
-                <div>
-                <input
-                  type="radio"
-                  id="defaultYes"
-                  name="defaultAddress"
-                  value = {true}
-                  checked={initialValues?.defaultAddress === true || initialValues?.defaultAddress === "true"}
-                  onChange={handleChange}
-                />
+                  <div>
+                    <input
+                      type="radio"
+                      id="defaultYes"
+                      name="defaultAddress"
+                      value={true}
+                      checked={
+                        initialValues?.defaultAddress === true ||
+                        initialValues?.defaultAddress === "true"
+                      }
+                      onChange={handleChange}
+                    />
 
-                <label htmlFor="defaultYes">Yes</label>
-                </div>
+                    <label htmlFor="defaultYes">Yes</label>
+                  </div>
 
-                <div>
-                <input
-                  type="radio"
-                  id="defaultNo"
-                  name="defaultAddress"
-                  value = {false}
-                  checked={initialValues?.defaultAddress === false || initialValues?.defaultAddress === "false"}
-                  onChange={handleChange}
-                />
+                  <div>
+                    <input
+                      type="radio"
+                      id="defaultNo"
+                      name="defaultAddress"
+                      value={false}
+                      checked={
+                        initialValues?.defaultAddress === false ||
+                        initialValues?.defaultAddress === "false"
+                      }
+                      onChange={handleChange}
+                    />
 
-                <label htmlFor="defaultNo">No</label>
-                </div>
+                    <label htmlFor="defaultNo">No</label>
+                  </div>
                 </div>
               </div>
             </div>

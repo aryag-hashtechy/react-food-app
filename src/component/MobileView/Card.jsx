@@ -1,28 +1,35 @@
 import React from "react";
 import image from "../../assets/images/Mask Group.png";
 import { useNavigate } from "react-router-dom";
+import image2 from "../../assets/images/heart2.svg";
+import image3 from '../../assets/icons/heart-icon.svg';
 
-const Card = ({ name, foodImage, price, id }) => {
+const Card = ({ name, foodImage, price, id, is_in_wishlist, createCart, handleDeleteWishlist, handleCreateWishlist}) => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <div
-        className="card__main"
-        onClick={() => navigate(`/detail-page/${id}`)}
-      >
+    <div className="card__main">
+      <div className="card__body" onClick={() => navigate(`/detail-page/${id}`)}>
         <img
           src={foodImage ? `http://localhost:5000${foodImage}` : image}
           className="card__image"
         />
 
-        <div className="card__content">
-          <p className=" card__title">{name ? name : "Veggie tomato mix"}</p>
+        <p className="card__title">{name ? name : "Veggie tomato mix"}</p>
 
-          <p className="card__price">{price ? `Rs. ${price}` : "Rs. ---"}</p>
-        </div>
+        <p className="card__price">{price ? `Rs. ${price}` : "Rs. ---"}</p>
       </div>
-    </>
+      <div className="card__footer">
+          <button className={"card__btn-primary"} onClick={() => createCart(id)}>Add to Cart</button>
+
+          <img
+            src={is_in_wishlist ? image3 : image2}
+            alt="fav"
+            className="card__wishlist"
+            onClick={() => { is_in_wishlist ? handleDeleteWishlist.mutate(id) : handleCreateWishlist.mutate(id) }}
+          />
+        </div>
+    </div>
   );
 };
 

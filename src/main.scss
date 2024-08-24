@@ -26,6 +26,7 @@
 @import "./assets/css/page/address.scss";
 @import "./assets/css/page/addressList.scss";
 @import "./assets/css/page/detailPage.scss";
+@import './assets/css/page/MobileView/dashboard.scss';
 
 /* MobileView Component CSS */
 @import "./assets/css/component/MobileView/body.scss";
@@ -48,6 +49,7 @@
 @import "./assets/css/page/foodPage.scss";
 @import "./assets/css/page/MobileView/seeMore.scss";
 @import "./assets/css/page/seeMore.scss";
+@import './assets/css/page/MobileView/wishlist.scss';
 @import './assets/css/page/MobileView/OrderPage.scss';
 
 @tailwind base;

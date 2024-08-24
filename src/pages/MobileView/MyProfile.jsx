@@ -3,20 +3,22 @@ import backIcon from "../../assets/icons/back-icon.svg";
 import UserProfile from "../../component/UserProfile";
 import ProfileMenu from "../../component/ProfileMenu";
 import BaseButton from "../../component/base/BaseButton";
-import { parseCookies } from "nookies";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import apiPath from "../../apiPath";
+import endPoints from "../../common/endPoints";
 import axiosProvider from "../../common/axiosProvider";
 
 const MyProfile = () => {
   const navigate = useNavigate();
-  const cookies = parseCookies();
   const [userData, setUserData] = useState({});
 
   const handleFetch = async () => {
     try {
-      const response = await axiosProvider({ method: "GET" , apiURL: apiPath.getUser, navigate})
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: endPoints.getUser,
+        navigate,
+      });
 
       if (response && response?.status === 200) {
         setUserData(response?.data?.data);
@@ -25,6 +27,28 @@ const MyProfile = () => {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleSubmit = async (name, value) => {
+    try {
+      let path =
+        name === "addressLine1"
+          ? `${endPoints.updateAddress}/${userData?.Addresses[0].id}`
+          : endPoints.updateUser;
+
+      const response = await axiosProvider({
+        method: "PATCH",
+        apiURL: path,
+        bodyData: { [name]: value },
+        navigate,
+      });
+
+      if (response?.status === 200) {
+        console.log(response?.data?.message);
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -51,14 +75,14 @@ const MyProfile = () => {
 
         <UserProfile
           userProfile={userData?.userProfile}
-          fullName = { userData?.fullName}
-          email = {userData?.email}
-          mobileNumber = { userData?.mobileNumber }
-          address = {userData?.Addresses}
+          fullName={userData?.fullName}
+          email={userData?.email}
+          address={userData?.Addresses}
+          handleSubmit={handleSubmit}
         />
 
         <div className="profile__menu__container">
-          <ProfileMenu text={"Orders"} navigateTo={"#"} />
+          <ProfileMenu text={"Orders"} />
           <ProfileMenu text={"Address"} navigateTo={"/address"} />
         </div>
 

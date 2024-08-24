@@ -1,6 +1,6 @@
 .body {
   &__main {
-    @apply mt-4 w-[190px];
+    @apply mb-8 w-[190px];
   }
 
   &__title {
@@ -8,16 +8,16 @@
   }
 
   &__text {
-    @apply text-primary mt-12 text-right mr-8 mb-2;
+    @apply text-primary text-right mb-4;
   }
 
   &__paginate{
-    @apply flex justify-center mt-8
+    @apply flex justify-center mb-[20px] items-center;
   }
 }
 
 .slider {
   &__main {
-    @apply -mr-[50px];
+    @apply -mr-[50px] mb-[16px];
   }
 }

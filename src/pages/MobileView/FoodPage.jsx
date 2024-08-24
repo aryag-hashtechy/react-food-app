@@ -8,7 +8,7 @@ import nonVegIcon from "../../assets/icons/non-veg-icon.png";
 import { Rating } from "react-simple-star-rating";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import apiPath from "../../apiPath";
+import endPoints from "../../common/endPoints";
 import axios from "axios";
 
 const FoodPage = () => {
@@ -24,7 +24,7 @@ const FoodPage = () => {
 
   const handleFetch = async () =>{
     try{
-      const response = await axios.get(`${apiPath.getSingleFood}${id}`)
+      const response = await axios.get(`${endPoints.getSingleFood}${id}`)
       if( response && response?.status === 200){
         setFoodData(response?.data?.data);
       }else{
