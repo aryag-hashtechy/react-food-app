@@ -5,6 +5,7 @@ const UserProfile = ({
   userProfile,
   fullName,
   email,
+  inputRef,
   handleSubmit,
 }) => {
   const handleKeyPress = (e) => {
@@ -29,7 +30,8 @@ const UserProfile = ({
           contentEditable
           aria-label="fullName"
           onBlur={(e) => handleSubmit(e.target.ariaLabel, e.target.innerText)}
-          onKeyDown={(e) => handleKeyPress(e)}
+          onKeyDown={(e) => handleKeyPress(e)}          
+          ref={inputRef}
           suppressContentEditableWarning
         >
           {fullName ? fullName : "Marvis Ighedosa"}

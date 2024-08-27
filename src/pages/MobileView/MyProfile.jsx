@@ -7,10 +7,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import endPoints from "../../common/endPoints";
 import axiosProvider from "../../common/axiosProvider";
+import { useRef } from "react";
 
 const MyProfile = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
+  const inputRef = useRef(null);
 
   const handleFetch = async () => {
     try {
@@ -32,10 +34,7 @@ const MyProfile = () => {
 
   const handleSubmit = async (name, value) => {
     try {
-      let path =
-        name === "addressLine1"
-          ? `${endPoints.updateAddress}/${userData?.Addresses[0].id}`
-          : endPoints.updateUser;
+      let path = endPoints.updateUser;
 
       const response = await axiosProvider({
         method: "PATCH",
@@ -70,7 +69,7 @@ const MyProfile = () => {
 
         <div className="profile__text__container">
           <p>Personal details</p>
-          <p>change</p>
+          <p onClick={() => inputRef.current.focus()}>change</p>
         </div>
 
         <UserProfile
@@ -79,6 +78,7 @@ const MyProfile = () => {
           email={userData?.email}
           address={userData?.Addresses}
           handleSubmit={handleSubmit}
+          inputRef={inputRef}
         />
 
         <div className="profile__menu__container">
