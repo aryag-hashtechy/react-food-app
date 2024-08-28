@@ -9,7 +9,7 @@ import axiosProvider from "../../common/axiosProvider";
 import InfiniteScroll from "../../common/InfiniteScroll";
 
 const SeeMore = () => {
-  const [searchParams ,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
   const type = params?.cat || "";
   const navigate = useNavigate();
@@ -18,37 +18,37 @@ const SeeMore = () => {
   const [category, setCategory] = useState(type);
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [searchText] = useDebounce(value, 1000);
 
-  const handleFetch = async (searchText) => {
+  const handleFetch = async (page, searchText) => {
     try {
       const response = await axiosProvider({
         method: "GET",
-        apiURL: `${endPoints.getAllFood}`,
-        params: { category, page: currentPage, search: searchText },
+        apiURL: endPoints.getAllFood,
+        params: { category, page, search: searchText },
       });
-
-      if (response?.status === 200) {
-        if (response?.data?.data?.data.length) {
-          const newData = response?.data?.data?.data
-          searchText ? setFoodItems(newData) :
+      if (response?.status === 200 && response?.data?.data?.data) {
+        if (page > 1) {
           setFoodItems((prevItems) => [
             ...prevItems,
             ...response?.data?.data?.data,
           ]);
-          setPageCount(response?.data?.data?.totalPage)
-          setSearchParams({ page: currentPage })
+        } else {
+          setFoodItems(response?.data?.data?.data);
         }
+        setPageCount(response?.data?.data?.totalPage);
+        setSearchParams({ page: currentPage });
       }
-    } catch (error) {
-      console.error(error.message);
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
   useEffect(() => {
-    handleFetch(searchText);
-  }, [currentPage, category, searchText ]);
+    setCurrentPage(1)
+    handleFetch(1, searchText);
+  }, [searchText]);
 
   return (
     <>
@@ -64,28 +64,30 @@ const SeeMore = () => {
             type="search"
             id="search"
             name="search"
-            onChange={(e) => {setValue(e?.target?.value)}}
+            onChange={(e) => {
+              setValue(e?.target?.value);
+            }}
             className="see-more__searchbar"
           />
         </div>
 
         <div className="see-more__layout">
-          {foodItems &&
-            foodItems?.map((items) => (
-              <SearchCard
-                id={items.id}
-                name={items.name}
-                price={items.price}
-                foodImage={items.foodImage}
-              />
-            ))}
+          {foodItems?.map((items) => (
+            <SearchCard
+              id={items.id}
+              name={items.name}
+              price={items.price}
+              foodImage={items.foodImage}
+            />
+          ))}
         </div>
 
-        { currentPage < pageCount && (
-          <InfiniteScroll 
-          handleFetch={handleFetch}
-          setCurrentPage={setCurrentPage}
-        />
+        {currentPage < pageCount && (
+          <InfiniteScroll
+            handleFetch={handleFetch}
+            setCurrentPage={setCurrentPage}
+            searchText={searchText}
+          />
         )}
       </div>
     </>
