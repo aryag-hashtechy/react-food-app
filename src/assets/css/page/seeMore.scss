@@ -4,7 +4,7 @@
   }
 
   &__layout {
-    @apply grid grid-cols-2 mx-2.5 bg-white rounded-[30px];
+    @apply grid grid-cols-2 mx-2.5 pt-[6px] bg-white rounded-[30px];
   }
 
   &__btn {

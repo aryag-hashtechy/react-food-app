@@ -38,7 +38,7 @@ const SeeMore = () => {
           setFoodItems(response?.data?.data?.data);
         }
         setPageCount(response?.data?.data?.totalPage);
-        setSearchParams({ page: currentPage });
+        setSearchParams({ page });
       }
     } catch (err) {
       console.log(err.message);

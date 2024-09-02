@@ -7,9 +7,12 @@ import BaseButton from "../../component/base/BaseButton";
 import QuantityCounter from "../../component/MobileView/QuantityCounter";
 import Toast from "../../component/MobileView/Toast";
 import { handleToast } from "../../lib/GlobalMethods";
+import { useDispatch } from "react-redux";
+import { deleteCart } from "../../feature/cart/cartSlice";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [toast, setToast] = useState({
@@ -51,6 +54,7 @@ const Cart = () => {
       });
 
       if (response?.status === 200) {
+        dispatch(deleteCart(foodId))
         handleToast(setToast, response)
         handleFetch();
       }
@@ -116,7 +120,7 @@ const Cart = () => {
               alt="back-icon"
               className="cart__back-icon"
               onClick={() => {
-                navigate("/dashboard");
+                navigate(-1);
               }}
             />
             <p className="cart__header--title">Cart</p>

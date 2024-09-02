@@ -9,9 +9,7 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     createWishlist: (state, action) => {
-      action.payload.forEach((data) => {
-        state.wishlist.push(data.food_id)
-      })
+      state.wishlist = action.payload.map(data => data.food_id)
     },
 
     addToWishlist: (state, action) => {

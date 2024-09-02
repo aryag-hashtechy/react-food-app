@@ -18,7 +18,7 @@ const Wishlist = () => {
       const response = await axiosProvider({
         method: "GET",
         apiURL: endPoints.getWishlist,
-        params:{ food_id: wishlistId?.length ? wishlistId : JSON.stringify([]) },
+        params:{ food_id: wishlistId },
         navigate,
       });
 

@@ -15,4 +15,8 @@
   &__cart {
     @apply w-[24px] h-[24px];
   }
+
+  &__container{
+    @apply relative
+  }
 }

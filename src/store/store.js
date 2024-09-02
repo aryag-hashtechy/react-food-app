@@ -1,7 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import foodDataSliceReducer from '../feature/dashboard/foodDataSlice';
 import wishlistSliceReducer from '../feature/wishlist/wishlistSlice';
-import cartSliceData from '../feature/cart/cartSlice';
+import cartSlice from '../feature/cart/cartSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
@@ -16,8 +15,7 @@ const sagaMiddleware = createSagaMiddleware()
 const middleware = [sagaMiddleware]
 
 const allReducer = combineReducers({
-    'food_data': foodDataSliceReducer,
-    'cart_data': cartSliceData,
+    'cart': cartSlice,
     'wishlist': wishlistSliceReducer,
 })
 

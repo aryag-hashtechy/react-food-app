@@ -12,6 +12,7 @@ import { handleToast } from "../../lib/GlobalMethods";
 import Toast from "../../component/MobileView/Toast";
 import * as Yup from "yup";
 import axiosProvider from "../../common/axiosProvider";
+import { createCart } from "../../feature/cart/cartSlice";
 
 // GlobalValidation object
 const GlobalValidation = {
@@ -120,10 +121,12 @@ const Login = () => {
 
         dispatch(createWishlist(response.data.wishlist));
 
+        dispatch(createCart(response.data.cart))
+
         handleToast( setToast, response, "/dashboard", navigate);
       }
     } catch (err) {
-      handleToast( setToast, err.response)
+      console.log(err)
     }
   };
 

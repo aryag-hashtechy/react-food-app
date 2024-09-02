@@ -18,6 +18,8 @@ import endPoints from "../../common/endPoints";
 import axiosProvider from "../../common/axiosProvider";
 
 const DetailPage = () => {
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const cart = useSelector((state) => state.cart.cart);
   const [rating, setRating] = useState(0);
   const [foodData, setFoodData] = useState();
   const [toast, setToast] = useState({
@@ -26,7 +28,6 @@ const DetailPage = () => {
     isVisible: false,
   });
   const navigate = useNavigate();
-  const wishlist = useSelector(state => state.wishlist.wishlist)
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -42,9 +43,15 @@ const DetailPage = () => {
         params: { foodId: id },
       });
       if (response && response.status === 200) {
-        const isPresent = wishlist.find(data => data === response.data.data.id)
-        isPresent ? response.data.data.is_in_wishlist = true : <></>;
-        setFoodData(response.data.data)
+        const isPresent = wishlist.find(
+          (data) => data === response.data.data.id
+        );
+        const isinCart = cart.find((data) => data === response.data.data.id);
+        isPresent ? (response.data.data.is_in_wishlist = true) : <></>;
+        isinCart
+          ? (response.data.data.is_in_cart = true)
+          : (response.data.data.is_in_cart = false);
+        setFoodData(response.data.data);
       }
     } catch (error) {
       console.log(error);
@@ -76,12 +83,12 @@ const DetailPage = () => {
         params: { food_id },
       });
 
-      if(response?.status === 200){
-        dispatch(deleteWishlist(food_id))
-        setFoodData((data) =>({
+      if (response?.status === 200) {
+        dispatch(deleteWishlist(food_id));
+        setFoodData((data) => ({
           ...data,
-          is_in_wishlist :false,
-        }))
+          is_in_wishlist: false,
+        }));
       }
     } catch (err) {
       console.log(err);
@@ -95,12 +102,12 @@ const DetailPage = () => {
         apiURL: endPoints.createWishlist,
         params: { food_id },
       });
-      if(response?.status === 200){
-        dispatch(addToWishlist(food_id))
-        setFoodData((data) =>({
+      if (response?.status === 200) {
+        dispatch(addToWishlist(food_id));
+        setFoodData((data) => ({
           ...data,
-          is_in_wishlist : true,
-        }))
+          is_in_wishlist: true,
+        }));
       }
     } catch (err) {
       console.log(err);
@@ -197,9 +204,13 @@ const DetailPage = () => {
 
         <div>
           <BaseButton
-            buttonText={"Add to cart"}
+            buttonText={foodData?.is_in_cart ? "Go to Cart" : "Add to Cart"}
             variant={"btn detail__btn"}
-            onClick={() => handleCart(foodData?.id)}
+            onClick={() => {
+              foodData?.is_in_cart
+                ? navigate("/cart")
+                : handleCart(foodData?.id);
+            }}
           />
         </div>
       </section>

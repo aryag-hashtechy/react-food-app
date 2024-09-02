@@ -9,16 +9,17 @@ import Paginate from "./Paginate";
 import SearchBar from "./SeachBar";
 import Title from "./Title";
 import Card from "./Card";
-import { keepPreviousData } from "@tanstack/react-query";
+import { dataTagSymbol, keepPreviousData } from "@tanstack/react-query";
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { handleToast } from "../../lib/GlobalMethods";
 import Toast from "./Toast";
-
-// Import Swiper styles
 import "swiper/css";
+import { addToCart } from "../../feature/cart/cartSlice";
 
 const Body = () => {
   const wishlist = useSelector(state => state.wishlist.wishlist)
+  const cartData = useSelector(state => state.cart.cart)
+  const cartCount = useSelector(state => state.cart.cartCount)
   const [category, setCategory] = useState("Foods");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState([1]);
@@ -32,7 +33,7 @@ const Body = () => {
   });
 
   const { data: foodItems } = useQuery({
-    queryKey: ['fetchData', category, currentPage, pageCount, wishlist],
+    queryKey: ['fetchData', category, currentPage, pageCount, wishlist, cartData],
     queryFn: async () => {
       const response = await axiosProvider({
         method: "GET",
@@ -44,8 +45,10 @@ const Body = () => {
       handlePageCount(response?.data?.data.totalPage);
 
       response.data.data.data.map((items) => {
-        const isPresnet = wishlist.find(data => data === items.id)
-        isPresnet ? items.is_in_wishlist = true : <></>
+        const isPresent = wishlist.find(data => data === items.id)
+        const isInCart = cartData.find(data => data === items.id)
+        isPresent ? items.is_in_wishlist = true : <></>
+        isInCart ? items.is_in_cart = true : items.is_in_cart = false;
         return items;
       })
 
@@ -114,9 +117,12 @@ const Body = () => {
       
       if(response?.status === 200){
         handleToast(setToast, response)
+        const isInWishlist = wishlist.find(data => data === foodId)
+        isInWishlist ? dispatch(deleteWishlist(foodId)) : <></>
+        dispatch(addToCart(foodId))
       }
     } catch (err) {
-      handleToast(setToast, err.response)
+      console.log(err)
     }
   };
 
@@ -166,14 +172,15 @@ const Body = () => {
         <Swiper spaceBetween={-100} slidesPerView={1}>
           {foodItems &&
             foodItems?.map((items) => (
-              <SwiperSlide>
+              <SwiperSlide key={items.id}>
                 <Card
                   id={items?.id}
                   name={items?.name}
-                  foodImage={items?.foodImage}
                   price={items?.price}
-                  is_in_wishlist={items?.is_in_wishlist}
                   createCart={createCart}
+                  foodImage={items?.foodImage}
+                  is_in_cart={items.is_in_cart}
+                  is_in_wishlist={items?.is_in_wishlist}
                   handleCreateWishlist={handleCreateWishlist}
                   handleDeleteWishlist={handleDeleteWishlist}
                 />

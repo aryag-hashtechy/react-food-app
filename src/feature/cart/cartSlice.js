@@ -1,24 +1,30 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
-  cart_data: null,
-  error: null,
+  cart: [],
+  cartCount: 0,
 };
 
-const cartSliceData = (state = initialState, action) => {
-  switch (action.type) {
-    case "fetch_cart_success":
-      return {
-        ...state,
-        cart_data: action.payload?.data,
-        error: null,
-      };
-    case "fetch_cart_fail":
-      return {
-        ...state,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const cart = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    createCart: (state, action) => {
+      state.cart = action.payload.rows.map(data => data.food_id)
+      state.cartCount = action.payload.count
+    },
 
-export default cartSliceData;
+    addToCart: (state, action) => {
+      state.cart.push(action.payload)
+      state.cartCount ++
+    },
+
+    deleteCart: (state, action) => {
+      state.cart = state.cart.filter(data => data !== action.payload)
+      state.cartCount --
+    },
+  },
+})
+
+export const { createCart, addToCart, deleteCart } = cart.actions
+export default cart.reducer;
