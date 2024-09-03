@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Base CSS */
 @import "./assets/css/base/base.scss";
 @import "./assets/css/base/baseButton.scss";
@@ -52,4 +56,3 @@
 @import './assets/css/page/MobileView/wishlist.scss';
 @import './assets/css/page/MobileView/OrderPage.scss';
 @import './assets/css/component/MobileView/Counter.scss';
-

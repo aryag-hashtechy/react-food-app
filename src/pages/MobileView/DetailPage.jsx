@@ -6,7 +6,6 @@ import veg from "../../assets/images/veg.png";
 import nonveg from "../../assets/images/non-veg-icon.png";
 import heart from "../../assets/images/heart2.svg";
 import heartFilled from "../../assets/icons/heart-icon.svg";
-import { Rating } from "react-simple-star-rating";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -20,7 +19,6 @@ import axiosProvider from "../../common/axiosProvider";
 const DetailPage = () => {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const cart = useSelector((state) => state.cart.cart);
-  const [rating, setRating] = useState(0);
   const [foodData, setFoodData] = useState();
   const [toast, setToast] = useState({
     message: null,
@@ -30,10 +28,6 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-
-  const handleRating = (rate) => {
-    setRating(rate);
-  };
 
   const handleFetch = async () => {
     try {
@@ -190,10 +184,6 @@ const DetailPage = () => {
           <p className="detail__price">
             {foodData?.price ? `Rs. ${foodData.price}` : "Rs. 550"}
           </p>
-
-          <div className="detail__ratings">
-            <Rating onClick={handleRating} />
-          </div>
 
           <p className="detail__description">
             {foodData?.description
