@@ -23,7 +23,7 @@ const QuantityCounter = ({
 
       <div className="item-card__details">
         <div className="item-card__details-container">
-          <h2 className="item-card__card-name">{name}</h2>
+          <p className="item-card__card-name">{name}</p>
 
           <TiDeleteOutline
             className="item-card__cross"
