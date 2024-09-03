@@ -6,7 +6,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store/store";
 import App from "./App";
-//import './main.scss'
+import './main.scss'
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
