@@ -16,12 +16,4 @@
   &__content > :first-child {
     @apply mt-2 font-semibold text-[18px];
   }
-
-  &__content > p:not(:first-child) {
-    @apply text-[15px] text-[#7f7f7f] font-normal leading-[17px] mb-[6px];
-  }
-
-  &__content > p:not(:nth-of-type(4), :nth-of-type(1)) {
-    @apply pb-[6px] border-b border-[#878787];
-  }
 }

@@ -1,28 +1,26 @@
-import React, { useState } from "react";
-import AddressCard from "../component/AddressCard";
-import backIcon from "../assets/icons/back-icon.svg";
-import axios from "axios";
-import { useEffect } from "react";
 import { parseCookies } from "nookies";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BaseButton from "../component/base/BaseButton";
-import apiPath from "../apiPath";
-import Toast from "../component/MobileView/Toast";
+import endPoints from "../common/endPoints";
+import backIcon from "../assets/icons/back-icon.svg";
 import axiosProvider from "../common/axiosProvider";
+import AddressCard from "../component/AddressCard";
+import BaseButton from "../component/base/BaseButton";
+import { handleToast } from "../lib/GlobalMethods";
+import Toast from "../component/MobileView/Toast";
 
 const Address = () => {
   const [addressData, setAddressData] = useState();
   const [count, setCount] = useState(0);
   const navigate = useNavigate();
   const cookies = parseCookies();
-
   const [toast, setToast] = useState({
-    visible: true,
-    message: "",
-    type: "failure",
+    message: null,
+    type: null,
+    isVisible: false,
   });
 
-  const handleDelete = async (id, e) => {
+  const handleDelete = async (id) => {
     try {
       let headers = {
         Authorization: `Bearer ${cookies.accessToken}`,
@@ -30,55 +28,33 @@ const Address = () => {
 
       const response = await axiosProvider({
         method: "DELETE",
-        apiURL: apiPath.deleteAddress + id,
+        apiURL: endPoints.deleteAddress + id,
         headers,
       });
 
-      if (response && response?.status === 200) {
-        setToast((items) => ({
-          ...items,
-          visible: true,
-          message: response?.data?.message,
-          type: "success",
-        }));
-
+      if (response?.status === 200) {
+        handleToast(setToast, response)
         fetchAddressData();
-
-        setTimeout((items) => {
-          setToast((items) => ({
-            ...items,
-            visible: false,
-          }));
-        }, 3000);
-        console.log(response);
       }
     } catch (error) {
-      setToast((items) => ({
-        visible: true,
-        message: error.response?.data?.message,
-        type: "failure",
-      }));
-
-      setTimeout((items) => {
-        setToast((items) => ({
-          ...items,
-          visible: false,
-        }));
-      }, 3000);
-      console.log(error);
       return error;
     }
   };
 
   const fetchAddressData = async () => {
     try {
-      const response = await axiosProvider({ method: "GET", apiURL: `${apiPath.getAllAddress}` , navigate})
-      if( response && response?.status === 200){
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: `${endPoints.getAllAddress}`,
+        navigate,
+      });
+
+      if (response?.status === 200) {
         setAddressData(response?.data?.data);
-        setCount(response?.data?.dataCount)
+        setCount(response?.data?.dataCount);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -88,6 +64,7 @@ const Address = () => {
 
   return (
     <>
+      {toast?.isVisible && <Toast type={toast.type} message={toast.message} />}
       <section className="addressList__main">
         <div className="mobile__container">
           <div className="addressList__header">
@@ -103,7 +80,9 @@ const Address = () => {
 
           <div className="addressList_btn">
             <BaseButton
-              onClick={() => navigate("/address-page")}
+              onClick={() => {
+                count < 5 ? navigate("/address-page") : <></>;
+              }}
               variant={"btn btn--primary-small"}
               buttonText={"Add Address"}
             />

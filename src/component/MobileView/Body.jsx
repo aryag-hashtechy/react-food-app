@@ -1,37 +1,62 @@
 import React, { useState } from "react";
-import SearchBar from "./SeachBar";
-import Card from "./Card";
-import Title from "./Title";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect } from "react";
-import axios from "axios";
-import apiPath from "../../apiPath";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Paginate from "./Paginate";
+import { Swiper, SwiperSlide } from "swiper/react";
+import endPoints from "../../common/endPoints";
+import { addToWishlist, deleteWishlist } from "../../feature/wishlist/wishlistSlice";
 import axiosProvider from "../../common/axiosProvider";
-
-// Import Swiper styles
+import Paginate from "./Paginate";
+import SearchBar from "./SeachBar";
+import Title from "./Title";
+import Card from "./Card";
+import { dataTagSymbol, keepPreviousData } from "@tanstack/react-query";
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { handleToast } from "../../lib/GlobalMethods";
+import Toast from "./Toast";
 import "swiper/css";
+import { addToCart } from "../../feature/cart/cartSlice";
 
 const Body = () => {
-  const [foodItems, setFoodItems] = useState();
+  const wishlist = useSelector(state => state.wishlist.wishlist)
+  const cartData = useSelector(state => state.cart.cart)
+  const cartCount = useSelector(state => state.cart.cartCount)
   const [category, setCategory] = useState("Foods");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState([1]);
-  const [limit, setLimit] = useState(5);
+  const [totalCategory, setTotalCategory] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [toast, setToast] = useState({
+    message: null,
+    type: null,
+    isVisible: false,
+  });
 
-  const handleFetch = async () => {
-    try {
-      const response = await axiosProvider({method: "GET" , apiURL:apiPath.getAllFood, params: { category, page:currentPage } });
-      if (response && response?.status === 200) {
-        setFoodItems(response?.data?.data?.data);
-        handlePageCount(response?.data?.data?.totalPage);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { data: foodItems } = useQuery({
+    queryKey: ['fetchData', category, currentPage, pageCount, wishlist, cartData],
+    queryFn: async () => {
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: endPoints.getAllFood,
+        params: { category, page: currentPage },
+      })
+
+      setTotalCategory(response?.data?.category);
+      handlePageCount(response?.data?.data.totalPage);
+
+      response.data.data.data.map((items) => {
+        const isPresent = wishlist.find(data => data === items.id)
+        const isInCart = cartData.find(data => data === items.id)
+        isPresent ? items.is_in_wishlist = true : <></>
+        isInCart ? items.is_in_cart = true : items.is_in_cart = false;
+        return items;
+      })
+
+      return response.data.data.data
+    },
+    retry: 0,
+    placeholderData: keepPreviousData,
+  })
 
   const handlePageCount = (totalPage) => {
     let page = [];
@@ -41,6 +66,64 @@ const Body = () => {
       count++;
     }
     setPageCount(page);
+  };
+
+  const handleCreateWishlist = useMutation({
+    mutationKey: ['createWishlist'],
+    mutationFn: async (food_id) => {
+      return await axiosProvider({
+        method: "POST",
+        apiURL: endPoints.createWishlist,
+        params: { food_id },
+        navigate,
+      })
+    },
+    onSuccess: (response) => {
+      dispatch(addToWishlist(response?.data?.food_id));
+      handleToast(setToast, response)
+    },
+    onError: (error) => {
+      handleToast(setToast ,error.response)  
+    }
+  })
+
+  const handleDeleteWishlist = useMutation({
+    mutationKey: ['deleteWishlist'],
+    mutationFn: async (food_id) => {
+      return await axiosProvider({
+        method: "DELETE",
+        apiURL: endPoints.deleteWishlist,
+        params: { food_id },
+        navigate,
+      });
+    },
+    onSuccess: (response) => {
+      dispatch(deleteWishlist(response.data.food_id));
+      handleToast(setToast, response)
+    },
+    onError: (error) => {
+      handleToast(setToast, error.response)  
+    }
+  })
+
+  const createCart = async (foodId) => {
+    try {
+      const response = await axiosProvider({
+        method: "POST",
+        apiURL: endPoints.createCart,
+        navigate,
+        params: { foodId },
+      });
+      
+      if(response?.status === 200){
+        handleToast(setToast, response)
+        const isInWishlist = wishlist.find(data => data === foodId)
+        isInWishlist ? dispatch(deleteWishlist(foodId)) : <></>
+        dispatch(addToCart(foodId))
+      }
+    } catch (err) {
+      console.log(err)
+    }
   };
 
   const handlePageChange = (id) => {
@@ -59,12 +142,9 @@ const Body = () => {
     }
   };
 
-  useEffect(() => {
-    handleFetch();
-  }, [currentPage, category]);
-
   return (
     <>
+      {toast?.isVisible && <Toast type={toast.type} message={toast.message} />}
       <div className="body__main">
         <h1 className="body__title ">
           Delicious <br />
@@ -73,7 +153,13 @@ const Body = () => {
       </div>
 
       <SearchBar navigateTo={"/search-page"} />
-      <Title setCategory={setCategory} setCurrentPage={setCurrentPage} category={category} />
+
+      <Title
+        setCategory={setCategory}
+        setCurrentPage={setCurrentPage}
+        category={category}
+        totalCategory={totalCategory}
+      />
 
       <p
         className="body__text"
@@ -86,17 +172,23 @@ const Body = () => {
         <Swiper spaceBetween={-100} slidesPerView={1}>
           {foodItems &&
             foodItems?.map((items) => (
-              <SwiperSlide>
+              <SwiperSlide key={items.id}>
                 <Card
                   id={items?.id}
                   name={items?.name}
-                  foodImage={items?.foodImage}
                   price={items?.price}
+                  createCart={createCart}
+                  foodImage={items?.foodImage}
+                  is_in_cart={items.is_in_cart}
+                  is_in_wishlist={items?.is_in_wishlist}
+                  handleCreateWishlist={handleCreateWishlist}
+                  handleDeleteWishlist={handleDeleteWishlist}
                 />
               </SwiperSlide>
             ))}
         </Swiper>
       </div>
+
       <div className="body__paginate">
         <Paginate
           pageCount={pageCount}

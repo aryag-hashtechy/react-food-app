@@ -1,21 +1,21 @@
 .paginate{
 
   &__number{
-    @apply -mt-1.5 border rounded-[60px] px-2 text-black  mx-[2px];
+    @apply -mt-1.5 border rounded-[60px] px-2 text-black;
     &.active{
         @apply bg-primary text-white;
     }
   }
 
   &__main{
-    @apply flex;
+    @apply flex items-start gap-x-[5px];
   }
 
   &__back-icon{
-    @apply h-[12px] w-[6px] mr-1.5;
+    @apply mr-[4px];
   }
 
   &__front-icon{
-    @apply h-[12px] w-[6px] ml-1.5;
+    @apply ml-[4px];
   }
 }

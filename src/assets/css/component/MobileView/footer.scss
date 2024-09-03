@@ -1,6 +1,6 @@
 .footer {
   &__mobile {
-    @apply flex justify-between mt-8;
+    @apply flex justify-between sticky bottom-0 bg-white z-50 py-[25px] px-[41px];
   }
 
   &__home {

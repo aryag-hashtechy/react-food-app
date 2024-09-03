@@ -1,44 +1,41 @@
-import react, { useState } from "react";
-import BaseFloatingInput from "../component/base/BaseFloatingInput";
-import BaseButton from "../component/base/BaseButton";
-import axios from "axios";
-import { useEffect } from "react";
-import { useLocation } from 'react-router-dom';
-import backIcon from "../assets/icons/back-icon.svg";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import apiPath from "../apiPath";
-import Toast from "../component/MobileView/Toast";
+import endPoints from "../common/endPoints";
+import backIcon from "../assets/icons/back-icon.svg";
 import axiosProvider from "../common/axiosProvider";
+import BaseButton from "../component/base/BaseButton";
+import BaseFloatingInput from "../component/base/BaseFloatingInput";
+import Toast from "../component/MobileView/Toast";
+import { handleToast } from "../lib/GlobalMethods";
 
 const addressSchema = Yup.object().shape({
   addressLine1: Yup.string()
     .required("Address line 1 is required")
     .matches(/^[\w\d\s.,#\-\/]+$/, "only character and digit are allowed"),
-  addressLine2: Yup.string().optional().nullable(true).matches(
-    /^[\w\d\s.,#\-\/]+$/,
-    "only character and digit are allowed"
-  ),
+  addressLine2: Yup.string()
+    .optional()
+    .nullable(true)
+    .matches(/^[\w\d\s.,#\-\/]+$/, "only character and digit are allowed"),
   city: Yup.string()
     .required("City is required")
     .matches(/^[a-zA-Z]{1,100}$/, "must be character"),
   pincode: Yup.string()
     .required("Pincode is required")
-    .matches(/^\d{6}$/, "pincode must me max 6 digits"),
+    .matches(/^\d{6}$/, "Pincode must me max 6 digits"),
   receiverName: Yup.string()
     .optional()
     .nullable(true)
     .matches(
       /^(?=.{1,25}$)[a-zA-Z]+(?: [a-zA-Z]+)?$/,
-      "receiver name must be character"
+      "Receiver name must be a character."
     ),
   receiverNumber: Yup.string()
     .optional()
     .nullable(true)
     .matches(
       /^[6-9]\d{9}$/,
-      "Phone number must be exactly 10 digits and start with a digit between 6 and 9"
+      "Please enter a valid phone number."
     ),
   type: Yup.string().required("Type is required"),
 });
@@ -46,9 +43,7 @@ const addressSchema = Yup.object().shape({
 const AddressPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get('id');
-
-  const cookies = parseCookies();
+  const id = queryParams.get("id");
   const navigate = useNavigate();
 
   const [initialValues, setInitialValues] = useState({});
@@ -58,16 +53,17 @@ const AddressPage = () => {
     type: null,
     isVisible: false,
   });
-  const accessToken = cookies.accessToken;
 
   const handlefetch = async () => {
     try {
-      const response = await axiosProvider({ method: "GET", apiURL: `${apiPath.getSingleAddress}/${id}`, navigate})
+      const response = await axiosProvider({
+        method: "GET",
+        apiURL: `${endPoints.getSingleAddress}/${id}`,
+        navigate,
+      });
 
       if (response && response?.status === 200) {
         setInitialValues(response?.data?.data);
-      }else{
-        console.log(response)
       }
     } catch (err) {
       console.log(err);
@@ -93,40 +89,21 @@ const AddressPage = () => {
     try {
       e.preventDefault();
 
-      const method = id ? "PUT" : "POST";
-      const path = id ? `${apiPath.updateAddress}${id}` : apiPath.addAddress
+      const method = id ? "PATCH" : "POST";
+      const path = id ? `${endPoints.updateAddress}/${id}` : endPoints.addAddress;
 
-      const response = await axiosProvider({ method, apiURL: path, bodyData: initialValues, navigate})
+      const response = await axiosProvider({
+        method,
+        apiURL: path,
+        bodyData: initialValues,
+        navigate,
+      });
 
-      if( response && response?.status === 200){
-        setToast((items)=>({
-          ...items,
-          type:"success",
-          message: response?.data?.message,
-          isVisible: true
-        }));
-
-        setTimeout(()=>{
-          setToast((items)=>({
-            ...items,
-            isVisible:false
-          }));
-        },3000);
+      if (response && response?.status === 200) {
+        handleToast(setToast, response);
       }
     } catch (err) {
-      setToast((items)=>({
-        ...items,
-        type: "failure",
-        message: err.response?.data?.message,
-        isVisible: true
-      }))
-
-      setTimeout(()=>{
-        setToast((items)=>({
-          ...items,
-          isVisible: false
-        }))
-      },3000)
+      handleToast(setToast, err.response);
     }
   };
 
@@ -151,116 +128,162 @@ const AddressPage = () => {
 
   return (
     <>
-      { toast.isVisible && <Toast type={toast.type} message={toast.message} /> }
+      {toast.isVisible && <Toast type={toast.type} message={toast.message} />}
       <section className="mobile__container">
-      <img
-        src={backIcon}
-        alt="back-icon"
-        className="profile__back--icon"
-        onClick={() => navigate("/address")}
-      />
-      <div>
-        <p className="address__text">My Address</p>
-      </div>
-      <form onSubmit={validate}>
+        <img
+          src={backIcon}
+          alt="back-icon"
+          className="profile__back--icon"
+          onClick={() => navigate("/address")}
+        />
         <div>
-          <BaseFloatingInput
-            name="addressLine1"
-            id="addressLine1"
-            inputType="text"
-            labelText="AddressLine 1:"
-            value={initialValues}
-            handleChange={handleChange}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="addressLine2"
-            id="addressLine2"
-            inputType="text"
-            labelText="AddressLine 2:"
-            isRequired={ false }
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="city"
-            id="city"
-            inputType="text"
-            labelText="City:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="pincode"
-            id="pincode"
-            inputType="text"
-            labelText="Pincode:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="receiverName"
-            id="receiverName"
-            labelText="Receiver Name:"
-            handleChange={handleChange}
-            isRequired={false}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
-          <BaseFloatingInput
-            name="receiverNumber"
-            id="receiverNumber"
-            inputType="text"
-            isRequired={false}
-            labelText="Receiver No:"
-            handleChange={handleChange}
-            value={initialValues}
-            errorMessage={errorMessage}
-          />
-
+          <p className="address__text">My Address</p>
+        </div>
+        <form onSubmit={validate}>
           <div>
-            <label className="radio__text">Type: </label>
-            <br />
-            <div className="radio__btn">
-              <div>
-                <input
-                  type="radio"
-                  id="Home"
-                  name="addressType"
-                  value="Home"
-                  checked={initialValues.type === "Home" || null}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor="Home">Home</label>
+            <BaseFloatingInput
+              name="addressLine1"
+              id="addressLine1"
+              inputType="text"
+              labelText="AddressLine 1:"
+              value={initialValues}
+              handleChange={handleChange}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="addressLine2"
+              id="addressLine2"
+              inputType="text"
+              labelText="AddressLine 2:"
+              isRequired={false}
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="city"
+              id="city"
+              inputType="text"
+              labelText="City:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="pincode"
+              id="pincode"
+              inputType="text"
+              labelText="Pincode:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="receiverName"
+              id="receiverName"
+              labelText="Receiver Name:"
+              handleChange={handleChange}
+              isRequired={false}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <BaseFloatingInput
+              name="receiverNumber"
+              id="receiverNumber"
+              inputType="text"
+              isRequired={false}
+              labelText="Receiver No:"
+              handleChange={handleChange}
+              value={initialValues}
+              errorMessage={errorMessage}
+            />
+
+            <div>
+              <label className="address__radio-label">Type: </label>
+              <br />
+              <div className="address__radio-btn">
+                <div>
+                  <input
+                    type="radio"
+                    id="Home"
+                    name="addressType"
+                    value="Home"
+                    checked={initialValues.type === "Home" || null}
+                    onChange={handleRadioChange}
+                  />
+                  <label htmlFor="Home">Home</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="Work"
+                    name="addressType"
+                    value="Work"
+                    checked={initialValues.type === "Work" || null}
+                    onChange={handleRadioChange}
+                  />
+                  <label htmlFor="Work">Work</label>
+                </div>
               </div>
               <div>
-                <input
-                  type="radio"
-                  id="Work"
-                  name="addressType"
-                  value="Work"
-                  checked={initialValues.type === "Work" || null}
-                  onChange={handleRadioChange}
-                />
-                <label htmlFor="Work">Work</label>
+                <label
+                  className="address__radio-label"
+                  htmlFor="defaultAddress"
+                >
+                  Default Address:
+                </label>
+                <br />
+
+                <div className="address__radio-btn">
+                  <div>
+                    <input
+                      type="radio"
+                      id="defaultYes"
+                      name="defaultAddress"
+                      value={true}
+                      checked={
+                        initialValues?.defaultAddress === true ||
+                        initialValues?.defaultAddress === "true"
+                      }
+                      onChange={handleChange}
+                    />
+
+                    <label htmlFor="defaultYes">Yes</label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="radio"
+                      id="defaultNo"
+                      name="defaultAddress"
+                      value={false}
+                      checked={
+                        initialValues?.defaultAddress === false ||
+                        initialValues?.defaultAddress === "false"
+                      }
+                      onChange={handleChange}
+                    />
+
+                    <label htmlFor="defaultNo">No</label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="address__btn">
-          <BaseButton buttonText= {id ? "Update" : "Add"} variant="btn btn--primary--mobile" />
-        </div>
-      </form>
-    </section>
+          <div className="address__btn">
+            <BaseButton
+              buttonText={id ? "Update" : "Add"}
+              variant="btn btn--primary--mobile"
+            />
+          </div>
+        </form>
+      </section>
     </>
   );
 };

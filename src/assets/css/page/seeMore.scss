@@ -1,10 +1,10 @@
 .see-more {
   &__main {
-    @apply pt-[41px] pb-[20px] bg-[#f5f5f8];
+    @apply pt-[41px] pb-[20px] bg-[#f5f5f8] min-h-screen;
   }
 
   &__layout {
-    @apply grid grid-cols-2 mx-2.5 mb-6 bg-white rounded-[30px];
+    @apply grid grid-cols-2 mx-2.5 pt-[6px] bg-white rounded-[30px];
   }
 
   &__btn {

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import logo from "../assets/icons/logo.svg";
+import { useNavigate } from "react-router-dom";
 import vector from "../assets/icons/header-vector.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -25,10 +27,7 @@ const Header = () => {
       {isOpen && (
         <div>
           <ul className="hamburger__menu">
-            <li>Home</li>
-            <li>Product</li>
-            <li>Faq</li>
-            <li>Contact</li>
+            <li onClick={()=>navigate("/dashboard")}>dashboard</li>
           </ul>
         </div>
       )}

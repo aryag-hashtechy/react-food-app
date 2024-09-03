@@ -1,9 +1,9 @@
-import { Navigate } from "react-router-dom";
 import { requestInstance } from "./Interceptor";
 import nookies from "nookies";
 
 const axiosProvider = async (data) => {
   let response = null;
+
   let config = {
     ...data,
     headers: {
@@ -29,9 +29,12 @@ const axiosProvider = async (data) => {
           return (response = res);
         }
       } catch (err) {
-        if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
+        if (
+          err?.response?.status === 401 &&
+          err?.response?.statusText === "Unauthorized"
+        ) {
           nookies.destroy({}, "accessToken");
-          data.navigate ? data.navigate("/auth/login"): <></>;
+          data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
@@ -51,7 +54,10 @@ const axiosProvider = async (data) => {
           return (response = res);
         }
       } catch (err) {
-        if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
+        if (
+          err?.response?.status === 401 &&
+          err?.response?.statusText === "Unauthorized"
+        ) {
           nookies.destroy({}, "accessToken");
           data.navigate ? data.navigate("/auth/login") : <></>;
         }
@@ -73,13 +79,16 @@ const axiosProvider = async (data) => {
           return (response = res);
         }
       } catch (err) {
-        if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
+        if (
+          err?.response?.status === 401 &&
+          err?.response?.statusText === "Unauthorized"
+        ) {
           nookies.destroy({}, "accessToken");
           data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
-    break;
+      break;
 
     case "PATCH":
       try {
@@ -95,13 +104,16 @@ const axiosProvider = async (data) => {
           return (response = res);
         }
       } catch (err) {
-        if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
+        if (
+          err?.response?.status === 401 &&
+          err?.response?.statusText === "Unauthorized"
+        ) {
           nookies.destroy({}, "accessToken");
           data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
-    break;
+      break;
 
     case "DELETE":
       try {
@@ -114,13 +126,20 @@ const axiosProvider = async (data) => {
           return (response = res);
         }
       } catch (err) {
-        if (err?.response?.status === 401 && err?.response?.statusText === "Unauthorized") {
+        if (
+          err?.response?.status === 401 &&
+          err?.response?.statusText === "Unauthorized"
+        ) {
           nookies.destroy({}, "accessToken");
-          data.navigate ? data.navigate("/auth/login"): <></>;
+          data.navigate ? data.navigate("/auth/login") : <></>;
         }
         return Promise.reject(err);
       }
       break;
+
+      default: 
+      //  Throw an error saying invalid request method
+       break;
   }
 };
 

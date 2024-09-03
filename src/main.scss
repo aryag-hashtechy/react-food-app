@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Base CSS */
 @import "./assets/css/base/base.scss";
 @import "./assets/css/base/baseButton.scss";
@@ -26,9 +30,9 @@
 @import "./assets/css/page/address.scss";
 @import "./assets/css/page/addressList.scss";
 @import "./assets/css/page/detailPage.scss";
+@import './assets/css/page/MobileView/dashboard.scss';
 
 /* MobileView Component CSS */
-
 @import "./assets/css/component/MobileView/body.scss";
 @import "./assets/css/component/MobileView/card.scss";
 @import "./assets/css/component/MobileView/footer.scss";
@@ -37,6 +41,7 @@
 @import "./assets/css/component/MobileView/title.scss";
 @import "./assets/css/component/MobileView/cart.scss";
 @import "./assets/css/component/MobileView/paginate.scss";
+@import "./assets/css/component/MobileView/CheckBoxCard.scss";
 
 // @import "./assets/css/component/MobileView/CartItems.scss";
 @import "./assets/css/component/MobileView/QuantityCounter.scss";
@@ -48,7 +53,6 @@
 @import "./assets/css/page/foodPage.scss";
 @import "./assets/css/page/MobileView/seeMore.scss";
 @import "./assets/css/page/seeMore.scss";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './assets/css/page/MobileView/wishlist.scss';
+@import './assets/css/page/MobileView/OrderPage.scss';
+@import './assets/css/component/MobileView/Counter.scss';

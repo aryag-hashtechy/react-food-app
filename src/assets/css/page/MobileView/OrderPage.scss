@@ -1,0 +1,56 @@
+.order{
+    &__main{
+        @apply bg-[#F5F5F8] min-h-screen 
+    }
+
+    &__title{
+        @apply text-[34px] font-semibold mb-[45px]
+    }
+
+    &__header{
+        @apply flex mb-[42px];
+    }
+
+    &__header-title{
+        @apply mx-auto text-[18px] font-semibold;
+    }
+    
+    &__address{
+
+        &-header{
+            @apply flex justify-between;
+        }
+
+        &-label{
+            @apply text-[17px] font-semibold pl-[4px];
+        }
+
+        &-change{
+            @apply text-[15px] text-[#F47B0A] font-normal;
+        }
+    }
+
+    &__payment{
+
+        &-container{
+            @apply mb-[42px];
+        }
+
+        &-header{
+            @apply text-[17px] font-semibold mb-[20px] pl-[4px]; 
+        }
+
+    }
+
+    &__deliverly{
+
+        &-container{
+            @apply mb-[42px];
+        }
+
+        &-header{
+            @apply text-[17px] font-semibold mb-[20px] pl-[4px]; 
+        }
+
+    }
+}

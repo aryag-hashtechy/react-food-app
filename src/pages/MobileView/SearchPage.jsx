@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import backIcon from "../../assets/icons/back-icon.svg";
 import SearchCard from "../../component/MobileView/SearchCard";
-import axios from "axios";
 import { useDebounce } from "use-debounce";
-import apiPath from "../../apiPath";
+import endPoints from "../../common/endPoints";
 import { useNavigate } from "react-router-dom";
 import axiosProvider from "../../common/axiosProvider";
 
 const SearchPage = () => {
   const [value, setValue] = useState();
-  const [searchText] = useDebounce(value, 2000);
+  const [searchText] = useDebounce(value, 1000);
   const [count, setCount] = useState();
   const [searchData, setSearchData] = useState();
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const SearchPage = () => {
     try {
       let search = searchText ? searchText : "";
 
-      const response = await axiosProvider({ method: "GET" , apiURL: apiPath.searchItems, params: { search }})
+      const response = await axiosProvider({ method: "GET" , apiURL: endPoints.searchItems, params: { search }})
 
       if (response && response.status === 200) {
         setSearchData(response?.data?.data);

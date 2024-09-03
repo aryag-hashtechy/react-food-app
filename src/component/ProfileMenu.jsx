@@ -6,13 +6,12 @@ const ProfileMenu = ({ text, navigateTo}) => {
   const navigate = useNavigate();
 
   return (
-    <div className="profile__option">
+    <div className="profile__option" onClick={() => navigate(navigateTo)}>
       <p>{text ? text : "text"}</p>
       <img
         src={frontIcon}
         alt="front-icon"
         className="profile__option--image"
-        onClick={() => navigate(navigateTo)}
       />
     </div>
   );
