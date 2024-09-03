@@ -7,10 +7,13 @@ import axiosProvider from "../../common/axiosProvider";
 import endPoints from "../../common/endPoints";
 import BaseButton from "../../component/base/BaseButton";
 import Toast from "../../component/MobileView/Toast";
+import { clearCart } from "../../feature/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 const OrderPage = () => {
   const navigate = useNavigate();
   const [addressData, setAddressData] = useState();
+  const dispatch = useDispatch()
   const [toast, setToast] = useState({
     message: null,
     type: null,
@@ -40,6 +43,7 @@ const OrderPage = () => {
         navigate,
       });
       if (response && response.status === 200) {
+        dispatch(clearCart())
         handleToast(response?.data?.message, "success", "/dashboard");
       }
     } catch (err) {

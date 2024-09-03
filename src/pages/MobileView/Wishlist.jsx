@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axiosProvider from "../../common/axiosProvider";
 import endPoints from "../../common/endPoints";
 import { deleteWishlist } from "../../feature/wishlist/wishlistSlice";
+import { addToCart } from "../../feature/cart/cartSlice";
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Wishlist = () => {
       });
       if (response.status === 200) {
         dispatch(deleteWishlist(id));
+        dispatch(addToCart(id));
       }
     } catch (err) {
       console.log(err);

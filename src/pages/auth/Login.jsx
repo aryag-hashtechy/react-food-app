@@ -39,10 +39,10 @@ const signupSchema = Yup.object().shape({
   password: GlobalValidation.password,
   confirmPassword: Yup.string()
     .required("Confirm Password is Required!")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .oneOf([Yup.ref("password"), null], "Passwords Must Match"),
   mobileNumber: Yup.string()
     .required("Mobile Number is required")
-    .matches(/^[6-9]\d{0,9}$|^$/, "Pleas Enter valid Number"),
+    .matches(/^[6-9]\d{0,9}$|^$/, "Please Enter Valid Number"),
 });
 
 const signinSchema = Yup.object().shape({
@@ -114,16 +114,24 @@ const Login = () => {
       });
 
       if (response && response?.status === 200) {
-        setCookie(null, "accessToken", response?.data?.data?.accessToken, {
-          maxAge: 24 * 60 * 60,
-          path: "/",
-        });
-
-        dispatch(createWishlist(response.data.wishlist));
-
-        dispatch(createCart(response.data.cart))
-
-        handleToast( setToast, response, "/dashboard", navigate);
+        if(login){
+          setCookie(null, "accessToken", response?.data?.data?.accessToken, {
+            maxAge: 24 * 60 * 60,
+            path: "/",
+          });
+  
+          dispatch(createWishlist(response.data.wishlist));
+  
+          dispatch(createCart(response.data.cart))
+  
+          handleToast( setToast, response, "/dashboard", navigate);
+        }else{
+          handleToast(setToast, response)
+          setTimeout(() => {
+            setLogin(true)
+            setInitialValue({})
+          },2300)
+        }
       }
     } catch (err) {
       console.log(err)
