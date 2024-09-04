@@ -1,5 +1,5 @@
 import React from "react";
-import profileIcon from "../assets/icons/profileIcon.svg";
+// import profileIcon from "../assets/icons/profileIcon.svg";
 
 const UserProfile = ({
   userProfile,
@@ -19,11 +19,11 @@ const UserProfile = ({
 
   return (
     <div className="profile__layout">
-      <img
+      {/* <img
         src={userProfile ? `http://localhost:5000${userProfile}` : profileIcon}
         alt="profile-pic"
         className="profile__image"
-      />
+      /> */}
 
       <div className="profile__content">
         <p

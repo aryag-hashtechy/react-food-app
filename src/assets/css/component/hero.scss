@@ -3,7 +3,7 @@
 }
 
 .hero-text {
-  @apply text-black md:text-white font-bold text-center font-mont mx-auto md:max-w-[1000px];
+  @apply text-black md:text-white font-bold text-center font-mont md:max-w-[1000px] mx-auto;
 }
 
 .hero-text > h1 {
