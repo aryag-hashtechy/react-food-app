@@ -33,10 +33,7 @@ const addressSchema = Yup.object().shape({
   receiverNumber: Yup.string()
     .optional()
     .nullable(true)
-    .matches(
-      /^[6-9]\d{9}$/,
-      "Please enter a valid phone number."
-    ),
+    .matches(/^[6-9]\d{9}$/, "Please enter a valid phone number."),
   type: Yup.string().required("Type is required"),
 });
 
@@ -90,7 +87,9 @@ const AddressPage = () => {
       e.preventDefault();
 
       const method = id ? "PATCH" : "POST";
-      const path = id ? `${endPoints.updateAddress}/${id}` : endPoints.addAddress;
+      const path = id
+        ? `${endPoints.updateAddress}/${id}`
+        : endPoints.addAddress;
 
       const response = await axiosProvider({
         method,
@@ -103,7 +102,11 @@ const AddressPage = () => {
         handleToast(setToast, response);
       }
     } catch (err) {
-      handleToast(setToast, err.response);
+      if (err?.response) {
+        handleToast(setToast, err.response);
+      } else {
+        console.error(err);
+      }
     }
   };
 
@@ -123,7 +126,9 @@ const AddressPage = () => {
   };
 
   useEffect(() => {
-    id ? handlefetch() : <></>;
+    if (id) {
+      handlefetch();
+    }
   }, []);
 
   return (

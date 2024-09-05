@@ -119,7 +119,7 @@ const Login = () => {
             maxAge: 24 * 60 * 60,
             path: "/",
           });
-  
+
           dispatch(createWishlist(response.data.wishlist));
   
           dispatch(createCart(response.data.cart))
@@ -134,7 +134,11 @@ const Login = () => {
         }
       }
     } catch (err) {
-      console.log(err)
+      if (err?.response) {
+        handleToast(setToast, err.response);
+      } else {
+        console.error(err);
+      }
     }
   };
 
