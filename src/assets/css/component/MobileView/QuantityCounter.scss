@@ -4,7 +4,7 @@
   }
 
   &__card-image {
-    @apply w-[69.21px] h-[69.21px] rounded-[50%] mr-[16px];
+    @apply w-[69.21px] h-[69.21px] rounded-[50%] mr-4;
   }
 
   &__details {
@@ -12,7 +12,7 @@
   }
 
   &__card-price {
-    @apply text-[15px] text-[#fa4a0c];
+    @apply text-[15px] text-primary;
   }
 
   &__details-container {
@@ -22,29 +22,28 @@
   &__card-name {
     @apply text-[17px] text-black flex-grow;
   }
-  
-  &__cross{
+
+  &__cross {
     @apply w-[20px] h-[20px] flex-shrink-0;
   }
 
   &__quantity-btn {
-    @apply bg-transparent text-[#fff] border-0 rounded-[150px] px-[9px] py-[4px] cursor-pointer text-[17px];
+    @apply bg-transparent text-[#fff] border-0 rounded-[150px] px-[9px] py-[4px] text-[17px] cursor-pointer;
   }
 
   &__quantity-container {
-    @apply flex items-center justify-center bg-[#fa4a0c] rounded-[30px] w-[66px] h-[27px] py-[8px];
+    @apply flex items-center bg-[#fa4a0c] rounded-[30px] w-[66px] h-[27px] py-[8px] justify-center;
   }
 
   &__quantity {
-    @apply my-[4px] text-[#fff] text-[15px];
+    @apply text-[#fff] text-[15px] my-1;
   }
 
-  &__btn-container{
+  &__btn-container {
     @apply flex;
   }
 
-  &__btn-cart{
-    @apply text-[13px] ml-[10px] bg-[#fa4a0c] text-white px-[10px] rounded-[30px] h-[27px];
+  &__btn-cart {
+    @apply text-[13px] ml-[10px] bg-[#fa4a0c] text-white rounded-[30px] h-[27px] px-2.5;
   }
-
 }

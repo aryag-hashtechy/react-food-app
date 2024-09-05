@@ -10,6 +10,7 @@ const Header = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <>
       <header className="header__main">
@@ -17,9 +18,8 @@ const Header = () => {
 
         <ul className="header__list">
           <li className="header--active">Home</li>
-          <li>Product</li>
-          <li>Faq</li>
-          <li>Contact</li>
+          <li onClick={()=> navigate('/dashboard')}>Dashboard</li>
+          <li className="header__btn" onClick={()=>navigate('/auth/login')}>Login/Signup</li>
         </ul>
 
         <img src={vector} className="header__icon" onClick={toggleMenu} />
@@ -27,6 +27,7 @@ const Header = () => {
       {isOpen && (
         <div>
           <ul className="hamburger__menu">
+            <li onClick={() =>navigate('/auth/login')}>Login</li>
             <li onClick={()=>navigate("/dashboard")}>dashboard</li>
           </ul>
         </div>

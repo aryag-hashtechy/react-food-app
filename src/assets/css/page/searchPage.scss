@@ -1,35 +1,34 @@
 .search {
-
-  &__header--container{
-    @apply px-[36px] pt-[41px]
+  &__header--container {
+    @apply pt-[41px] px-9;
   }
 
-  &__background{
-    @apply bg-[#F5F5F8]
+  &__background {
+    background-color: #F5F5F8;
   }
 
-  &__search--bar{
-    @apply h-8 w-60 -mt-2 border-[1px] outline-none ml-10 rounded-md
+  &__search--bar {
+    @apply h-8 w-60 -mt-2 border-[1px] outline-none ml-10 rounded-md;
   }
 
-  &__card--body{
-    @apply border-t-[2px] rounded-t-[30px] bg-white border-white
+  &__card--body {
+    @apply border-t-[2px] rounded-t-[30px] bg-white border-white;
   }
-  
-  &__head{
-    @apply flex
-  }  
+
+  &__head {
+    @apply flex;
+  }
 
   &__back--icon {
-    @apply w-[6px] h-[12px] mb-[30px];
+    @apply h-[12px] mb-[30px] w-1.5;
   }
 
-  &__card--layout{
-    @apply grid grid-cols-2 mx-2
+  &__card--layout {
+    @apply grid grid-cols-2 mx-2;
   }
 
-  &__message{
-    @apply flex justify-center my-8 text-[28px] font-bold
+  &__message {
+    @apply flex justify-center my-8 text-[28px] font-bold;
   }
 
   &__card--layout > :nth-child(even) {

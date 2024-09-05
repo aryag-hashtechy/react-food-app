@@ -1,5 +1,5 @@
 .float {
-  @apply h-[60px] relative overflow-hidden mb-[25px];
+  @apply h-[60px] relative mb-[25px] overflow-hidden;
 }
 
 .float input {
@@ -20,7 +20,9 @@
 
 .float input:focus + .label-name .content-name,
 .float input:valid + .label-name .content-name {
-  @apply transform -translate-y-[150%] text-[15px];
+  @apply transform;
+  transform: translateY(-150%);
+  font-size: 15px;
 }
 
 .float input:focus + .label-name::after,

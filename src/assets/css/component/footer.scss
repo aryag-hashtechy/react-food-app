@@ -1,10 +1,10 @@
 .footer {
   &__main {
-    @apply flex flex-col md:flex-row items-center justify-around h-[140px];
+    @apply flex flex-col md:flex-row items-center h-[140px] justify-around;
   }
 
   &__image {
-    @apply hidden md:block w-[206px] h-[101.76px] ml-[20px];
+    @apply hidden w-[206px] h-[101.76px] ml-[20px] md:block;
   }
 
   &__socialmedia {
@@ -12,14 +12,14 @@
   }
 
   &__twitter {
-    @apply text-primary w-[33.31px] h-[27.06];
+    @apply w-[33.31px] h-[27.06] text-primary;
   }
 
   &__facebook {
-    @apply text-primary w-[40.99px] h-[40.99px];
+    @apply w-[40.99px] h-[40.99px] text-primary;
   }
 
   &__instagram {
-    @apply text-primary w-[39px] h-[39px];
+    @apply w-[39px] h-[39px] text-primary;
   }
 }

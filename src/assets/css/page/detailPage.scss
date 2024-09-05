@@ -1,10 +1,10 @@
 .detail {
   &__main {
-    @apply justify-center flex mb-[20px];
+    @apply justify-center mb-[20px] flex;
   }
 
   &__back-icon {
-    @apply w-[6px] h-[12px];
+    @apply h-[12px] w-1.5;
   }
 
   &__banner-image {
@@ -16,15 +16,15 @@
   }
 
   &__veg-title {
-    @apply -mt-[3px] ml-[8px] text-[#0B6623];
+    @apply -mt-[3px] text-[#0B6623] ml-2;
   }
 
   &__veg-icon {
-    @apply w-[20px]  h-[20px];
+    @apply w-5 h-5;
   }
 
   &__nonveg-icon {
-    @apply w-[20px] h-[20px];
+    @apply w-5 h-5;
   }
 
   &__title {
@@ -44,10 +44,10 @@
   }
 
   &__description {
-    @apply text-base mb-[40px];
+    @apply text-base mb-10;
   }
 
-  &__ratings{
+  &__ratings {
     @apply mb-3;
   }
 

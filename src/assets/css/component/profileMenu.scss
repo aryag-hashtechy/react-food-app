@@ -1,6 +1,6 @@
 .profile {
   &__option {
-    @apply flex justify-between p-3.5 border border-white bg-white rounded-2xl mb-[27px];
+    @apply flex justify-between p-3.5 border border-white bg-white mb-[27px] rounded-2xl;
   }
 
   &__option--image {

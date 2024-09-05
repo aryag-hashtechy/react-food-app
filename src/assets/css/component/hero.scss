@@ -7,7 +7,7 @@
 }
 
 .hero-text > h1 {
-  @apply leading-[42.5px] md:leading-[80px];
+  @apply md:leading-[80px] leading-10;
 }
 
 .hero-text > :first-child {
@@ -25,7 +25,7 @@
 .hero-image {
   max-width: 548px;
   width: 100%;
-  @apply mb-12 md:relative md:-mt-40;
+  @apply md:relative md:-mt-40  mb-12;
 }
 
 .hero-border {
@@ -49,6 +49,6 @@
   @apply text-[#737373] md:text-white;
 }
 
-.btn--container >:first-child {
-  @apply mr-4 md:mr-10
+.btn--container > :first-child {
+  @apply mr-4 md:mr-10;
 }

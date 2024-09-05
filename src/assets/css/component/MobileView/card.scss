@@ -1,10 +1,10 @@
 .card {
   &__main {
-    @apply mb-2 shadow w-[226px] pt-[14px];
+    @apply mb-2 w-[226px] pt-[14px] shadow;
   }
 
   &__body {
-    @apply bg-white text-center font-semibold w-[220px];
+    @apply bg-white text-center w-[220px] font-semibold;
   }
 
   &__image {
@@ -16,18 +16,18 @@
   }
 
   &__price {
-    @apply text-primary mb-[20px];
+    @apply text-primary mb-5;
   }
 
-  &__btn-primary{
-    @apply bg-primary text-white text-[16px] font-bold rounded-[10px] px-[25px] py-[9px] hover:bg-white hover:text-primary mb-[25px];
+  &__btn-primary {
+    @apply bg-primary text-white text-[16px] font-bold rounded-[10px] px-[25px] py-[9px] hover:bg-white mb-[25px] hover:text-primary;
   }
 
-  &__footer{
+  &__footer {
     @apply flex justify-around;
   }
 
-  &__wishlist{
-    @apply mt-2 w-[20px] h-[20px];
+  &__wishlist {
+    @apply w-[20px] h-[20px] mt-2;
   }
 }

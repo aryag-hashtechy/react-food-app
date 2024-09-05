@@ -1,12 +1,12 @@
 .btn {
-  @apply text-white font-bold  text-xl rounded-[10px] px-[20px] md:px-[31px] py-[20px];
+  @apply text-white font-bold rounded-[10px] px-[20px] md:px-[31px] py-[20px] text-xl;
 
   &--primary {
     @apply bg-primary hover:bg-white hover:text-primary;
   }
 
   &--transparent {
-    @apply bg-transparent border-white border-2 md:px-[45px] md:py-[16px];
+    @apply bg-transparent border-white md:px-[45px] md:py-[16px] border-2;
   }
 
   &--outline {
@@ -17,11 +17,11 @@
     @apply bg-primary text-white  font-bold rounded-[30px] px-[115px] text-xl py-[16px] hover:bg-white hover:text-primary;
   }
 
-  &--primary-large{
+  &--primary-large {
     @apply bg-primary text-white  font-bold rounded-[30px] w-full text-xl py-[16px] hover:bg-white hover:text-primary;
   }
-  
-  &--primary-small{
+
+  &--primary-small {
     @apply bg-primary text-white text-[12px]  font-bold rounded-[10px] px-[8px] py-[4px] hover:bg-white hover:text-primary;
   }
 }

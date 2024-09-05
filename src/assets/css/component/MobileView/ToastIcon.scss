@@ -1,17 +1,15 @@
-.toastify{
-    
-    &__success{
-      max-height: 23px;
-      max-width: 23px;
-    }
+.toastify {
+  &__success {
+    max-height: 23px;
+    max-width: 23px;
+  }
 
-    &__failure{
-      max-height: 23px;
-      max-width: 23px;
-    }
+  &__failure {
+    max-height: 23px;
+    max-width: 23px;
+  }
 
-    &__close{
-      max-height: 20px;
-    }
-
+  &__close {
+    max-height: 20px;
+  }
 }

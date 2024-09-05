@@ -7,15 +7,15 @@
     @apply w-[96px] text-center text-lg pb-3 border-primary -mt-2 mx-auto;
   }
 
-  &__header{
-    @apply flex mb-2
+  &__header {
+    @apply flex mb-2;
   }
 
-  &__img{
-    @apply h-[12px] w-[6px] 
+  &__img {
+    @apply h-[12px] w-1.5;
   }
 
-  &_btn{
-    @apply flex justify-end mr-4
+  &_btn {
+    @apply flex justify-end mr-4;
   }
 }

@@ -3,11 +3,11 @@
     @apply flex gap-12 mb-8 text-[#9A9A9D] font-semibold;
   }
 
- &__category{
-   @apply pl-2;
+  &__category {
+    @apply pl-2;
 
-   &.active {
-    @apply text-primary border-b-2 border-primary pb-2;
+    &.active {
+      @apply text-primary border-b-2 border-primary pb-2;
+    }
   }
- }
 }

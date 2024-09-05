@@ -82,7 +82,7 @@ const OrderPage = () => {
               src={backIcon}
               alt="back-icon"
               className="order__back-icon"
-              onClick={() => navigate("/cart")}
+              onClick={() => navigate(-1)}
             />
 
             <p className="order__header-title">Checkout</p>
@@ -111,7 +111,6 @@ const OrderPage = () => {
                   number={data?.receiverNumber || addressData?.mobileNumber}
                 />
               ))}
-            <div className="order__address-body"></div>
           </div>
 
           <div className="order__payment-container">

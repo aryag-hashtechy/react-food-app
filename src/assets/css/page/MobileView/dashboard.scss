@@ -1,5 +1,5 @@
-.dashboard{
-    &__container{
-        @apply px-[42px]
-    }
+.dashboard {
+  &__container {
+    padding: 0 42px;
+  }
 }

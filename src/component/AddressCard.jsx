@@ -16,16 +16,17 @@ const AddressCard = ({ address, city, pincode, id, handleDelete, name, number, i
           >
             Edit
           </p>
+
           <p className="addressCard__btn" onClick={() => handleDelete(id)}>
             Delete
           </p>
         </div>
         
-        <p>{name || address}</p>
+        <p className="addressCard__text">{name || address}</p>
         <div className="addressCard__border" />
-        <p>{city || address}</p>
+        <p className="addressCard__text">{city || address}</p>
         <div className="addressCard__border" />
-        <p>{pincode || number}</p>
+        <p className="addressCard__text">{pincode || number}</p>
       </div>
     </>
   );

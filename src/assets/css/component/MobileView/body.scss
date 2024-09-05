@@ -1,23 +1,23 @@
 .body {
   &__main {
-    @apply mb-8 w-[190px];
+    @apply w-[190px] mb-8;
   }
 
   &__title {
-    @apply font-bold text-[24px];
+    @apply text-[24px] font-bold;
   }
 
   &__text {
     @apply text-primary text-right mb-4;
   }
 
-  &__paginate{
+  &__paginate {
     @apply flex justify-center mb-[20px] items-center;
   }
 }
 
 .slider {
   &__main {
-    @apply -mr-[50px] mb-[16px];
+    @apply -mr-[50px] mb-4;
   }
 }

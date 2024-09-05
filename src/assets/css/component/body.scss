@@ -8,7 +8,7 @@
   }
 
   &__heading {
-    @apply md:text-[44px] text-center pb-10 font-poppins font-semibold text-[24px];
+    @apply md:text-[44px] text-center pb-10 font-semibold text-[24px] font-poppins;
   }
 
   &__text {

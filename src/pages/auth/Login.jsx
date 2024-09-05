@@ -17,7 +17,7 @@ import { createCart } from "../../feature/cart/cartSlice";
 // GlobalValidation object
 const GlobalValidation = {
   email: Yup.string()
-    .email("Invalid email format")
+    .email()
     .required("Email is Required!"),
   password: Yup.string()
     .required("Password is Required!")

@@ -1,35 +1,29 @@
-.radio__card{
+.radio__card {
+  &--main {
+    @apply border rounded-[20px] bg-white;
+  }
 
-    &--main{
-        @apply border rounded-[20px] bg-white;
+  &--option {
+    &-one {
+      @apply px-8 py-5;
     }
 
-    &--option{
+    &-two {
+      @apply px-8 py-5;
+    }
+  }
 
-        &-one{
-            @apply px-8 py-5;
-        }
+  &--border {
+    @apply ml-[54px] mr-[38px] border-b-2;
+  }
 
-        &-two{
-           @apply px-8 py-5;
-        }
-
+  &--label {
+    &-one {
+      @apply pl-4;
     }
 
-    &--border{
-        @apply border-b-2 ml-[54px] mr-[38px];
+    &-two {
+      @apply pl-4;
     }
-
-    &--label{
-
-        &-one{
-            @apply pl-4;
-        }
-
-        &-two{
-            @apply pl-4;
-        }
-
-    }
-
+  }
 }

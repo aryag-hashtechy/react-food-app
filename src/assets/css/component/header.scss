@@ -4,7 +4,7 @@
   }
 
   &__image {
-    @apply w-[104px] h-[52px] md:w-[206px] md:h-[101.76px] ml-[20px];
+    @apply w-[104px] h-[52px] md:w-[206px] md:h-[101.76px] ml-5;
   }
 
   &__list {
@@ -16,11 +16,15 @@
   }
 
   &__icon {
-    @apply block md:hidden cursor-pointer text-[#737373] w-[20px];
+    @apply block md:hidden text-[#737373] w-[20px] cursor-pointer;
   }
 
   &--active {
     @apply text-primary;
+  }
+
+  &__btn{
+    @apply border-2 px-6 py-4 bg-primary rounded-[10px] text-white;
   }
 }
 

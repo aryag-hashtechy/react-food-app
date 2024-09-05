@@ -1,6 +1,6 @@
 .banner {
   &__main {
-    @apply bg-[#252B42] h-[564px]  md:bg-no-repeat md:bg-cover md:py-40 md:bg-center md:bg-[url('/public/images/BottomBanner.png')] md:h-[509px];
+    @apply bg-[#252B42] h-[564px]  md:bg-no-repeat md:py-40 md:bg-center md:bg-[url('/public/images/BottomBanner.png')] md:h-[509px] md:bg-cover;
   }
 
   &__text {
@@ -8,7 +8,7 @@
   }
 
   &__text > :first-child {
-    @apply text-[40px];
+    font-size: 40px;
   }
 
   &__btn--window > :first-child {

@@ -1,21 +1,21 @@
 .search {
-    &__card--container {
-      @apply pb-2 pl-2 pt-2 h-[237px];
-    }
-  
-    &__card--content {
-      @apply bg-white text-center font-semibold w-[155px] h-[190px] shadow-lg mt-4 rounded-[30px];
-    }
-  
-    &__card--image {
-      @apply w-[100px] relative h-[100px] top-[-10px] -mb-[90px] rounded-[280px] ml-6;
-    }
-  
-    &__card--title {
-      @apply text-xl pt-[80px];
-    }
-  
-    &__card--price {
-      @apply text-primary pt-4;
-    }
+  &__card--container {
+    @apply pb-2 pl-2 h-[237px] pt-2;
+  }
+
+  &__card--content {
+    @apply bg-white text-center font-semibold w-[155px] h-[190px] shadow-lg rounded-[30px] mt-4;
+  }
+
+  &__card--image {
+    @apply w-[100px] relative h-[100px] top-[-10px] -mb-[90px] rounded-[280px] ml-6;
+  }
+
+  &__card--title {
+    @apply pt-[80px] text-xl;
+  }
+
+  &__card--price {
+    @apply text-primary pt-4;
+  }
 }

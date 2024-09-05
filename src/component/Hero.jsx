@@ -16,7 +16,7 @@ const Hero = () => {
           <h3 className="h3">Download the bella onoje's food app now on</h3>
 
           <div className="btn--container">
-            <BaseButton buttonText={"App store"} variant={"btn btn--primary"}/>
+            <BaseButton buttonText={"Play Store"} variant={"btn btn--primary"}/>
 
             <BaseButton
               buttonText={"App Store"}

@@ -3,20 +3,20 @@
     @apply flex items-center justify-between sticky top-0 z-10 bg-white pt-8 pb-6;
   }
 
-  &__logo{
+  &__logo {
     max-height: 80px;
     max-width: 80px;
   }
 
   &__hamburger {
-    @apply w-[22px] h-[14.67];
+    @apply w-[22px] h-3.5;
   }
 
   &__cart {
-    @apply w-[24px] h-[24px];
+    @apply w-6 h-6;
   }
 
-  &__container{
-    @apply relative
+  &__container {
+    @apply relative;
   }
 }

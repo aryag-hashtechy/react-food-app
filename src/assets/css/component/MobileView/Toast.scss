@@ -1,7 +1,7 @@
 .toast {
   &__main {
     animation: fadeIn 350ms;
-    @apply mr-4 z-50 shadow-2xl w-[75%] fixed left-[80px] top-[15px];
+    @apply mr-4 z-50 shadow-2xl w-[75%] left-[80px] top-[15px] fixed;
 
     &:hover {
       .toast__failure {
@@ -23,7 +23,7 @@
   }
 
   &__icon {
-    @apply w-[23px] flex-shrink-0 basis-[23px];
+    @apply w-[23px] basis-[23px] flex-shrink-0;
   }
 
   &__message {

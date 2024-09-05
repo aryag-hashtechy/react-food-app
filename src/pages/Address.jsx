@@ -72,7 +72,7 @@ const Address = () => {
               src={backIcon}
               alt="back-icon"
               className="addressList__img"
-              onClick={() => navigate("/my-profile")}
+              onClick={() => navigate(-1)}
             />
 
             <p className="addressList__text">Address</p>

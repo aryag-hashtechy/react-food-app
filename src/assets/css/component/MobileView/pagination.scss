@@ -8,7 +8,8 @@
   }
 
   &__number {
-    @apply border rounded-[60px] -mt-1.5 px-2 text-black  mx-[2px];
+    @apply border rounded-[60px] -mt-1.5 px-2 text-black  mx-0.5;
+
     &.active {
       @apply bg-primary text-white;
     }
